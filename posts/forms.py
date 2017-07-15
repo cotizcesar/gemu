@@ -7,7 +7,7 @@ class PostForm(forms.ModelForm):
     text = forms.CharField(
         widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'What are you thinking?', 'maxlength': '200', 'rows': '3'})
     )
-    image = forms.CharField(
+    image = forms.ImageField(
         widget=forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}), required=False
     )
     video = forms.CharField(
