@@ -1,0 +1,19 @@
+{% extends "base/base.html" %}
+{% block titulo %}Timeline{% endblock %}
+{% block content %}
+<div class="container" id="tmln">
+    <div class="row">
+        <div class="col-md-3">
+            {% include "timeline/timeline_mod_perfil.html" %}
+            {% include "timeline/timeline_mod_menu.html" %}
+        </div>
+        <div class="col-md-6">
+            <div class="alert alert-warning" role="alert"><p>This is a software in alpha version, please if you see bugs, do not hesitate to notify the administrator <a href="mailto:cotizcesar@gmail.com">cotizcesar@gmail.com</a></p></div>
+            {% include "timeline/timeline_mod_menu_mobile.html" %}
+            {% include "timeline/timeline_mod_posts.html" %}
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>
+{% endblock %}

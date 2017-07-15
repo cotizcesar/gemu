@@ -1,0 +1,29 @@
+{% extends "base/base.html" %}
+{% block titulo %}Inicio{% endblock %}
+{% block content %}
+<div class="container" id="tmln">
+    <div class="alert alert-warning" role="alert"><p>This is a software in alpha version, please if you see bugs, do not hesitate to notify the administrator <a href="mailto:cotizcesar@gmail.com">cotizcesar@gmail.com</a></p></div>
+    {% if user.is_authenticated %}
+    {% else %}
+    <div class="jumbotron omnibox">
+        <h1>Welcome to Plaxed</h1>
+        <p>Plaxed is the social gamer tool that puts players in touch with their friends and other people, who have group games in common.</p>
+        <p>Our site is totally made so that it can be visualized in mobile devices and soon we will have at hand our native application for Android and iPhone.</p>
+    </div>            
+    {% endif %}
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Last public posts</h3>
+            {% for post in posts %}
+            {% include "posts/post.html" %}
+            {% endfor %}
+        </div>
+        <div class="col-md-6">
+            <h3>Last registered users</h3>
+            {% for user in users %}
+            {% include "users/user.html" %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

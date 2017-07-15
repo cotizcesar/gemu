@@ -1,0 +1,29 @@
+{% load custom_filters %}
+<div class="media post" id="post-{{ post.id }}">
+    {% if post.image %}
+    <img class="img-responsive post-imagen" src="{{ post.image.url }}">
+    {% elif post.video %}
+    <div class="embed-responsive embed-responsive-16by9 post-video">
+        {{ post.video|youtube_embed_url|safe }}
+    </div>
+    {% endif %}
+    <div class="media-left">
+        <a href="{% url 'user_profile' post.user.username %}"><img class="media-object img-circle avatar-thumb" src="{{ post.user.userprofile.avatar.url }}" alt="{{ post.user.get_full_name }}"></a>
+    </div>
+    <div class="media-body">
+        {% if user == post.user %}
+        <a class="post-borrar pull-right" href="{% url 'post_delete' post.id %}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+        {% endif %}
+        <h5 class="media-heading"><a href="{% url 'user_profile' post.user.username %}" class="post-nombre">{{ post.user.get_full_name }}</a> {% if post.user.is_staff is True %}<span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>{% endif %} <a href="{% url 'user_profile' post.user.username %}"><small class="post-usuario">@{{ post.user.username }}</small></a> - <small>{{ post.date_created }}</small></h5>
+        <p class="post-texto">{{ post.text }}</p>
+        <div class="clearfix"></div>
+        <ul class="post-options pull-right">
+            <li><a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comment</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Share</a></li>
+            {% if user == post.user %}
+            <li><a href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a></li>
+            {% endif %}
+            <li><a href="{% url 'post_detail' post.id %}"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span> Details</a></li>
+        </ul>
+    </div>
+</div>

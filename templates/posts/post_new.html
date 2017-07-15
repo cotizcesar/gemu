@@ -1,0 +1,33 @@
+{% extends "base/base.html" %}
+{% block titulo %}New Post{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        {% if user.is_authenticated %}
+        <div class="omnibox">
+            <div class="alert alert-info" role="alert">What are you thinking {{ user.get_full_name }}? <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span></div>
+            <form action="" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.subject.id_text }}">Text</label>
+                    {{ form.text }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.subject.id_image }}">Image</label>
+                    {{ form.image }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.subject.video }}">Video</label>
+                    {{ form.video }}
+                </div>
+                <button type="submit" class="btn btn-success">Publish <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+            </form>
+        </div>
+        {% else %}
+        {% include "core/404.html" %}
+        {% endif %}
+    </div>
+    <div class="col-md-3"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+<div class="media user">
+    <img class="img-responsive header" src="{{ i.following.userprofile.header.url }}">
+    <div class="media-left">
+        <a href="#"><img class="media-object img-responsive img-circle avatar-thumb" src="{{ i.following.userprofile.avatar.url }}" alt="{{ i.following.get_full_name }} avatar."></a>
+    </div>
+    <div class="media-body">
+        <h5 class="media-heading"><a href="{% url 'user_profile' i.following.username %}"> {{ i.following.get_full_name }}</a> {% if i.following.is_staff is True %}<span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>{% endif %} <small><a href="{% url 'user_profile' i.following.username %}">@{{ i.following.username }}</a></small></h5>
+        <ul class="user-dscrptn">
+            <li><span>{{ i.following.userprofile.location }}</span></li>
+        </ul>
+        <div class="clearfix"></div>
+        <ul class="user-options pull-right">
+            <li><span>Followers: {{ i.following.follower.count }}</span></li>
+            <li><span>Following: {{ i.following.following.count }}</span></li>
+            <li><a href="{% url 'user_profile' i.following.username %}"><span>See Profile</span></a></li>
+        </ul>
+    </div>
+</div>

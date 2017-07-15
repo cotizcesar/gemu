@@ -1,0 +1,15 @@
+{% extends "base/base.html" %}
+{% block titulo %}Followers{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row" id="tmln">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% for i in view.followers %}
+            {% include 'connection/follower.html' %}
+            {% endfor %}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+{% endblock %}
