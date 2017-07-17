@@ -4,7 +4,7 @@
         <a href="#"><img class="media-object img-responsive img-circle avatar-thumb" src="{{ i.follower.userprofile.avatar.url }}" alt="..."></a>
     </div>
     <div class="media-body">
-        <h5 class="media-heading"><a href="{% url 'user_profile' i.follower.username %}"> {{ i.follower.get_full_name }}</a> {% if i.follower.is_staff is True %}<span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>{% endif %} <small><a href="{% url 'user_profile' i.follower.username %}">@{{ i.follower.username }}</a></small></h5>
+        <h5 class="media-heading"><a href="{% url 'userprofile' i.follower.username %}"> {{ i.follower.get_full_name }}</a> {% if i.follower.is_staff is True %}<span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>{% endif %} <small><a href="{% url 'userprofile' i.follower.username %}">@{{ i.follower.username }}</a></small></h5>
         <ul class="user-dscrptn">
             <li><span>{{ i.follower.userprofile.location }}</span></li>
         </ul>
@@ -12,7 +12,7 @@
         <ul class="user-options pull-right">
             <li><span>Followers: {{ i.follower.follower.count }}</span></li>
             <li><span>Following: {{ i.follower.following.count }}</span></li>
-            <li><a href="{% url 'user_profile' i.follower.username %}"><span>See Profile</span></a></li>
+            <li><a href="{% url 'userprofile' i.follower.username %}"><span>See Profile</span></a></li>
         </ul>
     </div>
 </div>

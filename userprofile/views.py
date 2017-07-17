@@ -2,7 +2,10 @@ from django.views import generic
 from django.contrib.auth.models import User
 from django.views.generic import UpdateView, DetailView, ListView
 from django.contrib.auth import login, authenticate
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.shortcuts import render, redirect
+from django.core.exceptions import PermissionDenied
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # External Models
 from posts.models import Post
@@ -13,10 +16,42 @@ from .models import Connection, UserProfile
 #Forms
 from .forms import UserForm, UserProfileForm
 
+class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
+    """
+    This view is for editing only the User model.
+    TODO: Make not required password1 and password2
+    """
+    model = User
+    form_class = UserForm
+    template_name = 'userprofile/userprofile_edit_basic.html'
+    success_url = reverse_lazy('userprofile')
+
+    def get_object(self):
+        return self.request.user
+
+class UserProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
+    """
+    This view is for editing only the UserProfile model.
+    """
+    model = UserProfile
+    form_class = UserProfileForm
+    template_name = 'userprofile/userprofile_edit_extra.html'
+    success_url = reverse_lazy('timeline')
+
+    def form_valid(self, form):
+        form.save(self.request.user)
+        return super(UserProfileUpdateView, self).form_valid(form)
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse('timeline')
+
+    def get_object(self):
+        return self.request.user.userprofile
+
 class UserProfileDetailView(generic.DetailView):
     model = User
     slug_field = 'username'
-    template_name = 'perfil/perfil.html'
+    template_name = 'userprofile/userprofile.html'
     context_object_name = 'usr'
 
     def get_context_data(self, **kwargs):
@@ -41,11 +76,3 @@ class FollowerDetailView(generic.DetailView):
 
     def followers(self):
         return Connection.objects.filter(follower=self.get_object())
-
-class UserProfileUpdateView(generic.UpdateView):
-    model = User
-    second_model = UserProfile
-    slug_field = 'username'
-    form_class = UserForm
-    second_form_class = UserProfileForm
-    template_name = 'perfil/profile_edit.html'

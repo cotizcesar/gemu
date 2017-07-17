@@ -11,6 +11,7 @@ def youtube_embed_url(value):
     match2 = re.search(r'^(http|https)?:\/\/(www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|)(\d+)(?:|\/\?)$', value)
     match3 = re.search(r'^(^http(s)?://)?((www|en-es|en-gb|secure|beta|ro|www-origin|en-ca|fr-ca|lt|zh-tw|he|id|ca|mk|lv|ma|tl|hi|ar|bg|vi|th)\.)?twitch.tv/(?!directory|p|user/legal|admin|login|signup|jobs)(?P<channel>\w+)$', value)
     match4 = re.search(r'^(http|https)?:\/\/(www|clips)?.twitch.tv\/(\w+)$', value)
+    match5 = re.search(r'^(http|https):\/\/(i\.|media\.|www\.)?(giphy.com)\/(media|gifs)\/([a-zA-Z0-9_.-]*)$', value)
     if match:
         embed_url = 'https://www.youtube.com/embed/%s?rel=0' %(match.group(1))
         res = iframe1 + embed_url + iframe2
@@ -27,6 +28,10 @@ def youtube_embed_url(value):
         embed_url = 'https://clips.twitch.tv/embed?clip=%s&autoplay=false' %(match4.group(3))
         res = iframe1 + embed_url + iframe2
         return res
+    elif match5:
+        embed_url = 'https://giphy.com/embed/%s' %(match5.group(5))
+        res = iframe1 + embed_url + iframe2
+        return res
     else:
         embed_url = '<div class="jumbotron"><h1>Whoops!</h1><p>We found an error with the link that you sent us, the developers were notified. We will solve it soon.</p></div>'
         res = embed_url
@@ -34,5 +39,5 @@ def youtube_embed_url(value):
     return ''
 
 youtube_embed_url.is_safe = True
-
-#hola
+#<iframe src="https://giphy.com/embed/djmHBSjiwseFW" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/pizza-video-game-overwatch-djmHBSjiwseFW">via GIPHY</a></p>
+#<iframe src="https://giphy.com/embed/djmHBSjiwseFW" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/pizza-video-game-overwatch-djmHBSjiwseFW">via GIPHY</a></p>

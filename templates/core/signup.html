@@ -5,8 +5,9 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <div class="omnibox">
-                <form action="" method="post">
+            <h3>Account creation <small>This is needed to see more.</small></h3>
+            <form action="" method="post">
+                <div class="omnibox">
                     {% csrf_token %}
                     {% if form.errors %}
                     <div class="alert alert-danger" role="alert"><p>GGWP</p></div>
@@ -15,25 +16,16 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
-                                {% if form.subject.errors %}
-                                <div class="alert alert-danger" role="alert">{{ form.subject.errors }}</div>
-                                {% endif %}
                                 <label for="{{ form.subject.id_first_name }}">First name</label>
                                 {{ form.first_name }}
                             </div>
                             <div class="col-md-6">
-                                {% if form.subject.errors %}
-                                <div class="alert alert-danger" role="alert">{{ form.subject.errors }}</div>
-                                {% endif %}
                                 <label for="{{ form.subject.id_last_name }}">Last Name</label>
                                 {{ form.last_name }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        {% if form.subject.errors %}
-                        <div class="alert alert-danger" role="alert">{{ form.subject.errors }}</div>
-                        {% endif %}
                         <label for="{{ form.subject.id_username }}">Username</label>
                         <div class="input-group">
                             <span class="input-group-addon" id="srnm">@</span>
@@ -43,16 +35,10 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
-                                {% if form.subject.errors %}
-                                <div class="alert alert-danger" role="alert">{{ form.subject.errors }}</div>
-                                {% endif %}
                                 <label for="{{ form.subject.id_password1 }}">Password</label>
                                 {{ form.password1 }}
                             </div>
                             <div class="col-md-6">
-                                {% if form.subject.errors %}
-                                <div class="alert alert-danger" role="alert">{{ form.subject.errors }}</div>
-                                {% endif %}
                                 <label for="{{ form.subject.id_password2 }}">Password Confirmation</label>
                                 {{ form.password2 }}
                             </div>
@@ -61,16 +47,10 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
-                                {% if form.subject.errors %}
-                                <div class="alert alert-danger" role="alert">{{ form.subject.errors }}</div>
-                                {% endif %}
                                 <label for="{{ form.subject.email }}">Email</label>
                                 {{ form.email }}
                             </div>
                             <div class="col-md-6">
-                                {% if form.subject.errors %}
-                                <div class="alert alert-danger" role="alert">{{ form.subject.errors }}</div>
-                                {% endif %}
                                 <label for="{{ form.subject.website }}">Website</label>
                                 {{ form.website }}
                             </div>
@@ -79,32 +59,25 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
-                                {% if form.subject.errors %}
-                                <div class="alert alert-danger" role="alert">{{ form.subject.errors }}</div>
-                                {% endif %}
                                 <label for="{{ form.subject.location }}">Location</label>
                                 {{ form.location }}
                             </div>
                             <div class="col-md-6">
-                                {% if form.subject.errors %}
-                                <div class="alert alert-danger" role="alert">{{ form.subject.errors }}</div>
-                                {% endif %}
                                 <label for="{{ form.subject.date_birth }}">Date Birth</label>
                                 {{ form.date_birth }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        {% if form.subject.errors %}
-                        <div class="alert alert-danger" role="alert">{{ form.subject.errors }}</div>
-                        {% endif %}
                         <label for="{{ form.subject.bio }}">Biography</label>
                         {{ form.bio }}
-                    </div>                    
+                    </div>
+                </div>
+                <div class="omnibox">
                     <a href="{% url 'index' %}" class="btn btn-default">Cancel</a>
-                    <button type="submit" class="btn btn-success pull-right" value="Create Account">Create Account</button>
-                </form>
-            </div>
+                    <button type="submit" class="btn btn-success pull-right">Create Account</button>
+                </div>
+            </form>
         </div>
         <div class="col-md-3"></div>
     </div>

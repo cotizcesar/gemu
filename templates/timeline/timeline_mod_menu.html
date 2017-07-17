@@ -1,7 +1,8 @@
+<h3>Main Menu</h3>
 <div class="omnibox hidden-sm hidden-xs">
     <ul class="nav nav-pills nav-stacked" id="nav-menu">
-        <li {% url 'timeline_global' as home_url %}{% if request.get_full_path == home_url %}class="active"{% endif %}><a href="{% url 'timeline_global' %}"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Global</a></li>
-        <li {% url 'timeline' as home_url %}{% if request.get_full_path == home_url %}class="active"{% endif %}><a href="{% url 'timeline' %}"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Timeline</a></li>
+        <li {% if request.resolver_match.url_name == 'timeline_global' %}class="active"{% endif %}><a href="{% url 'timeline_global' %}"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Global</a></li>
+        <li {% if request.resolver_match.url_name == 'timeline' %}class="active"{% endif %}><a href="{% url 'timeline' %}"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Timeline</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span> Media</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> Games</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Groups</a></li>

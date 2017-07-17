@@ -23,7 +23,7 @@ class TimelineListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TimelineListView, self).get_context_data(**kwargs)
-        context['posts'] = Post.objects.filter('user.following')
+        context['posts'] = Post.objects.filter('user_following')
         return context
 
 class PostCreateView(generic.CreateView):

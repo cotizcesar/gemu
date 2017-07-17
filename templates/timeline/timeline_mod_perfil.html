@@ -1,14 +1,14 @@
 <div class="omnibox">
     <div class="media">
         <div class="media-left">
-            <a href="{% url 'user_profile' user.username %}"><img class="media-object img-circle avatar-thumb" src="{{ user.userprofile.avatar.url }}" alt="{{ user.get_full_name }} avatar."></a>
+            <a href="{% url 'userprofile' user.username %}"><img class="media-object img-circle avatar-thumb" src="{{ user.userprofile.avatar.url }}" alt="{{ user.get_full_name }} avatar."></a>
         </div>
         <div class="media-body">
             <h5 class="media-heading">
-                <a href="{% url 'user_profile' user.username %}">{{ user.get_full_name }}</a> {% if user.is_staff is True %}<span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>{% endif %}
-                <a href="{% url 'user_profile' user.username %}"><small>@{{ user }}</small></a>
+                <a href="{% url 'userprofile' user.username %}">{{ user.get_full_name }}</a> {% if user.is_staff is True %}<span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>{% endif %}
+                <a href="{% url 'userprofile' user.username %}"><small>@{{ user }}</small></a>
             </h5>
-            <a href="{% url 'user_profile' user.username %}"><small>See profile</small></a>
+            <a href="{% url 'userprofile' user.username %}"><small>See profile</small></a>
         </div>
     </div>
 </div>

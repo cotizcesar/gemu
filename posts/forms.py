@@ -10,7 +10,7 @@ class PostForm(forms.ModelForm):
     image = forms.ImageField(
         widget=forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}), required=False
     )
-    video = forms.CharField(
+    video = forms.URLField(
         widget=forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Youtube, Twitch.tv, Vimeo urls.', 'aria-describedby': 'srnm'}), required=False
     )
 

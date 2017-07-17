@@ -2,7 +2,6 @@
 {% block titulo %}Inicio{% endblock %}
 {% block content %}
 <div class="container" id="tmln">
-    <div class="alert alert-warning" role="alert"><p>This is a software in alpha version, please if you see bugs, do not hesitate to notify the administrator <a href="mailto:cotizcesar@gmail.com">cotizcesar@gmail.com</a></p></div>
     {% if user.is_authenticated %}
     {% else %}
     <div class="jumbotron omnibox">
@@ -13,13 +12,13 @@
     {% endif %}
     <div class="row">
         <div class="col-md-6">
-            <h3>Last public posts</h3>
+            <h3>Public Posts <small>Last posted</small></h3>
             {% for post in posts %}
             {% include "posts/post.html" %}
             {% endfor %}
         </div>
         <div class="col-md-6">
-            <h3>Last registered users</h3>
+            <h3>Registered Users <small>Last 5 users registered</small></h3>
             {% for user in users %}
             {% include "users/user.html" %}
             {% endfor %}

@@ -5,27 +5,28 @@
     <div class="col-md-3"></div>
     <div class="col-md-6">
         {% if user.is_authenticated %}
-        <div class="omnibox">
-            <div class="alert alert-info" role="alert">What are you thinking {{ user.get_full_name }}? <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span></div>
-            <form action="" enctype="multipart/form-data" method="post">
+        <h3>New Post <small>What are you thinking?</small></h3>
+        <form action="" enctype="multipart/form-data" method="post">
+            <div class="omnibox">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="{{ form.subject.id_text }}">Text</label>
+                    <label for="{{ form.text.id_for_label }}">{{ form.text.label }}</label>
                     {{ form.text }}
                 </div>
                 <div class="form-group">
-                    <label for="{{ form.subject.id_image }}">Image</label>
+                    <label for="{{ form.image.id_for_label }}">{{ form.image.label }}</label>
                     {{ form.image }}
                 </div>
                 <div class="form-group">
-                    <label for="{{ form.subject.video }}">Video</label>
+                    <label for="{{ form.video.id_for_label }}">{{ form.video.label }}</label>
                     {{ form.video }}
                 </div>
-                <button type="submit" class="btn btn-success">Publish <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
-            </form>
-        </div>
-        {% else %}
-        {% include "core/404.html" %}
+            </div>
+            <div class="omnibox">
+                <a href="{% url 'timeline' %}" class="btn btn-default">Cancel</a>
+                <button type="submit" class="btn btn-success pull-right">Update <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+            </div>
+        </form>
         {% endif %}
     </div>
     <div class="col-md-3"></div>

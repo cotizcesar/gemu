@@ -64,6 +64,13 @@ h1,h2,h3,h4,h5,h6{color: #e1e1e1;}
     padding:10px
 }
 .omnibox .titulo{font-size:20px}
+.omnibox .user-description{
+    font-size: 12px;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+.blackbox{background: #222;}
 
 .mod-siguiendo .siguiendo-info{font-size:11px;list-style:none;margin:0;padding:0}
 .mod-siguiendo .siguiendo-avatar{border:1px solid #333;border-radius:3px;max-width:50px}

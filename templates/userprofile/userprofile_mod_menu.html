@@ -1,0 +1,7 @@
+<h3>Options Menu</h3>
+<div class="omnibox hidden-sm hidden-xs">
+    <ul class="nav nav-pills nav-stacked" id="nav-menu">
+        <li {% if request.resolver_match.url_name == 'userprofile_basic' %}class="active"{% endif %}><a href="{% url 'userprofile_basic' %}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Basic Information</a></li>
+        <li {% if request.resolver_match.url_name == 'userprofile_extra' %}class="active"{% endif %}><a href="{% url 'userprofile_extra' %}"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Avatar & Extra Information</a></li>
+    </ul>
+</div>

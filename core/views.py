@@ -3,14 +3,18 @@ from django.contrib.auth.models import User
 from django.views import generic
 from django.views.generic import TemplateView
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.views import LoginView
 
 # External Models
 from posts.models import Post
 
 # Forms
-from .forms import SignUpForm
+from .forms import SignUpForm, LoginForm
 
 class IndexTemplateView(generic.TemplateView):
+    """
+    Index shows posts, last users.
+    """
     model = Post
     template_name = 'core/index.html'
 
