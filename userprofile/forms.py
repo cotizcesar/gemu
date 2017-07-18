@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 # External Models
-from .models import UserProfile
+from .models import UserProfile, Connection
 
 class UserForm(forms.ModelForm):
     first_name = forms.CharField(required = False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}))

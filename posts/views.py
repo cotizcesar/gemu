@@ -6,18 +6,19 @@ from django.core.urlresolvers import reverse_lazy
 from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Post
+from .models import Post, Comment
 
 # Forms
 from .forms import PostForm
 
-class TimelineGlobalListView(generic.ListView):
+class TimelineGlobalListView(LoginRequiredMixin, generic.ListView):
     model = Post
     template_name = 'timeline/timeline_global.html'
     context_object_name = 'posts'
 
-class TimelineListView(generic.ListView):
+class TimelineListView(LoginRequiredMixin, generic.ListView):
     model = Post
     template_name = 'timeline/timeline.html'
 
@@ -26,7 +27,7 @@ class TimelineListView(generic.ListView):
         context['posts'] = Post.objects.filter('user_following')
         return context
 
-class PostCreateView(generic.CreateView):
+class PostCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = PostForm
     success_url = reverse_lazy('timeline')
     template_name = 'posts/post_new.html'
@@ -43,6 +44,11 @@ class PostDetailView(generic.DetailView):
     slug_field = 'post_id'
     template_name = 'posts/post_detail.html'
     success_url = reverse_lazy('timeline')
+
+    def get_context_data(self, **kwargs):
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        context['comments'] = Comment.objects.all().order_by('-date_created')
+        return context
 
 class PostDeleteView(generic.DeleteView):
     model = Post

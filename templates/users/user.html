@@ -1,17 +1,27 @@
 <div class="media user">
     <img class="img-responsive header" src="{{ user.userprofile.header.url }}">
     <div class="media-left">
-        <a href="#"><img class="media-object img-responsive img-circle avatar-thumb" src="{{ user.userprofile.avatar.url }}" alt="..."></a>
+        <a href="{% url 'userprofile' user.username %}"><img class="media-object img-responsive img-circle avatar-thumb" src="{{ user.userprofile.avatar.url }}" alt="..."></a>
     </div>
     <div class="media-body">
-        <h5 class="media-heading"><a href="{% url 'userprofile' user.username %}"> {{ user.get_full_name }}</a> {% if user.is_staff is True %}<span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>{% endif %} <small><a href="{% url 'userprofile' user.username %}">@{{ user.username }}</a></small></h5>
+        <h5 class="media-heading">
+            <a href="{% url 'userprofile' user.username %}"> {{ user.get_full_name }}</a>
+            {% if user.is_staff is True %}
+            <span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>
+            {% endif %} 
+            <small><a href="{% url 'userprofile' user.username %}">@{{ user.username }}</a></small>
+        </h5>
         <ul class="user-dscrptn">
-            <li><span>{{ user.userprofile.location }}</span></li>
+            <li><span>{{ user.userprofile.bio }}</span></li>
         </ul>
         <div class="clearfix"></div>
         <ul class="user-options pull-right">
+            {% if user.follower.count > 0 %}
             <li><span>Followers: {{ user.follower.count }}</span></li>
+            {% endif %} 
+            {% if user.following.count > 0 %}
             <li><span>Following: {{ user.following.count }}</span></li>
+            {% endif %} 
             <li><a href="{% url 'userprofile' user.username %}"><span>See Profile</span></a></li>
         </ul>
     </div>

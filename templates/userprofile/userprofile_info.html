@@ -16,22 +16,35 @@
                 <li><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> {{ usr.userprofile.date_birth }}</a></li>
                 <li id="cntdrs">
                     <ul>
+                        {% if posts.count > 0 %}
                         <li>
                             <small>Posts</small>
                             <span>{{ posts.count }}</span>
                         </li>
+                        {% endif %}
+                        {% if usr.follower.count > 0 %}
                         <li>
                             <small>Followers</small>
                             <span><a href="{% url 'user_followers' usr.username %}">{{ usr.follower.count }}</a></span>
                         </li>
+                        {% endif %}
+                        {% if usr.following.count > 0 %}
                         <li>
                             <small>Following</small>
                             <span><a href="{% url 'user_following' usr.username %}">{{ usr.following.count }}</a></span>
                         </li>
+                        {% endif %}
                     </ul>
                 </li>
                 <li id="ctlzd">Last Login: {{ usr.last_login }}</li>
             </ul>
+        </div>
+        <div class="media-right">
+            {% if request.user == usr %}
+            <form class="navbar-form navbar-right" action="{% url 'userprofile_basic' %}">
+                <button type="submit" class="btn btn-info">Edit <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+            </form>
+            {% endif %}
         </div>
     </div>
 </div>

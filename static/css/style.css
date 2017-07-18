@@ -42,13 +42,11 @@ h1,h2,h3,h4,h5,h6{color: #e1e1e1;}
 .avatar-thumb{max-width:50px}
 .avatar,.avatar-thumb{background:#e1e1e1;}
 
-.post{border-radius:3px;box-shadow:0 1px 4px 0 rgba(0,0,0,0.14);margin-top: 0px; margin-bottom: 15px;}
+.post{border-radius:3px;box-shadow:0 1px 4px 0 rgba(0,0,0,0.14);font-size:12px;margin-top: 0px; margin-bottom: 15px;}
 .post .media-body,.post .media-left{background: #fff;}
 .post .media-body{padding:10px 10px 10px 5px}
 .post .media-left{padding:10px 5px 10px 10px}
 .post .post-video{border-top-left-radius:3px;border-top-right-radius:3px}
-.post .post-usuario{color:#999}
-.post .post-texto{font-size:12px}
 .post .post-borrar{color: #f1f1f1;}
 .post .post-borrar:hover{color: #999;}
 .post .post-options{list-style: none; margin: 0px; padding: 0px;}
@@ -97,3 +95,7 @@ h1,h2,h3,h4,h5,h6{color: #e1e1e1;}
 .user .user-options a{color: #999;}
 .user .user-options a:hover{color: #333;}
 .user .user-options .glyphicon{margin-right: 3px;}
+
+.comment{color: #999;}
+.comment a{color: #333;}
+.comment .comment-text{font-size: 12px;}

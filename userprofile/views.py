@@ -19,7 +19,6 @@ from .forms import UserForm, UserProfileForm
 class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
     """
     This view is for editing only the User model.
-    TODO: Make not required password1 and password2
     """
     model = User
     form_class = UserForm
