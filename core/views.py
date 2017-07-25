@@ -1,9 +1,17 @@
 from django.shortcuts import render, redirect
+from django.utils.http import is_safe_url
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate, REDIRECT_FIELD_NAME, login as auth_login, logout as auth_logout
+
+# User Auth based on CBV
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LogoutView
+
+# User Model Built-in Django
 from django.contrib.auth.models import User
+
 from django.views import generic
 from django.views.generic import TemplateView
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.views import LoginView
 
 # External Models
 from posts.models import Post
@@ -48,3 +56,11 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'core/signup.html', {'form': form})
+
+class UserLogout(LogoutView):
+    next_page = 'login'
+    redirect_field_name = 'next'
+
+class UserLogin(LoginView):
+    success_url = 'timeline'
+    form_class = LoginForm
