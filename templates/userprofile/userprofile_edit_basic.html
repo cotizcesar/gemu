@@ -11,41 +11,13 @@
             <form action="" method="post">
                 <div class="omnibox">
                     {% csrf_token %}
+                    {% for field in form %}
                     <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
-                                {{ form.first_name }}
-                            </div>
-                            <div class="col-md-6">
-                                <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
-                                {{ form.last_name }}
-                            </div>
-                        </div>
+                        {{ field.errors }}
+                        {{ field.label_tag }}
+                        {{ field }}
                     </div>
-                    <div class="form-group">
-                        <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="srnm">@</span>
-                            {{ form.username }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="{{ form.password1.id_for_label }}">Password</label>
-                                {{ form.password1 }}
-                            </div>
-                            <div class="col-md-6">
-                                <label for="{{ form.password2.id_for_label }}">Password Confirmation</label>
-                                {{ form.password2 }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
-                        {{ form.email }}
-                    </div>
+                    {% endfor %}
                 </div>
                 <div class="omnibox">
                     <a href="{% url 'userprofile' user %}" class="btn btn-default">Cancel</a>

@@ -1,14 +1,15 @@
 {% load custom_filters %}
+{% load thumbnail %}
 <div class="media post" id="post-{{ post.id }}">
     {% if post.image %}
-    <img class="img-responsive post-imagen" src="{{ post.image.url }}">
+    <img class="img-responsive post-imagen" src="{{ post.image|thumbnail_url:'post'|default:'\media/posts/default.png' }}">
     {% elif post.video %}
     <div class="embed-responsive embed-responsive-16by9 post-video">
         {{ post.video|youtube_embed_url|safe }}
     </div>
     {% endif %}
     <div class="media-left">
-        <a href="{% url 'userprofile' post.user.username %}"><img class="media-object img-circle avatar-thumb" src="{{ post.user.userprofile.avatar.url }}" alt="{{ post.user.get_full_name }}"></a>
+        <a href="{% url 'userprofile' post.user.username %}"><img class="media-object img-circle avatar-thumb" src="{{ post.user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="{{ post.user.get_full_name }}"></a>
     </div>
     <div class="media-body">
         {% if user == post.user %}

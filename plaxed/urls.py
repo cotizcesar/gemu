@@ -25,14 +25,20 @@ from core import views as core_views
 
 # Views de Core
 from core.views import IndexTemplateView
+from core.views import UserLogin, UserLogout
+
+# External Views
+from userprofile.views import UserUpdateView, UserProfileUpdateView
 
 urlpatterns = [
     # General Auth (Index, Signup, Login and Logout)
     url(r'^$', IndexTemplateView.as_view(), name='index'),
-    url(r'^login/$', auth_views.login, {'template_name': 'core/login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
-    url(r'^signup/$', core_views.signup, name='signup'),
+    url(r'^accounts/login/$', UserLogin.as_view(), name='login'),
+    url(r'^accounts/logout/$', UserLogout.as_view(), name='logout'),
+    url(r'^accounts/signup/$', core_views.signup, name='signup'),
     url(r'^admin/', admin.site.urls),
-    url(r'^t/', include('posts.urls')),
+    url(r'^', include('posts.urls')),
+    url(r'^accounts/basic/$', UserUpdateView.as_view(), name='userprofile_basic'),
+    url(r'^accounts/extra/$', UserProfileUpdateView.as_view(), name='userprofile_extra'),
     url(r'^u/(?P<slug>[a-zA-Z0-9]+)/', include('userprofile.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

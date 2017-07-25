@@ -1,32 +1,39 @@
 {% extends "base/base.html" %}
 {% block titulo %}Detailed Post{% endblock %}
+{% load thumbnail %}
 {% block content %}
 <div class="container">
-    <div class="col-md-3">
-        {% include "timeline/timeline_mod_perfil.html" %}
-        {% include "timeline/timeline_mod_menu.html" %}
-    </div>
-    <div class="col-md-6">
-        {% include "posts/post.html" %}
-        <h5>Comments ({{ comments.count }}) <small>By date</small></h5>
-        {% for comment in comments %}
-            <div class="media comment omnibox">
-                <div class="media-left">
-                    <a href="{% url 'userprofile' user %}"><img class="media-object img-circle avatar-thumb" src="{{ comment.user.userprofile.avatar.url }}" alt="..."></a>
-                </div>
-                <div class="media-body">
-                    <h5 class="media-heading"><a href="{% url 'userprofile' user %}">{{ comment.user.get_full_name }}</a> <a href="{% url 'userprofile' user %}"><small>@{{ comment.user.username }}</a> - {{ comment.date_created }}</small></h5>
-                    <p class="comment-text">{{ comment.text }}</p>
-                </div>
-            </div>
-        {% endfor %}
-        <div class="omnibox">
-            <a href="{% url 'timeline' %}" class="btn btn-default">Cancel</a>
-            <form class="pull-right" action="">
-                <button type="submit" class="btn btn-success">Comment <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>
-            </form>
+    <div class="row">
+        <div class="col-md-3">
+            {% include "timeline/timeline_mod_perfil.html" %}
+            {% include "timeline/timeline_mod_menu.html" %}
         </div>
+        <div class="col-md-6">
+            {% include "posts/post.html" %}
+            <h5>Comments ({{ comments.count }}) <small>By date</small></h5>
+            {% if comments %}
+            {% for comment in comments %}
+                <div class="media comment omnibox">
+                    <div class="media-left">
+                        <a href="{% url 'userprofile' user %}"><img class="media-object img-circle avatar-thumb" src="{{ comment.user.userprofile.avatar|thumbnail_url:'avatar_thumb' }}" alt="..."></a>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading"><a href="{% url 'userprofile' user %}">{{ comment.user.get_full_name }}</a> <a href="{% url 'userprofile' user %}"><small>@{{ comment.user.username }}</a> - {{ comment.date_created }}</small></h5>
+                        <p class="comment-text">{{ comment.text }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+            {% endif %}
+            {% if user.is_authenticated %}
+            <div class="omnibox">
+                <a href="{% url 'timeline' %}" class="btn btn-default">Cancel</a>
+                <form class="pull-right" action="">
+                    <button type="submit" class="btn btn-success">Comment <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-md-3"></div>
     </div>
-    <div class="col-md-3"></div>
 </div>
 {% endblock %}

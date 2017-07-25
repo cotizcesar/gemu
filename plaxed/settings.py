@@ -19,10 +19,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '8_-0u3)b+zx3yc)i(n&8yhbpa$p*2l806+lca1bopg(e&5u_^b'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','plxapp.herokuapp.com']
 
 
 # Application definition
@@ -34,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'easy_thumbnails',
     'core.apps.CoreConfig',
     'userprofile.apps.UserProfileConfig',
     'posts.apps.PostsConfig',
@@ -141,3 +145,13 @@ DATABASES['default'].update(db_from_env)
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+# Easy Thumbnails
+THUMBNAIL_ALIASES = {
+    '': {
+        'post': {'size': (555, 0), 'crop': 'smart', 'upscale' : True},
+        'header': {'size': (1170, 350), 'crop': 'smart', 'upscale' : True},
+        'avatar': {'size': (200, 200), 'crop': 'smart', 'upscale' : True},
+        'avatar_thumb': {'size': (50, 50), 'crop': 'smart', 'upscale' : True},
+    },
+}

@@ -5,6 +5,7 @@ a:hover{color: #666; text-decoration: none;}
 h1,h2,h3,h4,h5,h6{color: #e1e1e1;}
 
 .glyphicon-ok-circle{font-size: 12px; color: #4885ed}
+main{padding-top: 69px;}
 
 .avatar{max-width:200px;}
 .avatar-thumb{max-width:50px;}

@@ -10,10 +10,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Post, Comment
 
-# Forms
-from .forms import PostForm
+# External Models
+from userprofile.models import Connection
 
-class TimelineGlobalListView(LoginRequiredMixin, generic.ListView):
+# Forms
+from .forms import PostForm, CommentForm
+
+class TimelineGlobalListView(generic.ListView):
     model = Post
     template_name = 'timeline/timeline_global.html'
     context_object_name = 'posts'
@@ -24,7 +27,8 @@ class TimelineListView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TimelineListView, self).get_context_data(**kwargs)
-        context['posts'] = Post.objects.filter('user_following')
+        context['posts'] = Post.objects.filter()
+        context['users'] = User.objects.all().order_by('?')[:3]
         return context
 
 class PostCreateView(LoginRequiredMixin, generic.CreateView):
@@ -47,10 +51,10 @@ class PostDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
-        context['comments'] = Comment.objects.all().order_by('-date_created')
+        context['comments'] = Comment.objects.all().order_by('?')
         return context
 
-class PostDeleteView(generic.DeleteView):
+class PostDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Post
     template_name = 'posts/post_delete.html'
     success_url = reverse_lazy('timeline')
@@ -63,5 +67,5 @@ class PostDeleteView(generic.DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         if not self.user_passes_test(request):
-            raise PermissionDenied
+            return redirect('timeline')
         return super(PostDeleteView, self).dispatch(request, *args, **kwargs)

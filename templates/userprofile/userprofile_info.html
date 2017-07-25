@@ -1,10 +1,11 @@
+{% load thumbnail %}
 {% if usr.userprofile.header.url %}
-<img id="cbcr" class="img-responsive" src="{{ usr.userprofile.header.url }}">
+<img id="cbcr" class="img-responsive" src="{{ usr.userprofile.header|thumbnail_url:'header'|default:'\media/header/default.png' }}">
 {% endif %}
 <div id="nf">
     <div class="media">
         <div class="media-left">
-            <img id="vtr" class="media-object img-circle avatar" src="{{ usr.userprofile.avatar.url }}" alt="{{ usr.userprofile.get_full_name }} avatar.">
+            <img id="vtr" class="media-object img-circle" src="{{ usr.userprofile.avatar|thumbnail_url:'avatar'|default:'\media/avatar/default.png' }}" alt="{{ usr.userprofile.get_full_name }} avatar.">
         </div>
         <div class="media-body">
             <h3 class="media-heading">{{ usr.get_full_name }} {% if usr.is_staff is True %}<span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>{% endif %} <small id="sr">@{{ usr.username }}</small></h3>

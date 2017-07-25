@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 {% block titulo %}Timeline{% endblock %}
 {% block content %}
-<div class="container" id="tmln">
+<div class="container">
     <div class="row">
         <div class="col-md-3">
             {% include "timeline/timeline_mod_perfil.html" %}
@@ -11,7 +11,10 @@
             {% include "timeline/timeline_mod_menu_mobile.html" %}
             {% include "timeline/timeline_mod_posts.html" %}
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            {% include "timeline/timeline_mod_whofollow.html" %}
+            {% include "core/footer.html" %}
+        </div>
     </div>
 </div>
 {% endblock %}

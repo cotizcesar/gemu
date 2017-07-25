@@ -13,7 +13,7 @@ from posts.models import Post
 # Internal Models
 from .models import Connection, UserProfile
 
-#Forms
+#Forms ()
 from .forms import UserForm, UserProfileForm
 
 class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
@@ -50,7 +50,6 @@ class UserProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
 class UserProfileDetailView(generic.DetailView):
     model = User
     slug_field = 'username'
-    template_name = 'userprofile/userprofile.html'
     context_object_name = 'usr'
 
     def get_context_data(self, **kwargs):

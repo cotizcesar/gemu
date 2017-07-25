@@ -1,8 +1,7 @@
 {% load thumbnail %}
 <div class="media user">
-    <img class="img-responsive header" src="{{ user.userprofile.header|thumbnail_url:'post' }}">
     <div class="media-left">
-        <a href="{% url 'userprofile' user.username %}"><img class="media-object img-responsive img-circle avatar-thumb" src="{{ user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="{{ user.userprofile.get_full_name }} avatar."></a>
+        <a href="{% url 'userprofile' user.username %}"><img class="media-object img-responsive img-circle avatar-thumb" src="{{ user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="..."></a>
     </div>
     <div class="media-body">
         <h5 class="media-heading">
@@ -13,16 +12,10 @@
             <small><a href="{% url 'userprofile' user.username %}">@{{ user.username }}</a></small>
         </h5>
         <ul class="user-dscrptn">
-            <li><span>{{ user.userprofile.bio }}</span></li>
+            <li><span>{{ user.userprofile.location }}</span></li>
         </ul>
         <div class="clearfix"></div>
         <ul class="user-options pull-right">
-            {% if user.follower.count > 0 %}
-            <li><span>Followers: {{ user.follower.count }}</span></li>
-            {% endif %} 
-            {% if user.following.count > 0 %}
-            <li><span>Following: {{ user.following.count }}</span></li>
-            {% endif %} 
             <li><a href="{% url 'userprofile' user.username %}"><span>See Profile</span></a></li>
         </ul>
     </div>

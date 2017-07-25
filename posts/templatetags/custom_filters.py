@@ -1,3 +1,4 @@
+import os.path
 from django import template
 from django.conf import settings
 register = template.Library()
@@ -39,5 +40,3 @@ def youtube_embed_url(value):
     return ''
 
 youtube_embed_url.is_safe = True
-#<iframe src="https://giphy.com/embed/djmHBSjiwseFW" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/pizza-video-game-overwatch-djmHBSjiwseFW">via GIPHY</a></p>
-#<iframe src="https://giphy.com/embed/djmHBSjiwseFW" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/pizza-video-game-overwatch-djmHBSjiwseFW">via GIPHY</a></p>

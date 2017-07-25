@@ -22,7 +22,7 @@ class UserProfileForm(forms.ModelForm):
     website = forms.CharField(required = False, widget=forms.URLInput(attrs={'class': 'form-control', 'maxlength': '200', 'placeholder': 'https://www...'}))
     location = forms.CharField(required = False, widget=forms.TextInput(attrs={'class': 'form-control', 'maxlength': '30', 'placeholder': 'South Pole, Moon.'}))
     date_birth = forms.CharField(required = False, widget=forms.DateInput(attrs={'class': 'form-control', 'maxlength': '10', 'placeholder': 'YYYY-MM-DD'}))
-    bio = forms.CharField(required=False, widget=forms.Textarea(attrs={'class': 'form-control', 'maxlength': '200', 'placeholder': 'Hi! Im a Gamer...'}))    
+    bio = forms.CharField(required=False, widget=forms.Textarea(attrs={'class': 'form-control', 'maxlength': '200', 'rows': 3, 'placeholder': 'Hi! Im a Gamer...'}))    
 
     class Meta:
         model = UserProfile
