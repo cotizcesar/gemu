@@ -35,6 +35,11 @@ main{padding-top: 69px;}
     border-color: #008fcc;
     color: #fff;
 }
+.btn-discord{
+    background: #7289da;
+    border-color: #4a67cf;
+    color: #fff;
+}
 .btn-twitch:hover, .btn-steam:hover, .btn-twitch:hover, .btn-battlenet:hover, .btn-facebook:hover{
     color: #fff;
 }
