@@ -35,7 +35,7 @@ main{padding-top: 69px;}
     border-color: #008fcc;
     color: #fff;
 }
-.btn-twitch:hover, .btn-steam:hover, .btn-twitch:hover, .btn-battlenet:hover{
+.btn-twitch:hover, .btn-steam:hover, .btn-twitch:hover, .btn-battlenet:hover, .btn-facebook:hover{
     color: #fff;
 }
 .avatar{max-width:200px;}
