@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.twitch',
     'allauth.socialaccount.providers.battlenet',
+    'allauth.socialaccount.providers.discord',
     'allauth.socialaccount.providers.facebook',
 ]
 
