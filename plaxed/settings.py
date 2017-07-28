@@ -195,3 +195,9 @@ BOOTSTRAP3 = {
     # The complete URL to the Bootstrap CSS file (None means derive it from base_url)
     'css_url': '\static/css/bootstrap.min.css',
 }
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'gemu.io.app@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get('SECRET_KEY')
+EMAIL_PORT = 587
