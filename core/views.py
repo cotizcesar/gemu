@@ -27,7 +27,7 @@ class IndexTemplateView(generic.TemplateView):
         context['posts'] = Post.objects.all()[:5]
         context['users'] = User.objects.all()[:5]
         return context
-
+"""
 # Signup https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html#sign-up-with-profile-model
 def signup(request):
     if request.user.is_authenticated():
@@ -52,3 +52,4 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'core/signup.html', {'form': form})
+"""
