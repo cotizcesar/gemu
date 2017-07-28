@@ -91,27 +91,16 @@ WSGI_APPLICATION = 'plaxed.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),}
 }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
 ]
 
 # Internationalization
@@ -159,7 +148,9 @@ THUMBNAIL_ALIASES = {
 # Django AllAuth
 # http://django-allauth.readthedocs.io/en/latest/installation.html#django
 AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 TEMPLATE_LOADERS = [ 
@@ -169,10 +160,8 @@ TEMPLATE_LOADERS = [
 SOCIALACCOUNT_PROVIDERS = {
     "twitch": {"SCOPE": ["user_read"]},
 }
-# Django-Allauth: Battle.net Solution
-# https://github.com/pennersr/django-allauth/pull/1648
-#ACCOUNT_USERNAME_VALIDATORS = ['allauth.socialaccount.providers.battlenet.validators.BattletagUsernameValidator'] - In Progress
-ACCOUNT_USERNAME_VALIDATORS = ['plaxed.validators.username_validators']
+# Django AllAuth: Configs
+ACCOUNT_EMAIL_REQUIRED = True
 
 # Django-Boostrap3
 # https://django-bootstrap3.readthedocs.io/en/latest/settings.html
