@@ -21,9 +21,9 @@
                     <button type="submit" class="btn btn-success">New Post <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>                            
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li {% url 'timeline' as home_url %}{% if request.get_full_path == home_url %}class="active"{% endif %}><a href="{% url 'timeline' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                    <li {% url 'timeline' as home_url %}{% if request.get_full_path == home_url %}class="active"{% endif %}><a href="{% url 'timeline' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {% user_display user %} <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i> {% user_display user %} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'userprofile' user %}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a></li>
                             <li><a href="{% url 'userprofile_basic' %}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Options</a></li>

@@ -1,7 +1,8 @@
 <h3>Options Menu</h3>
 <div class="omnibox hidden-sm hidden-xs">
     <ul class="nav nav-pills nav-stacked" id="nav-menu">
-        <li {% if request.resolver_match.url_name == 'userprofile_basic' %}class="active"{% endif %}><a href="{% url 'userprofile_basic' %}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Basic Information</a></li>
-        <li {% if request.resolver_match.url_name == 'userprofile_extra' %}class="active"{% endif %}><a href="{% url 'userprofile_extra' %}"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Avatar & Extra Information</a></li>
+        <li {% if request.resolver_match.url_name == 'userprofile_basic' %}class="active"{% endif %}><a href="{% url 'userprofile_basic' %}"><i class="fa fa-user-circle" aria-hidden="true"></i> Basic Information</a></li>
+        <li {% if request.resolver_match.url_name == 'userprofile_extra' %}class="active"{% endif %}><a href="{% url 'userprofile_extra' %}"><i class="fa fa-picture-o" aria-hidden="true"></i> Avatar & Extra Information</a></li>
+        <li {% if request.resolver_match.url_name == 'socialaccount_connections' %}class="active"{% endif %}><a href="{% url 'socialaccount_connections' %}"><i class="fa fa-plug" aria-hidden="true"></i> Account Connections</a></li>
     </ul>
 </div>
