@@ -169,7 +169,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 # Django-Allauth: Battle.net Solution
 # https://github.com/pennersr/django-allauth/pull/1648
-#ACCOUNT_USERNAME_VALIDATORS = ['allauth.socialaccount.providers.battlenet.validators.BattletagUsernameValidator']
+#ACCOUNT_USERNAME_VALIDATORS = ['allauth.socialaccount.providers.battlenet.validators.BattletagUsernameValidator'] - In Progress
 ACCOUNT_USERNAME_VALIDATORS = ['plaxed.validators.username_validators']
 
 # Django-Boostrap3
