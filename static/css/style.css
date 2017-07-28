@@ -40,7 +40,7 @@ main{padding-top: 69px;}
     border-color: #4a67cf;
     color: #fff;
 }
-.btn-twitch:hover, .btn-steam:hover, .btn-twitch:hover, .btn-battlenet:hover, .btn-facebook:hover{
+.btn-twitch:hover, .btn-steam:hover, .btn-twitch:hover, .btn-battlenet:hover, .btn-facebook:hover, .btn-discord:hover{
     color: #fff;
 }
 .avatar{max-width:200px;}
