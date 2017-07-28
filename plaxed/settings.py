@@ -186,6 +186,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 # Django AllAuth: Configs
 ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_LOGOUT_REDIRECT_URL = 'login'
 
 # Django-Boostrap3
 # https://django-bootstrap3.readthedocs.io/en/latest/settings.html
