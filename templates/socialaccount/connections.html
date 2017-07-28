@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap3 %}
 {% load i18n %}
 {% block head_title %}{% trans "Account Connections" %}{% endblock %}
 {% block content %}
@@ -10,6 +11,7 @@
         <div class="col-md-6">
             <h3>{% trans "Account Connections" %}</h3>
             <div class="omnibox">
+                {% bootstrap_messages %}
                 {% if form.accounts %}
                 <p>{% blocktrans %}You can sign in to your account using any of the following third party accounts:{% endblocktrans %}</p>
                 <form method="post" action="{% url 'socialaccount_connections' %}">
