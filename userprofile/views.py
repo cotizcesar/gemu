@@ -23,7 +23,7 @@ class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = User
     form_class = UserForm
     template_name = 'userprofile/userprofile_edit_basic.html'
-    success_url = reverse_lazy('userprofile')
+    success_url = reverse_lazy('userprofile_basic')
 
     def get_object(self):
         return self.request.user
@@ -49,6 +49,7 @@ class UserProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class UserProfileDetailView(generic.DetailView):
     model = User
+    template_name = 'userprofile/userprofile.html'
     slug_field = 'username'
     context_object_name = 'usr'
 

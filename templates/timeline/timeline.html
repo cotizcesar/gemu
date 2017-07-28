@@ -8,8 +8,11 @@
             {% include "timeline/timeline_mod_menu.html" %}
         </div>
         <div class="col-md-6">
+            
             {% include "timeline/timeline_mod_menu_mobile.html" %}
-            {% include "timeline/timeline_mod_posts.html" %}
+            {% for post in posts %}
+            {% include "posts/post.html" %}
+            {% endfor %}
         </div>
         <div class="col-md-3">
             {% include "timeline/timeline_mod_whofollow.html" %}

@@ -10,6 +10,7 @@
         <div class="media-body">
             <h3 class="media-heading">{{ usr.get_full_name }} {% if usr.is_staff is True %}<span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>{% endif %} <small id="sr">@{{ usr.username }}</small></h3>
             <ul id="dscrpcn">
+                <li>{{usr.social_auth.get_username}}</li>
                 <li><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {{ usr.userprofile.bio }}</li>
                 <li><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> <a href="http://maps.google.com/?q={{ usr.userprofile.location }}" target="_blank">{{ usr.userprofile.location }}</a></li>
                 <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span> <a href="{{ usr.userprofile.website }}" target="_blank">{{ usr.userprofile.website }}</a></li>

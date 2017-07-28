@@ -7,10 +7,35 @@ h1,h2,h3,h4,h5,h6{color: #e1e1e1;}
 .glyphicon-ok-circle{font-size: 12px; color: #4885ed}
 main{padding-top: 69px;}
 
+/* Custom: Buttons */
+.btn .fa{
+    margin-right: 5px;
+}
+.btn-facebook{
+    background: #3b5998;
+    border-color: #4b6eb9;
+    color: #fff;
+}
+.btn-steam{
+    background: #1a1a1a;
+    border-color: #000;
+    color: #fff;
+}
+.btn-twitch{
+    background: #6441a5;
+    border-color: #4e3380;
+    color: #fff;
+}
+.btn-battlenet{
+    background: #00B4FF;
+    border-color: #008fcc;
+    color: #fff;
+}
+.btn-twitch:hover, .btn-steam:hover, .btn-twitch:hover, .btn-battlenet:hover{
+    color: #fff;
+}
 .avatar{max-width:200px;}
 .avatar-thumb{max-width:50px;}
-.avatar,.avatar-thumb{background:#222;}
-
 
 .navbar .navbar-brand{font-family:'Poiret One',cursive;font-size:32px}
 
@@ -36,12 +61,7 @@ main{padding-top: 69px;}
 #timeline{padding-top: 15px; padding-bottom: 15px;}
 #tmln{padding-bottom: 15px;}
 
-
 #nav-menu .glyphicon{margin:0 5px 0 0}
-
-.avatar{max-width:200px}
-.avatar-thumb{max-width:50px}
-.avatar,.avatar-thumb{background:#e1e1e1;}
 
 .post{border-radius:3px;box-shadow:0 1px 4px 0 rgba(0,0,0,0.14);font-size:12px;margin-top: 0px; margin-bottom: 15px;}
 .post .media-body,.post .media-left{background: #fff;}

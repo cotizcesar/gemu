@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% load account socialaccount %}
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% bootstrap_messages %}
+            <h3>{% trans "Sign In" %}</h3>
+            <div class="omnibox">
+                {% get_providers as socialaccount_providers %}
+                {% if socialaccount_providers %}
+
+                <p>{% blocktrans with site.name as site_name %}Please sign in with one of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a> for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+                {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                {% include "socialaccount/snippets/login_extra.html" %}
+                {% else %}
+                <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>                
+                {% endif %}
+                <hr>
+                <form class="login form" method="POST" action="{% url 'account_login' %}">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+            </div>
+            <div class="omnibox">
+                <a class="btn btn-warning button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                <button class="btn btn-success pull-right primaryAction" type="submit">{% trans "Sign In" %}</button>
+            </div>
+                </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+{% endblock %}

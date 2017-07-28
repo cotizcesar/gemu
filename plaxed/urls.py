@@ -20,12 +20,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 # General Auth (Signup, Login and Logout)
-from django.contrib.auth import views as auth_views
 from core import views as core_views
 
 # Views de Core
 from core.views import IndexTemplateView
-from core.views import UserLogin, UserLogout
 
 # External Views
 from userprofile.views import UserUpdateView, UserProfileUpdateView
@@ -33,9 +31,8 @@ from userprofile.views import UserUpdateView, UserProfileUpdateView
 urlpatterns = [
     # General Auth (Index, Signup, Login and Logout)
     url(r'^$', IndexTemplateView.as_view(), name='index'),
-    url(r'^accounts/login/$', UserLogin.as_view(), name='login'),
-    url(r'^accounts/logout/$', UserLogout.as_view(), name='logout'),
-    url(r'^accounts/signup/$', core_views.signup, name='signup'),
+    # Django-Allauth: Accounts
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^', include('posts.urls')),
     url(r'^accounts/basic/$', UserUpdateView.as_view(), name='userprofile_basic'),

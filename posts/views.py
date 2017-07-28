@@ -46,12 +46,11 @@ class PostCreateView(LoginRequiredMixin, generic.CreateView):
 class PostDetailView(generic.DetailView):
     model = Post
     slug_field = 'post_id'
-    template_name = 'posts/post_detail.html'
     success_url = reverse_lazy('timeline')
 
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
-        context['comments'] = Comment.objects.all().order_by('?')
+        context['comments'] = Comment.objects.filter(post=self.object.id).select_related()
         return context
 
 class PostDeleteView(LoginRequiredMixin, generic.DeleteView):

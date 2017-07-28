@@ -6,76 +6,26 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <h3>Account creation <small>This is needed to see more.</small></h3>
-            <form action="" method="post">
+            <form method="post" action="">
                 <div class="omnibox">
-                    {% csrf_token %}
-                    {% if form.errors %}
-                    <div class="alert alert-danger" role="alert"><p>GGWP</p></div>
-                    {% endif %}
-                    <div class="alert alert-info" role="alert">Fill in all the fields to enjoy our service.  <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span></div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="{{ form.subject.id_first_name }}">First name</label>
-                                {{ form.first_name }}
-                            </div>
-                            <div class="col-md-6">
-                                <label for="{{ form.subject.id_last_name }}">Last Name</label>
-                                {{ form.last_name }}
+                    <div class="row">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ field.label_tag }}
+                                {{ field }}
+                                {{ field.errors }}
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="{{ form.subject.id_username }}">Username</label>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="srnm">@</span>
-                            {{ form.username }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="{{ form.subject.id_password1 }}">Password</label>
-                                {{ form.password1 }}
-                            </div>
-                            <div class="col-md-6">
-                                <label for="{{ form.subject.id_password2 }}">Password Confirmation</label>
-                                {{ form.password2 }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="{{ form.subject.email }}">Email</label>
-                                {{ form.email }}
-                            </div>
-                            <div class="col-md-6">
-                                <label for="{{ form.subject.website }}">Website</label>
-                                {{ form.website }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="{{ form.subject.location }}">Location</label>
-                                {{ form.location }}
-                            </div>
-                            <div class="col-md-6">
-                                <label for="{{ form.subject.date_birth }}">Date Birth</label>
-                                {{ form.date_birth }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="{{ form.subject.bio }}">Biography</label>
-                        {{ form.bio }}
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="omnibox">
                     <a href="{% url 'index' %}" class="btn btn-default">Cancel</a>
-                    <button type="submit" class="btn btn-success pull-right">Create Account</button>
+                    <button type="submit" class="btn btn-success pull-right">Signup</button>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    <div class="clearfix"></div>
                 </div>
             </form>
         </div>

@@ -27,15 +27,15 @@
                             <li><a href="{% url 'userprofile' user %}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a></li>
                             <li><a href="{% url 'userprofile_basic' %}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Options</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
+                            <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
                         </ul>
                     </li>
                 </ul>
                 {% else %}
-                <form class="navbar-form navbar-right" action="{% url 'signup' %}">
+                <form class="navbar-form navbar-right" action="{% url 'account_signup' %}">
                     <button type="submit" class="btn btn-success">Signup <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
                 </form>
-                <form class="navbar-form navbar-right" action="{% url 'login' %}">
+                <form class="navbar-form navbar-right" action="{% url 'account_login' %}">
                     <button type="submit" class="btn btn-info">Login <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
                 </form>
                 {% endif %}

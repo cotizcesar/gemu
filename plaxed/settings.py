@@ -15,20 +15,13 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8_-0u3)b+zx3yc)i(n&8yhbpa$p*2l806+lca1bopg(e&5u_^b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','plxapp.herokuapp.com']
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,12 +30,29 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Easy Thumbnails
     'easy_thumbnails',
+    # Bootstrap 3: Installation
+    # https://django-bootstrap3.readthedocs.io/en/latest/installation.html#installation
+    'bootstrap3',
+    # System APPS
     'core.apps.CoreConfig',
     'userprofile.apps.UserProfileConfig',
     'posts.apps.PostsConfig',
     'posts.templatetags.custom_filters',
+    # Django AllAuth: Providers
+    # http://django-allauth.readthedocs.io/en/latest/installation.html#django
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.twitch',
+    'allauth.socialaccount.providers.battlenet',
 ]
+
+# Django AllAuth: Providers
+# http://django-allauth.readthedocs.io/en/latest/installation.html#django
+SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,10 +84,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'plaxed.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -85,10 +93,8 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -104,20 +110,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'America/Bogota'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -129,11 +128,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# Media Files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# Login Redirect
 LOGIN_REDIRECT_URL = 'timeline'
 
 # Heroku: Update database configuration with $DATABASE_URL.
@@ -146,7 +143,8 @@ DATABASES['default'].update(db_from_env)
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-# Easy Thumbnails
+THUMBNAIL_TRANSPARENCY_EXTENSION = 'png'
+
 THUMBNAIL_ALIASES = {
     '': {
         'post': {'size': (555, 0), 'crop': 'smart', 'upscale' : True},
@@ -154,4 +152,29 @@ THUMBNAIL_ALIASES = {
         'avatar': {'size': (200, 200), 'crop': 'smart', 'upscale' : True},
         'avatar_thumb': {'size': (50, 50), 'crop': 'smart', 'upscale' : True},
     },
+}
+
+# Django AllAuth
+# http://django-allauth.readthedocs.io/en/latest/installation.html#django
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+TEMPLATE_LOADERS = [ 
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+]
+SOCIALACCOUNT_PROVIDERS = {
+    "twitch": {"SCOPE": ["user_read"]},
+}
+# Django-Allauth: Battle.net Solution
+# https://github.com/pennersr/django-allauth/pull/1648
+#ACCOUNT_USERNAME_VALIDATORS = ['allauth.socialaccount.providers.battlenet.validators.BattletagUsernameValidator']
+ACCOUNT_USERNAME_VALIDATORS = ['plaxed.validators.username_validators']
+
+# Django-Boostrap3
+# https://django-bootstrap3.readthedocs.io/en/latest/settings.html
+BOOTSTRAP3 = {
+    # The complete URL to the Bootstrap CSS file (None means derive it from base_url)
+    'css_url': '\static/css/bootstrap.min.css',
 }
