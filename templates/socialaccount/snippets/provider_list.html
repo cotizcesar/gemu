@@ -7,5 +7,5 @@
             <a title="{{brand.name}}" class="socialaccount_provider {{provider.id}} {{brand.id}} btn btn-{{provider.id}}" href="{% provider_login_url provider.id openid=brand.openid_url process=process %}" role="button">{{brand.name}}</a>
         {% endfor %}
     {% endif %}
-    <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}} btn btn-{{provider.id}}" href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}" role="button"><i class="fa fa-{{provider.id}}" aria-hidden="true"></i> {{provider.name}}</a>
+    <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}} btn btn-{{provider.id}}" href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}" role="button"><i class="fa fa-{% if provider.id == 'battlenet'%}gamepad{% else %}{{provider.id}}{% endif %}" aria-hidden="true"></i> {{provider.name}}</a>
 {% endfor %}
