@@ -196,8 +196,12 @@ BOOTSTRAP3 = {
     'css_url': '\static/css/bootstrap.min.css',
 }
 
+# Django: Email Delivery
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'gemu.io.app@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('SECRET_KEY')
 EMAIL_PORT = 587
+
+# Django: Email Delivery to admin
+ADMINS = (('Cesar Cotiz', 'cotizcesar@gmail.com'),)
