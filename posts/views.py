@@ -18,12 +18,13 @@ from .forms import PostForm, CommentForm
 
 class TimelineGlobalListView(ListView):
     model = Post
+    paginate_by = 5
     template_name = 'timeline/timeline_global.html'
     context_object_name = 'posts'
 
 class TimelineListView(LoginRequiredMixin, ListView):
     model = Post
-    paginate_by = 1
+    paginate_by = 5
     template_name = 'timeline/timeline.html'
 
     def get_context_data(self, **kwargs):

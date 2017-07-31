@@ -1,6 +1,6 @@
-{% extends "base/base.html" %}
+{% extends "base.html" %}
 {% load bootstrap3 %}
-{% block titulo %}Timeline{% endblock %}
+{% block head_title %}Timeline{% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">
@@ -16,11 +16,11 @@
             {% include "posts/post.html" %}
             {% endfor %}
             </div>
-            <div class="loading" style="display: none;">
-                Loading...
+            <div class="loading">
+                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
             </div>
             {% if page_obj.has_next %}
-            <a class="infinite-more-link" href="#">More</a>
+            <a class="infinite-more-link" href="#"></a>
             {% endif %}
         </div>
         <div class="col-md-3">

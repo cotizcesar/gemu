@@ -1,5 +1,6 @@
-{% extends "base/base.html" %}
-{% block titulo %}Global Timeline{% endblock %}
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block head_title %}Global Timeline{% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">
@@ -8,8 +9,19 @@
             {% include "timeline/timeline_mod_menu.html" %}
         </div>
         <div class="col-md-6">
+            {% bootstrap_messages %}
             {% include "timeline/timeline_mod_menu_mobile.html" %}
-            {% include "timeline/timeline_global_mod_posts.html" %}
+            <div class="infinite-container">
+            {% for post in posts %}
+            {% include "posts/post.html" %}
+            {% endfor %}
+            </div>
+            <div class="loading">
+                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+            </div>
+            {% if page_obj.has_next %}
+            <a class="infinite-more-link" href="#"></a>
+            {% endif %}
         </div>
         <div class="col-md-3">
             {% include "timeline/timeline_mod_whofollow.html" %}

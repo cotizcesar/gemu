@@ -129,3 +129,12 @@ main{padding-top: 69px;}
 .comment{color: #999;}
 .comment a{color: #333;}
 .comment .comment-text{font-size: 12px;}
+
+/* Timeline */
+/* Button: Loading */
+.loading{
+    color: #999;
+    display: block;
+    margin-bottom: 15px;
+    text-align: center;
+}

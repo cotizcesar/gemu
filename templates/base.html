@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block head_title %}Titulo Base{% endblock %} - Plaxed</title>
+        <title>{% block head_title %}{% endblock %} - Plaxed</title>
         {% bootstrap_css %}
         <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poiret+One" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
@@ -20,29 +20,29 @@
         <![endif]-->
     </head>
     <body>
-        {% include "base/header.html" %}
+        {% include "header.html" %}
         <main>
             {% block content %}{% endblock %}
         </main>
-        <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+        <script src="{% bootstrap_jquery_url %}"></script>
+        {% bootstrap_javascript %}
         <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
         <script src="{% static 'js/infinite.min.js' %}"></script>
         <script>
             var infinite = new Waypoint.Infinite({
-                element: $('.infinite-container')[0],
-                onBeforePageLoad: function () {
-                    $('.loading').show();
-                },
-                onAfterPageLoad: function ($items) {
-                    $('.loading').hide();
-                }
+            element: $('.infinite-container')[0],
+            onBeforePageLoad: function () {
+                $('.loading').show();
+            },
+            onAfterPageLoad: function ($items) {
+                $('.loading').hide();
+            }
             });
         </script>
-        <!--<script>
+        <script>
             $(document).ready(function(){
                 $('[data-toggle="tooltip"]').tooltip(); 
             });
-        </script>-->
-        {% bootstrap_javascript %}
+        </script>
     </body>
 </html>
