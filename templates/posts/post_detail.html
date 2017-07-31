@@ -41,7 +41,7 @@
             {% if user.is_authenticated %}
             <div class="omnibox">
                 <a href="{% url 'timeline' %}" class="btn btn-default">Cancel</a>
-                <a class="btn btn-success pull-right" href="{% url 'post_comment' post.id %}">Add comment</a>
+                <a class="btn btn-success pull-right" href="{% url 'post_comment' post.id %}"><i class="fa fa-comment" aria-hidden="true"></i> Comment</a>
             </div>
             {% endif %}
         </div>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block titulo %}{{ usr.userprofile.user.get_full_name }} (@{{ usr.userprofile.user.username }}){% endblock %}
+{% block head_title %}{{ usr.userprofile.user.get_full_name }} (@{{ usr.userprofile.user.username }}){% endblock %}
 {% block OGFacebook %}
 <meta property="og:url"                content="{{ request.build_absolute_uri }}" />
 <meta property="og:type"               content="website" />
