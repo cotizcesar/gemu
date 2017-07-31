@@ -80,9 +80,10 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     
     def form_valid(self, form):
         obj = form.save(commit=False)
-        obj.created_by = self.request.user
+        obj.post = Post.objects.get(id=self.kwargs['pk'])
+        obj.user = self.request.user
         obj.save()        
-        return http.HttpResponseRedirect(self.get_success_url())
+        return redirect('post_detail', pk=post.pk)
 
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
