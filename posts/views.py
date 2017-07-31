@@ -76,25 +76,10 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     slug_field = 'post_id'
     form_class = CommentForm
     template_name = 'posts/comment_new.html'
-    success_url = reverse_lazy('timeline')
     
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.post = Post.objects.get(id=self.kwargs['pk'])
         obj.user = self.request.user
         obj.save()        
-        return redirect('post_detail', pk=post.pk)
-
-def add_comment_to_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            user = request.user
-            comment.post = post
-            comment.save()
-            return redirect('post_detail', pk=post.pk)
-    else:
-        form = CommentForm()
-    return render(request, 'posts/comment_new.html', {'form': form})
+        return redirect('post_detail', pk=obj.post.id)

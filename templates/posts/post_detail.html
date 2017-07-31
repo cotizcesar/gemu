@@ -19,7 +19,7 @@
             {% include "posts/post.html" %}
             <h5>Comments ({{ comments.count }}) <small>By date</small>                 
                 <div class="dropdown pull-right">
-                    <button id="dLabel" class="btn btn-info btn-xs" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share <span class="caret"></span></button>
+                    <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share <span class="caret"></span></span>
                     <ul class="dropdown-menu" aria-labelledby="dLabel">
                         <li data-href="{{ request.build_absolute_uri }}"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}&amp;src=sdkpreparse">Share on Facebook</a></li>
                     </ul>

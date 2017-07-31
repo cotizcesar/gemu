@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 
-from posts import views
+# My custom CBV
 from .views import TimelineListView, TimelineGlobalListView, PostCreateView, PostDetailView, PostDeleteView, CommentCreateView
 
 urlpatterns = [
