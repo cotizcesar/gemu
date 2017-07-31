@@ -1,11 +1,10 @@
 from django.contrib.auth.models import User
-from django.views import generic
 from django.views.generic import TemplateView
 
 # External Models
 from posts.models import Post
 
-class IndexTemplateView(generic.TemplateView):
+class IndexTemplateView(TemplateView):
     """
     Index shows posts, last users.
     """
