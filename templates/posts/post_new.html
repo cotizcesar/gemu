@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block titulo %}New Post{% endblock %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% block head_title %}New Post{% endblock %}
 {% block content %}
 <div class="container">
     <div class="col-md-3"></div>
@@ -9,13 +11,7 @@
         <form action="" enctype="multipart/form-data" method="post">
             <div class="omnibox">
                 {% csrf_token %}
-                {% for field in form %}
-                <div class="form-group">
-                    {{ field.errors }}
-                    {{ field.label_tag }}
-                    {{ field }}
-                </div>
-                {% endfor %}
+                {% bootstrap_form form %}
             </div>
             <div class="omnibox">
                 <a href="{% url 'timeline' %}" class="btn btn-default">Cancel</a>

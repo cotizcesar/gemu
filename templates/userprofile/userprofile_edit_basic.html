@@ -11,14 +11,7 @@
             <form action="" method="post">
                 <div class="omnibox">
                     {% csrf_token %}
-                    {% for field in form %}
-                    <div class="form-group">
-                        {{ field.label_tag }}
-                        {{ field }}
-                        {{ field.help_text }}
-                        {{ field.errors }}
-                    </div>
-                    {% endfor %}
+                    {% bootstrap_form form %}
                 </div>
                 <div class="omnibox">
                     <a href="{% url 'userprofile' user %}" class="btn btn-default">Cancel</a>
