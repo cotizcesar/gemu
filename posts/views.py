@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.contrib.auth.models import User
-from django.views.generic import ListView, CreateView, TemplateView, FormView
+from django.views.generic import ListView, CreateView, TemplateView, FormView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.utils import timezone
 from django.http import HttpResponseRedirect
@@ -55,7 +55,7 @@ class PostDetailView(generic.DetailView):
         context['comments'] = Comment.objects.filter(post=self.object.id).select_related()
         return context
 
-class PostDeleteView(LoginRequiredMixin, generic.DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'posts/post_delete.html'
     success_url = reverse_lazy('timeline')
@@ -70,3 +70,30 @@ class PostDeleteView(LoginRequiredMixin, generic.DeleteView):
         if not self.user_passes_test(request):
             return redirect('timeline')
         return super(PostDeleteView, self).dispatch(request, *args, **kwargs)
+
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    model = Comment
+    slug_field = 'post_id'
+    form_class = CommentForm
+    template_name = 'posts/comment_new.html'
+    success_url = reverse_lazy('timeline')
+    
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.created_by = self.request.user
+        obj.save()        
+        return http.HttpResponseRedirect(self.get_success_url())
+
+def add_comment_to_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            user = request.user
+            comment.post = post
+            comment.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'posts/comment_new.html', {'form': form})
