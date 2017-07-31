@@ -17,7 +17,7 @@ class UserProfile(models.Model):
     bio = models.TextField(max_length=140, blank=True)
     website = models.URLField(max_length=200, blank=True)
     location = models.CharField(max_length=30, blank=True)
-    date_birth = models.DateField(null=True, blank=True)
+    date_birth = models.DateField(null=True, blank=True)#
 
     def __str__(self):
         return self.user.username
