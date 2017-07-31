@@ -6,7 +6,7 @@
 <meta property="og:type"               content="website" />
 <meta property="og:title"              content="{{ post.user.get_full_name }} (@{{ post.user.username }})" />
 <meta property="og:description"        content="{{ post.text }}" />
-<meta property="og:image"              content="{% if post.image %}{{ post.image|thumbnail_url:'post'|default:'\media/posts/default.png' }}{% else %}{{ {{ post.user.userprofile.avatar|thumbnail_url:'avatar' }}{% endif %}" />
+<meta property="og:image"              content="{% if post.image %}{{ post.image|thumbnail_url:'post'|default:'\media/posts/default.png' }}{% else %}{{ post.user.userprofile.avatar|thumbnail_url:'avatar' }}{% endif %}" />
 {% endblock %}
 {% block content %}
 <div class="container">
