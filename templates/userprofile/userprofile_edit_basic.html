@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load bootstrap3 %}
+{% load i18n %}
 {% block titulo %}Edit Profile - {{ user.get_full_name }} (@{{ user.username }}){% endblock %}
 {% block content %}
 <div class="container">
