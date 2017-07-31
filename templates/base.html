@@ -24,12 +24,25 @@
         <main>
             {% block content %}{% endblock %}
         </main>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+        <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'js/infinite.min.js' %}"></script>
         <script>
+            var infinite = new Waypoint.Infinite({
+                element: $('.infinite-container')[0],
+                onBeforePageLoad: function () {
+                    $('.loading').show();
+                },
+                onAfterPageLoad: function ($items) {
+                    $('.loading').hide();
+                }
+            });
+        </script>
+        <!--<script>
             $(document).ready(function(){
                 $('[data-toggle="tooltip"]').tooltip(); 
             });
-        </script>
+        </script>-->
         {% bootstrap_javascript %}
     </body>
 </html>

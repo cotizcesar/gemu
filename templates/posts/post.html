@@ -1,6 +1,6 @@
 {% load custom_filters %}
 {% load thumbnail %}
-<div class="media post" id="post-{{ post.id }}">
+<div class="media post infinite-item" id="post-{{ post.id }}">
     {% if post.image %}
     <img class="img-responsive post-imagen" src="{{ post.image|thumbnail_url:'post'|default:'\media/posts/default.png' }}">
     {% elif post.video %}

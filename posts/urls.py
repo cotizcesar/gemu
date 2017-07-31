@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^global/$', TimelineGlobalListView.as_view(), name='timeline_global'),
     url(r'^p/new$', PostCreateView.as_view(), name='post_new'),
     url(r'^p/(?P<pk>\d+)$', PostDetailView.as_view(), name='post_detail'),
+    #url(r'^post/(?P<pk>\d+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
     url(r'^p/delete/(?P<pk>\d+)$', PostDeleteView.as_view(), name='post_delete'),
 ]

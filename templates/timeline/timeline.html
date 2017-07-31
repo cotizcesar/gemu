@@ -11,9 +11,17 @@
         <div class="col-md-6">
             {% bootstrap_messages %}
             {% include "timeline/timeline_mod_menu_mobile.html" %}
+            <div class="infinite-container">
             {% for post in posts %}
             {% include "posts/post.html" %}
             {% endfor %}
+            </div>
+            <div class="loading" style="display: none;">
+                Loading...
+            </div>
+            {% if page_obj.has_next %}
+            <a class="infinite-more-link" href="#">More</a>
+            {% endif %}
         </div>
         <div class="col-md-3">
             {% include "timeline/timeline_mod_whofollow.html" %}

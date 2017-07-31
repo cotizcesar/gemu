@@ -16,18 +16,19 @@ from userprofile.models import Connection
 # Forms
 from .forms import PostForm, CommentForm
 
-class TimelineGlobalListView(generic.ListView):
+class TimelineGlobalListView(ListView):
     model = Post
     template_name = 'timeline/timeline_global.html'
     context_object_name = 'posts'
 
-class TimelineListView(LoginRequiredMixin, generic.ListView):
+class TimelineListView(LoginRequiredMixin, ListView):
     model = Post
+    paginate_by = 1
     template_name = 'timeline/timeline.html'
 
     def get_context_data(self, **kwargs):
         context = super(TimelineListView, self).get_context_data(**kwargs)
-        context['posts'] = Post.objects.filter()
+        context['posts'] = Post.objects.all()
         context['users'] = User.objects.all().order_by('?')[:3]
         return context
 

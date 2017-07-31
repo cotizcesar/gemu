@@ -192,6 +192,9 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 # Django-Boostrap3
 # https://django-bootstrap3.readthedocs.io/en/latest/settings.html
 BOOTSTRAP3 = {
+    # The URL to the jQuery JavaScript file
+    'jquery_url': '\static/js/jquery-3.2.1.min.js',
+
     # The complete URL to the Bootstrap CSS file (None means derive it from base_url)
     'css_url': '\static/css/bootstrap.min.css',
 }
@@ -204,4 +207,6 @@ EMAIL_HOST_PASSWORD = os.environ.get('SECRET_KEY')
 EMAIL_PORT = 587
 
 # Django: Email Delivery to admin
-ADMINS = (('Cesar Cotiz', 'cotizcesar@gmail.com'),)
+ADMINS = (
+    ('Cesar Cotiz', 'cotizcesar@gmail.com'),
+)
