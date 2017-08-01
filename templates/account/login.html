@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{# Moved to Bootstrap 4 #}
 {% load bootstrap3 %}
 {% load i18n %}
 {% load account socialaccount %}
@@ -9,7 +10,7 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <h3>{% trans "Sign In" %}</h3>
-            <div class="omnibox">
+            <div class="bg-inverse rounded mb-3 p-3">
                 {% bootstrap_messages %}
                 {% get_providers as socialaccount_providers %}
                 {% if socialaccount_providers %}
@@ -27,9 +28,9 @@
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
             </div>
-            <div class="omnibox">
-                <a class="btn btn-warning button secondaryAction" href="{% url 'account_reset_password' %}"><i class="fa fa-question-circle" aria-hidden="true"></i> {% trans "Forgot Password?" %}</a>
-                <button class="btn btn-success pull-right primaryAction" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> {% trans "Sign In" %}</button>
+            <div class="bg-inverse rounded p-3">
+                <a class="btn btn-outline-warning button" href="{% url 'account_reset_password' %}"><i class="fa fa-question-circle" aria-hidden="true"></i> {% trans "Forgot Password?" %}</a>
+                <button class="btn btn-outline-success float-right" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> {% trans "Sign In" %}</button>
             </div>
                 </form>
         </div>
