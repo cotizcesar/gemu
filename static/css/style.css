@@ -32,30 +32,12 @@ main{padding-top:69px}
 .seguidor .seguidor-info{font-size:11px;list-style:none;margin:0;padding:0}
 .seguidor .seguidor-avatar{max-width:50px}
 
-/*
-.user{border-radius:3px;box-shadow:0 1px 4px 0 rgba(0,0,0,0.14);margin-top:0;margin-bottom:15px}
-.user .header{background:#222}
-.user .media-left,.user .media-body,.user .media-right{background:#fff}
-.user .media-body{padding:10px 10px 10px 5px}
-.user .media-left{padding:10px 5px 10px 10px}
-.user .user-dscrptn{font-size:12px;list-style:none;margin:0;padding:0}
-.user .user-dscrptn a{color:#999}
-.user .user-dscrptn a:hover{color:#333}
-.user .user-options{color:#999;font-size:11px;list-style:none;margin:0;padding:0}
-.user .user-options li{display:inline;margin-left:5px;margin-right:5px}
-.user .user-options a{color:#999}
-.user .user-options a:hover{color:#333}
-.user .user-options .glyphicon{margin-right:3px}
-*/
 .comment{color:#999}
 .comment a{color:#333}
 .comment .comment-text{font-size:12px}
 .loading{color:#999;display:block;margin-bottom:.938em;text-align:center}
 
-
-.user{
-    font-size:.813em;
-}
+.user{font-size:.813em;}
 .user h5{font-size:1.2em}
 
 .post{font-size:.813em;}
