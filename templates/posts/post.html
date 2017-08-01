@@ -1,30 +1,35 @@
 {% load custom_filters %}
 {% load thumbnail %}
-<div class="media post infinite-item" id="post-{{ post.id }}">
-    {% if post.image %}
-    <img class="img-responsive post-imagen" src="{{ post.image|thumbnail_url:'post'|default:'\media/posts/default.png' }}">
-    {% elif post.video %}
-    <div class="embed-responsive embed-responsive-16by9 post-video">
-        {{ post.video|youtube_embed_url|safe }}
-    </div>
-    {% endif %}
-    <div class="media-left">
-        <a href="{% url 'userprofile' post.user.username %}"><img class="media-object img-circle avatar-thumb" src="{{ post.user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="{{ post.user.get_full_name }}"></a>
-    </div>
-    <div class="media-body">
-        {% if user == post.user %}
-        <a class="post-borrar pull-right" href="{% url 'post_delete' post.id %}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-        {% endif %}
-        <h5 class="media-heading"><a href="{% url 'userprofile' post.user.username %}" class="post-nombre">{{ post.user.get_full_name }}</a> {% if post.user.is_staff is True %}<span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>{% endif %} <a href="{% url 'userprofile' post.user.username %}"><small>@{{ post.user.username }}</small></a> - <a href="{% url 'post_detail' post.id %}"><small>{{ post.date_created }}</small></a></h5>
-        <p>{{ post.text }}</p>
-        <div class="clearfix"></div>
-        <ul class="post-options pull-right">
-            <li><a href="{% url 'post_comment' post.id %}"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comment</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Share</a></li>
+{# Migrated to Bootstrap 4 #}
+{% if post.image %}
+<img class="img-fluid" src="{{ post.image|thumbnail_url:'post'|default:'\media/posts/default.png' }}" alt="{{ post.text }}">
+{% elif post.video %}
+<div class="embed-responsive embed-responsive-16by9">
+    {{ post.video|youtube_embed_url|safe }}
+</div>
+{% endif %}
+<div class="media post mb-3">
+    <img class="d-flex rounded p-2 pt-3" src="{{ post.user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="Generic placeholder image">
+    <div class="media-body pt-3 pr-3 pb-3">
+        <h6 class="m-0 mb-1">
+            <a href="{% url 'userprofile' post.user.username %}">{{ post.user.get_full_name }}</a>
+            {% if post.user.is_staff is True %}
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            {% endif %} 
+            <small>@{{ post.user.username }}</small> - 
+            <small>{{ post.date_created }}</small>
             {% if user == post.user %}
-            <li><a href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a></li>
+            <a class="float-right" href="{% url 'post_delete' post.id %}"><i class="fa fa-times" aria-hidden="true"></i></a>
             {% endif %}
-            <li><a href="{% url 'post_detail' post.id %}"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span> Details</a></li>
+        </h6>
+        <p class="m-0 text-justify">{{ post.text }}</p>
+        <ul class="m-0 pr-1 pt-1 pl-2 float-right post-menu">
+            <li><a href="{% url 'post_comment' post.id %}"><i class="fa fa-comment" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-retweet" aria-hidden="true"></i></a></li>
+            {% if user == post.user %}
+            <li><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+            {% endif %}
+            <li><a href="{% url 'post_detail' post.id %}"><i class="fa fa-window-restore" aria-hidden="true"></i></a></li>
         </ul>
     </div>
 </div>

@@ -1,10 +1,6 @@
-<h3>Main Menu</h3>
-<div class="omnibox hidden-sm hidden-xs">
-    <ul class="nav nav-pills nav-stacked" id="nav-menu">
-        <li {% if request.resolver_match.url_name == 'timeline_global' %}class="active"{% endif %}><a href="{% url 'timeline_global' %}"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Global</a></li>
-        <li {% if request.resolver_match.url_name == 'timeline' %}class="active"{% endif %}><a href="{% url 'timeline' %}"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Timeline</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span> Media</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> Games</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Groups</a></li>
-    </ul>
-</div>
+<h5>Main Menu</h5>
+<nav class="nav flex-column">
+    <a class="nav-link {% if request.resolver_match.url_name == 'timeline_global' %}active{% endif %}" href="{% url 'timeline_global' %}"><i class="fa fa-user-circle fa-fw" aria-hidden="true"></i> Global</a>
+    <a class="nav-link {% if request.resolver_match.url_name == 'timeline' %}active{% endif %}" href="{% url 'timeline' %}"><i class="fa fa-picture-o fa-fw" aria-hidden="true"></i> Feed</a>
+    <a class="nav-link disabled" href="#">Coming soon</a>
+</nav>

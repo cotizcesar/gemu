@@ -193,10 +193,11 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 # https://django-bootstrap3.readthedocs.io/en/latest/settings.html
 BOOTSTRAP3 = {
     # The URL to the jQuery JavaScript file
-    'jquery_url': '\static/js/jquery-3.2.1.min.js',
-
+    'jquery_url': '//code.jquery.com/jquery-3.2.1.min.js',
     # The complete URL to the Bootstrap CSS file (None means derive it from base_url)
-    'css_url': '\static/css/bootstrap.min.css',
+    'css_url': '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css',
+    # The complete URL to the Bootstrap JavaScript file (None means derive it from base_url)
+    'javascript_url': '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js',
 }
 
 # Django: Email Delivery

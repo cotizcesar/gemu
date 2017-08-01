@@ -5,11 +5,11 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 bg-inverse">
             {% include 'userprofile/userprofile_mod_menu.html' %}
         </div>
         <div class="col-md-6">
-            <h3>Edit Profile <small>Extra Information</small></h3>
+            <h5>Edit Profile <small>Extra Information</small></h5>
             <form action="" enctype="multipart/form-data" method="post">
                 <div class="omnibox">
                     {% csrf_token %}
@@ -17,7 +17,7 @@
                 </div>
                 <div class="omnibox">
                     <a href="{% url 'userprofile' user %}" class="btn btn-default">Cancel</a>
-                    <button type="submit" class="btn btn-info pull-right">Update</button>
+                    <button type="submit" class="btn btn-info float-right">Update</button>
                 </div>
             </form>
         </div>

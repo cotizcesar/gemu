@@ -1,17 +1,20 @@
 {% load thumbnail %}
+{# Migrated to Bootstrap 4 #}
 {% if user.is_authenticated %}
-<div class="omnibox">
-    <div class="media">
-        <div class="media-left">
-            <a href="{% url 'userprofile' user.username %}"><img class="media-object img-circle avatar-thumb" src="{{ user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="{{ user.get_full_name }} avatar."></a>
-        </div>
-        <div class="media-body">
-            <h5 class="media-heading">
-                <a href="{% url 'userprofile' user.username %}">{{ user.get_full_name }}</a> {% if user.is_staff is True %}<span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>{% endif %}
-                <a href="{% url 'userprofile' user.username %}"><small>@{{ user }}</small></a>
-            </h5>
-            <a href="{% url 'userprofile' user.username %}"><small>See profile</small></a>
-        </div>
+<div class="media mb-3 mt-3">
+    <img class="d-flex mr-3" src="{{ user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="{{ user.userprofile.bio }}">
+    <div class="media-body">
+        <h6 class="mt-0">
+            <a href="{% url 'userprofile' user.username %}">
+                {{ user.get_full_name }}
+            </a> 
+            {% if user.is_staff is True %}
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            {% endif %}
+            <small>@{{ user }}</small>
+            <small>{{user.userprofile.location}}</small>
+        </h6>
+        <a class="float-right" href="{% url 'userprofile' user.username %}"><small>See profile</small></a>
     </div>
 </div>
 {% endif %}

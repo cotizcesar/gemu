@@ -1,46 +1,33 @@
 {% load account %}
+{# Moved to Bootstrap 4 #}
 <header id="header">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar fixed-top navbar-toggleable-lg navbar-inverse bg-inverse">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {% if user.is_authenticated %}
+            <a class="navbar-brand" href="{% url 'timeline' %}">Gemu</a>
+            {% else %}
+            <a class="navbar-brand" href="{% url 'index' %}">Gemu</a>
+            {% endif %}
+            <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
-                <a class="navbar-brand" href="{% url 'timeline' %}"><b>P</b>laxed</a>
+                <li class="nav-item"><a class="nav-link {% url 'timeline' as home_url %}{% if request.get_full_path == home_url %}active{% endif %}" href="{% url 'timeline' %}">Feed</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% user_display user %} <i class="fa fa-user-circle" aria-hidden="true"></i> </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'userprofile' user %}">Profile</a>
+                        <a class="dropdown-item" href="{% url 'userprofile_basic' %}">Options</a>
+                        <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="btn btn-outline-success" href="{% url 'post_new' %}">Post</a></li>
                 {% else %}
-                <a class="navbar-brand" href="{% url 'index' %}"><b>P</b>laxed</a>
+                <li class="nav-item"><a class="btn btn-outline-success" href="{% url 'account_signup' %}">Signup</a></li>
+                <li class="nav-item"><a class="btn btn-outline-info" href="{% url 'account_login' %}">Login</a> </li>
                 {% endif %}
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                {% if user.is_authenticated %}
-                <form class="navbar-form navbar-right" action="{% url 'post_new' %}">
-                    <button type="submit" class="btn btn-success">New Post <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>                            
-                </form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li {% url 'timeline' as home_url %}{% if request.get_full_path == home_url %}class="active"{% endif %}><a href="{% url 'timeline' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i> {% user_display user %} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{% url 'userprofile' user %}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a></li>
-                            <li><a href="{% url 'userprofile_basic' %}"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Options</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                {% else %}
-                <form class="navbar-form navbar-right" action="{% url 'account_signup' %}">
-                    <button type="submit" class="btn btn-success">Signup <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
-                </form>
-                <form class="navbar-form navbar-right" action="{% url 'account_login' %}">
-                    <button type="submit" class="btn btn-info">Login <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
-                </form>
-                {% endif %}
-            </div>
+            </ul>
         </div>
     </nav>
 </header>
