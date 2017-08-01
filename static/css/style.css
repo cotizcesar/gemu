@@ -21,7 +21,7 @@ main{padding-top:69px}
 #timeline{padding-top:15px;padding-bottom:15px}
 #tmln{padding-bottom:15px}
 #nav-menu .glyphicon{margin:0 5px 0 0}
-.omnibox{background:#fff;box-shadow:0 1px 4px 0 rgba(0,0,0,0.14);border-radius:3px;margin-bottom:15px;padding:10px}
+.omnibox{background:#fff;margin-bottom:15px;padding:10px}
 .omnibox .titulo{font-size:20px}
 .omnibox .user-description{font-size:12px;list-style:none;margin:0;padding:0}
 .blackbox{background:#222}
@@ -32,6 +32,7 @@ main{padding-top:69px}
 .seguidor .seguidor-info{font-size:11px;list-style:none;margin:0;padding:0}
 .seguidor .seguidor-avatar{max-width:50px}
 
+/*
 .user{border-radius:3px;box-shadow:0 1px 4px 0 rgba(0,0,0,0.14);margin-top:0;margin-bottom:15px}
 .user .header{background:#222}
 .user .media-left,.user .media-body,.user .media-right{background:#fff}
@@ -45,13 +46,19 @@ main{padding-top:69px}
 .user .user-options a{color:#999}
 .user .user-options a:hover{color:#333}
 .user .user-options .glyphicon{margin-right:3px}
-
+*/
 .comment{color:#999}
 .comment a{color:#333}
 .comment .comment-text{font-size:12px}
 .loading{color:#999;display:block;margin-bottom:.938em;text-align:center}
 
-.post{background:#292b2c;border-bottom-left-radius:.25rem;border-bottom-right-radius:.25rem;font-size:.813em;color:#d7dde8}
+
+.user{
+    font-size:.813em;
+}
+.user h5{font-size:1.2em}
+
+.post{font-size:.813em;}
 .post h5{font-size:1.2em}
 .post .post-middle .post-title{margin:0}
 .post .post-menu{list-style:none}

@@ -8,7 +8,7 @@
     {{ post.video|youtube_embed_url|safe }}
 </div>
 {% endif %}
-<div class="media post mb-3">
+<div class="media post mb-3 bg-inverse">
     <img class="d-flex rounded p-2 pt-3" src="{{ post.user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="Generic placeholder image">
     <div class="media-body pt-3 pr-3 pb-3">
         <h6 class="m-0 mb-1">
