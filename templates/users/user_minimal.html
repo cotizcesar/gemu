@@ -1,22 +1,25 @@
 {% load thumbnail %}
-<div class="media user">
-    <div class="media-left">
-        <a href="{% url 'userprofile' user.username %}"><img class="media-object img-responsive img-circle avatar-thumb" src="{{ user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="..."></a>
-    </div>
-    <div class="media-body">
-        <h5 class="media-heading">
-            <a href="{% url 'userprofile' user.username %}"> {{ user.get_full_name }}</a>
+{# Migrated to Bootstrap 4 #}
+<div class="media user mb-3 bg-inverse">
+    <img class="d-flex rounded p-2 pt-3" src="{{ user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="{{ user.userprofile.bio }}">
+    <div class="media-body pt-3 pr-3 pb-3">
+        <h5 class="mt-0 mb-1">
+            <a href="{% url 'userprofile' user.username %}">
+            {{ user.get_full_name }}
+            </a>
             {% if user.is_staff is True %}
-            <span class="glyphicon glyphicon-ok-circle" data-toggle="tooltip" data-placement="right" title="Site Administrator" aria-hidden="true"></span>
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
             {% endif %} 
-            <small><a href="{% url 'userprofile' user.username %}">@{{ user.username }}</a></small>
+            <small>@{{ user.username }}</small> 
+            <small>
+            {% if user.follower.count > 0 %}
+                Followers: {{ user.follower.count }}
+            {% endif %} 
+            {% if user.following.count > 0 %}
+                Following: {{ user.following.count }}
+            {% endif %}
+            </small>
         </h5>
-        <ul class="user-dscrptn">
-            <li><span>{{ user.userprofile.location }}</span></li>
-        </ul>
-        <div class="clearfix"></div>
-        <ul class="user-options pull-right">
-            <li><a href="{% url 'userprofile' user.username %}"><span>See Profile</span></a></li>
-        </ul>
+        <p class="mb-2">{{ user.userprofile.location }}</p>
     </div>
 </div>

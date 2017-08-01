@@ -1,4 +1,5 @@
 {% load thumbnail %}
+{# Migrated to Bootstrap 4 #}
 {% if user.userprofile.header %}
 <img class="img-fluid bg-inverse" src="{{ user.userprofile.header|thumbnail_url:'post' }}">
 {% endif %}
