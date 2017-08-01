@@ -2,7 +2,6 @@ body{background:#333;color:#d7dde8;font-family:'Open Sans',sans-serif;height:100
 a{color:#5cb85c}
 a:hover{color:#c8c0f1;text-decoration:none}
 .btn{border-radius:0}
-.btn-gemu{background:#7461d1}
 main{padding-top:71px}
 .btn .fa{margin-right:5px}
 .btn-facebook{background:#3b5998;border-color:#4b6eb9;color:#fff}
@@ -15,9 +14,6 @@ main{padding-top:71px}
 .avatar{max-width:200px}
 .avatar-thumb{max-width:50px}
 
-#index{background:#333;color:#fff;padding-top:65px;padding-bottom:15px}
-#index #index-titulo{font-size:64px}
-#index .fa{font-size:61px;margin:0 0 15px}
 #timeline{padding-top:15px;padding-bottom:15px}
 #tmln{padding-bottom:15px}
 
@@ -28,6 +24,7 @@ main{padding-top:71px}
 .mod-siguiendo .siguiendo-info{font-size:11px;list-style:none;margin:0;padding:0}
 .mod-siguiendo .siguiendo-avatar{border:1px solid #333;border-radius:3px;max-width:50px}
 .mod-imagenes .imagen{display:inline;margin:2px -4px 2px 0;max-width:25%}
+
 .seguidor{margin-bottom:5px}
 .seguidor .seguidor-info{font-size:11px;list-style:none;margin:0;padding:0}
 .seguidor .seguidor-avatar{max-width:50px}
