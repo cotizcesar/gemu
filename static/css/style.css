@@ -3,9 +3,7 @@ a{color:#5cb85c}
 a:hover{color:#c8c0f1;text-decoration:none}
 .btn{border-radius:0}
 .btn-gemu{background:#7461d1}
-.glyphicon-ok-circle{font-size:12px;color:#4885ed}
 main{padding-top:71px}
-#nav-menu .fa{margin-right:5px}
 .btn .fa{margin-right:5px}
 .btn-facebook{background:#3b5998;border-color:#4b6eb9;color:#fff}
 .btn-steam{background:#1a1a1a;border-color:#000;color:#fff}
@@ -13,18 +11,20 @@ main{padding-top:71px}
 .btn-battlenet{background:#00B4FF;border-color:#008fcc;color:#fff}
 .btn-discord{background:#7289da;border-color:#4a67cf;color:#fff}
 .btn-twitch:hover,.btn-steam:hover,.btn-twitch:hover,.btn-battlenet:hover,.btn-facebook:hover,.btn-discord:hover{color:#fff}
+
 .avatar{max-width:200px}
 .avatar-thumb{max-width:50px}
+
 #index{background:#333;color:#fff;padding-top:65px;padding-bottom:15px}
 #index #index-titulo{font-size:64px}
 #index .fa{font-size:61px;margin:0 0 15px}
 #timeline{padding-top:15px;padding-bottom:15px}
 #tmln{padding-bottom:15px}
-#nav-menu .glyphicon{margin:0 5px 0 0}
+
 .omnibox{background:#fff;margin-bottom:15px;padding:10px}
 .omnibox .titulo{font-size:20px}
 .omnibox .user-description{font-size:12px;list-style:none;margin:0;padding:0}
-.blackbox{background:#222}
+
 .mod-siguiendo .siguiendo-info{font-size:11px;list-style:none;margin:0;padding:0}
 .mod-siguiendo .siguiendo-avatar{border:1px solid #333;border-radius:3px;max-width:50px}
 .mod-imagenes .imagen{display:inline;margin:2px -4px 2px 0;max-width:25%}

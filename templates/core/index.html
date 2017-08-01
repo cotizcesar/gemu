@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{# Migrated to Bootstrap 4 #}
 {% block head_title %}Home{% endblock %}
 {% block content %}
 <div class="container">
     {% if user.is_authenticated %}
     {% else %}
-    <div class="jumbotron omnibox">
+    <div class="p-5 mb-3 rounded bg-inverse">
         <h1>Welcome to Plaxed</h1>
         <p>Plaxed is the social gamer tool that puts players in touch with their friends and other people, who have group games in common.</p>
         <p>Our site is totally made so that it can be visualized in mobile devices and soon we will have at hand our native application for Android and iPhone.</p>
@@ -12,13 +13,13 @@
     {% endif %}
     <div class="row">
         <div class="col-md-6">
-            <h3>Public Posts <small>Last posted</small></h3>
+            <h5>Public Posts <small>Last posted</small></h5>
             {% for post in posts %}
             {% include "posts/post.html" %}
             {% endfor %}
         </div>
         <div class="col-md-6">
-            <h3>Registered Users <small>Last 5 users registered</small></h3>
+            <h5>Registered Users <small>Last 5 users registered</small></h5>
             {% for user in users %}
             {% include "users/user.html" %}
             {% endfor %}
