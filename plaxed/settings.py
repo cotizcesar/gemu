@@ -36,9 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Easy Thumbnails
     'easy_thumbnails',
-    # Bootstrap 3: Installation
-    # https://django-bootstrap3.readthedocs.io/en/latest/installation.html#installation
-    'bootstrap3',
     # System APPS
     'core.apps.CoreConfig',
     'userprofile.apps.UserProfileConfig',
@@ -188,17 +185,6 @@ SOCIALACCOUNT_PROVIDERS = {
 # Django AllAuth: Configs
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
-
-# Django-Boostrap3
-# https://django-bootstrap3.readthedocs.io/en/latest/settings.html
-BOOTSTRAP3 = {
-    # The URL to the jQuery JavaScript file
-    'jquery_url': '//code.jquery.com/jquery-3.2.1.min.js',
-    # The complete URL to the Bootstrap CSS file (None means derive it from base_url)
-    'css_url': '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css',
-    # The complete URL to the Bootstrap JavaScript file (None means derive it from base_url)
-    'javascript_url': '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js',
-}
 
 # Django: Email Delivery
 EMAIL_USE_TLS = True

@@ -1,27 +1,30 @@
 {% extends "base.html" %}
+{# Migrated to Bootstrap 4 #}
 {% block head_title %}Delete Post{% endblock %}
 {% block content %}
-<div class="container" id="tmln">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        {% if user.is_authenticated %}
-        <form method="post">
-            <div class="omnibox">
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 bg-inverse">
+            {% include "timeline/timeline_mod_perfil.html" %}
+            {% include "timeline/timeline_mod_menu.html" %}
+        </div>
+        <div class="col-md-6">
+            {% if user.is_authenticated %}
+            <div class="alert alert-danger align-middle" role="alert">Delete post? <i class="fa fa-exclamation-triangle fa-fw float-right" aria-hidden="true"></i></div>
+            <form method="post">
                 {% csrf_token %}
-                <div class="form-group">
-                    <div class="alert alert-danger" role="alert">Delete post? <span class="glyphicon glyphicon-trash pull-right" aria-hidden="true"></span></div>
-                </div>
                 <div class="form-group">
                     {% include "posts/post.html" %}
                 </div>
-            </div>
-            <div class="omnibox">
-                <a href="{% url 'timeline' %}" class="btn btn-default">Cancel</a>
-                <button type="submit" class="btn btn-danger pull-right" value="Submit">Delete</button>
-            </div>
-        </form>
-        {% endif %}
+                <a class="btn btn-secondary" href="{% url 'timeline' %}" role="button">Cancel</a>
+                <button type="submit" class="btn btn-danger float-right">Danger</button>
+            </form>
+            {% endif %}
+        </div>
+        <div class="col-md-3">
+            {% include "timeline/timeline_mod_whofollow.html" %}
+            {% include "core/footer.html" %}
+        </div>
     </div>
-    <div class="col-md-3"></div>
 </div>
 {% endblock %}

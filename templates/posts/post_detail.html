@@ -11,38 +11,23 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 bg-inverse">
             {% include "timeline/timeline_mod_perfil.html" %}
             {% include "timeline/timeline_mod_menu.html" %}
         </div>
         <div class="col-md-6">
             {% include "posts/post.html" %}
-            <h5>Comments ({{ comments.count }}) <small>By date</small>                 
-                <div class="dropdown pull-right">
-                    <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share <span class="caret"></span></span>
-                    <ul class="dropdown-menu" aria-labelledby="dLabel">
-                        <li data-href="{{ request.build_absolute_uri }}"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}&amp;src=sdkpreparse">Share on Facebook</a></li>
-                    </ul>
-                </div>
-            </h5>
+            <h6>Comments ({{ comments.count }}) <small>By date</small></h6>
             {% if comments %}
             {% for comment in comments %}
-                <div class="media comment omnibox">
-                    <div class="media-left">
-                        <a href="{% url 'userprofile' user %}"><img class="media-object img-circle avatar-thumb" src="{{ comment.user.userprofile.avatar|thumbnail_url:'avatar_thumb' }}" alt="..."></a>
-                    </div>
-                    <div class="media-body">
-                        <h5 class="media-heading"><a href="{% url 'userprofile' user %}">{{ comment.user.get_full_name }}</a> <a href="{% url 'userprofile' user %}"><small>@{{ comment.user.username }}</a> - {{ comment.date_created }}</small></h5>
-                        <p class="comment-text">{{ comment.text }}</p>
-                    </div>
-                </div>
+            {% include "posts/post_detail_comment.html" %}
             {% endfor %}
             {% endif %}
             {% if user.is_authenticated %}
-            <div class="omnibox">
-                <a href="{% url 'timeline' %}" class="btn btn-default">Cancel</a>
+
+                <a href="{% url 'timeline' %}" class="btn btn-secondary">Cancel</a>
                 <a class="btn btn-success pull-right" href="{% url 'post_comment' post.id %}"><i class="fa fa-comment" aria-hidden="true"></i> Comment</a>
-            </div>
+
             {% endif %}
         </div>
         <div class="col-md-3"></div>

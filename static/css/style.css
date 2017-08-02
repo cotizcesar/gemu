@@ -1,6 +1,6 @@
 body{background:#333;color:#d7dde8;font-family:'Open Sans',sans-serif;height:100vh}
 a{color:#5cb85c}
-a:hover{color:#c8c0f1;text-decoration:none}
+a:hover{color:#449c44;text-decoration:none}
 .btn{border-radius:0}
 main{padding-top:71px}
 .btn .fa{margin-right:5px}
@@ -28,10 +28,11 @@ main{padding-top:71px}
 .seguidor{margin-bottom:5px}
 .seguidor .seguidor-info{font-size:11px;list-style:none;margin:0;padding:0}
 .seguidor .seguidor-avatar{max-width:50px}
-
+/*
 .comment{color:#999}
 .comment a{color:#333}
 .comment .comment-text{font-size:12px}
+*/
 .loading{color:#999;display:block;margin-bottom:.938em;text-align:center}
 
 .user{font-size:.813em;}
@@ -42,6 +43,9 @@ main{padding-top:71px}
 .post .post-middle .post-title{margin:0}
 .post .post-menu{list-style:none}
 .post .post-menu li{margin-left:.375em;display:inline-block}
+
+.comment{font-size:.813em;}
+.comment h5{font-size:1.2em}
 
 .profile{background:#292b2c}
 .profile .info{font-size:.813em;list-style:none;margin:0;padding:0}
