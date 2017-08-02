@@ -8,28 +8,28 @@
     {{ post.video|youtube_embed_url|safe }}
 </div>
 {% endif %}
-<div class="media post mb-3 bg-inverse">
-    <img class="d-flex rounded p-2 pt-3" src="{{ post.user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="Generic placeholder image">
-    <div class="media-body pt-3 pr-3 pb-3">
+<div class="media post p-3 mb-3 bg-inverse">
+    <img class="d-flex rounded pr-2" src="{{ post.user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="Generic placeholder image">
+    <div class="media-body">
         <h6 class="m-0 mb-1">
             <a href="{% url 'userprofile' post.user.username %}">{{ post.user.get_full_name }}</a>
             {% if post.user.is_staff is True %}
-            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            <i class="fa fa-check-circle fa-fw" aria-hidden="true"></i>
             {% endif %} 
             <small>@{{ post.user.username }}</small> - 
             <small>{{ post.date_created }}</small>
             {% if user == post.user %}
-            <a class="float-right" href="{% url 'post_delete' post.id %}"><i class="fa fa-times" aria-hidden="true"></i></a>
+            <a class="float-right" href="{% url 'post_delete' post.id %}"><i class="fa fa-times fa-fw" aria-hidden="true"></i></a>
             {% endif %}
         </h6>
         <p class="m-0 text-justify">{{ post.text }}</p>
-        <ul class="m-0 pr-1 pt-1 pl-2 float-right post-menu">
-            <li><a href="{% url 'post_comment' post.id %}"><i class="fa fa-comment" aria-hidden="true"></i></a></li>
-            <li><a href="#"><i class="fa fa-retweet" aria-hidden="true"></i></a></li>
+        <ul class="m-0 float-right post-menu">
+            <li><a href="{% url 'post_comment' post.id %}"><i class="fa fa-comment fa-fw" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-retweet fa-fw" aria-hidden="true"></i></a></li>
             {% if user == post.user %}
-            <li><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i></a></li>
             {% endif %}
-            <li><a href="{% url 'post_detail' post.id %}"><i class="fa fa-window-restore" aria-hidden="true"></i></a></li>
+            <li><a href="{% url 'post_detail' post.id %}"><i class="fa fa-window-restore fa-fw" aria-hidden="true"></i></a></li>
         </ul>
     </div>
 </div>

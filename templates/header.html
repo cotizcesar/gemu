@@ -1,5 +1,6 @@
-{% load account %}
 {# Moved to Bootstrap 4 #}
+{% load account %}
+{% load thumbnail %}
 <header>
     <nav class="navbar fixed-top navbar-toggleable-sm navbar-inverse bg-inverse">
         <div class="container">
@@ -11,20 +12,25 @@
             {% else %}
             <a class="navbar-brand" href="{% url 'index' %}">Gemu</a>
             {% endif %}
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link {% url 'index' as home_url %}{% if request.get_full_path == home_url %}active{% endif %}" href="{% url 'index' %}">Home</a></li>
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link {% url 'timeline' as home_url %}{% if request.get_full_path == home_url %}active{% endif %}" href="{% url 'timeline' %}">Feed</a></li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item mr-2"><a class="nav-link" href="{% url 'userprofile' user %}">{{ user.first_name }} <img class="ml-1" src="{{ user.userprofile.avatar|thumbnail_url:'avatar_header'|default:'\media/avatar/default.png' }}"></a></li>
+                <li class="nav-item mr-2"><a class="btn btn-success" href="{% url 'post_new' %}">Post</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% user_display user %} <i class="fa fa-user-circle" aria-hidden="true"></i> </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{% url 'userprofile' user %}">Profile</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog fa-spin fa-fw" aria-hidden="true"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="{% url 'userprofile_basic' %}">Options</a>
                         <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
                     </div>
                 </li>
-                <li class="nav-item"><a class="btn btn-outline-success" href="{% url 'post_new' %}">Post</a></li>
                 {% else %}
-                <li class="nav-item"><a class="btn btn-outline-success" href="{% url 'account_signup' %}">Signup</a></li>
+                <li class="nav-item mr-2"><a class="btn btn-outline-success" href="{% url 'account_signup' %}">Signup</a></li>
                 <li class="nav-item"><a class="btn btn-outline-info" href="{% url 'account_login' %}">Login</a> </li>
                 {% endif %}
             </ul>

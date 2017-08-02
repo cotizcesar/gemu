@@ -1,9 +1,9 @@
 {# Migratedx to Bootstrap 4 #}
 {% load thumbnail %}
-<div class="media comment mb-3 bg-inverse">
-    <img class="d-flex rounded p-2 pt-3" src="{{ comment.user.userprofile.avatar|thumbnail_url:'avatar_thumb' }}" alt="{{ comment.user.userprofile.bio }}">
-    <div class="media-body pt-3 pr-3 pb-3">
-        <h5 class="mt-0 mb-1">
+<div class="media comment p-3 mb-3 bg-inverse">
+    <img class="d-flex rounded pr-2" src="{{ comment.user.userprofile.avatar|thumbnail_url:'avatar_thumb' }}" alt="{{ comment.user.userprofile.bio }}">
+    <div class="media-body">
+        <h5 class="m-0 mb-1">
             <a href="{% url 'userprofile' user.username %}">
             {{ comment.user.get_full_name }}
             </a>
@@ -13,6 +13,6 @@
             <small>@{{ comment.user.username }}</small> - 
             <small>{{ comment.date_created }}</small>
         </h5>
-        <p class="mb-2">{{ comment.text }}</p>    
+        <p class="m-0">{{ comment.text }}</p>    
     </div>
 </div>

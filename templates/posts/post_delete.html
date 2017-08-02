@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-6">
             {% if user.is_authenticated %}
-            <div class="alert alert-danger align-middle" role="alert">Delete post? <i class="fa fa-exclamation-triangle fa-fw float-right" aria-hidden="true"></i></div>
+            <h4>Delete post? <small>This is forever</small></h4>
             <form method="post">
                 {% csrf_token %}
                 <div class="form-group">

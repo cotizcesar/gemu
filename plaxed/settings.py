@@ -137,10 +137,11 @@ THUMBNAIL_TRANSPARENCY_EXTENSION = 'png'
 
 THUMBNAIL_ALIASES = {
     '': {
-        'post': {'size': (555, 0), 'crop': 'smart', 'upscale' : True},
+        'post': {'size': (540, 0), 'crop': 'smart', 'upscale' : True},
         'header': {'size': (1170, 350), 'crop': 'smart', 'upscale' : True},
         'avatar': {'size': (200, 200), 'crop': 'smart', 'upscale' : True},
         'avatar_thumb': {'size': (50, 50), 'crop': 'smart', 'upscale' : True},
+        'avatar_header': {'size': (21, 0), 'crop': 'smart', 'upscale' : True},
     },
 }
 
