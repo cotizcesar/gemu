@@ -22,7 +22,7 @@
             <a class="float-right" href="{% url 'post_delete' post.id %}"><i class="fa fa-times fa-fw" aria-hidden="true"></i></a>
             {% endif %}
         </h6>
-        <p class="m-0 text-justify">{{ post.text }}</p>
+        <p class="mb-1 text-justify">{{ post.text }}</p>
         <ul class="m-0 float-right post-menu">
             <li><a href="{% url 'post_comment' post.id %}"><i class="fa fa-comment fa-fw" aria-hidden="true"></i></a></li>
             <li><a href="#"><i class="fa fa-retweet fa-fw" aria-hidden="true"></i></a></li>
