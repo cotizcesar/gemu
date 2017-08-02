@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{# Moved to Bootstrap 4 #}
-{% load bootstrap3 %}
+{# Migrated to Bootstrap 4 #}
 {% load i18n %}
 {% load account socialaccount %}
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
@@ -11,7 +10,6 @@
         <div class="col-md-6">
             <h3>{% trans "Sign In" %}</h3>
             <div class="bg-inverse rounded mb-3 p-3">
-                {% bootstrap_messages %}
                 {% get_providers as socialaccount_providers %}
                 {% if socialaccount_providers %}
                 <p>{% blocktrans with site.name as site_name %}Please sign in with one of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a> for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
@@ -23,7 +21,9 @@
                 <hr>
                 <form class="login form" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
-                    {% bootstrap_form form %}
+                    {% for field in form %}
+                    {% include "forms/form.html" %}
+                    {% endfor %}
                     {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
