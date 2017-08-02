@@ -24,10 +24,10 @@
             {% endfor %}
             {% endif %}
             {% if user.is_authenticated %}
-
-                <a href="{% url 'timeline' %}" class="btn btn-secondary">Cancel</a>
-                <a class="btn btn-success pull-right" href="{% url 'post_comment' post.id %}"><i class="fa fa-comment" aria-hidden="true"></i> Comment</a>
-
+            <div class="bg-inverse p-3">
+                <a href="{% url 'timeline' %}" class="btn btn-danger"><i class="fa fa-chevron-left fa-fw" aria-hidden="true"></i> Cancel</a>
+                <a class="btn btn-success pull-right" href="{% url 'post_comment' post.id %}"><i class="fa fa-comment fa-fw" aria-hidden="true"></i> Comment</a>
+            </div>
             {% endif %}
         </div>
         <div class="col-md-3"></div>

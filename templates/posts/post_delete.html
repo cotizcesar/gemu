@@ -16,8 +16,10 @@
                 <div class="form-group">
                     {% include "posts/post.html" %}
                 </div>
-                <a class="btn btn-secondary" href="{% url 'timeline' %}" role="button">Cancel</a>
-                <button type="submit" class="btn btn-danger float-right">Danger</button>
+                <div class="bg-inverse p-3">
+                    <a class="btn btn-warning" href="{% url 'timeline' %}"><i class="fa fa-chevron-left fa-fw" aria-hidden="true"></i> Cancel</a>
+                    <button type="submit" class="btn btn-danger float-right"><i class="fa fa-trash fa-fw" aria-hidden="true"></i> Delete!</button>
+                </div>
             </form>
             {% endif %}
         </div>
