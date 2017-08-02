@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load bootstrap3 %}
+{# Migrated to Bootstrap 4 #}
 {% load i18n %}
 {% load account socialaccount %}
 {% block head_title %}{% trans "Signup" %}{% endblock %}
@@ -8,20 +8,22 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h3>{% trans "Signup" %}</h3>
-            <div class="omnibox">
+            <h4>{% trans "Signup" %}</h4>
             <form id="signup_form" method="post" action="{% url 'account_signup' %}">
+                <div class="bg-inverse p-3 mb-3">
                     <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
                     <hr>
                     {% csrf_token %}
-                    {% bootstrap_form form %}
+                    {% for field in form %}
+                    {% include "forms/form.html" %}
+                    {% endfor %}
                     {% if redirect_field_value %}
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
-            </div>
-                <div class="omnibox form-actions">
+                </div>
+                <div class="bg-inverse p-2">
                     <a class="btn btn-warning" href="{% url 'index' %}">{% trans "Cancel" %}</a>
-                    <button class="btn btn-success pull-right" type="submit">{% trans "Sign Up" %}</button>
+                    <button class="btn btn-success float-right" type="submit">{% trans "Sign Up" %}</button>
                     <div class="clearfix"></div>
                 </div>
             </form>
