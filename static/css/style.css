@@ -21,18 +21,10 @@ main{padding-top:71px}
 .omnibox .titulo{font-size:20px}
 .omnibox .user-description{font-size:12px;list-style:none;margin:0;padding:0}
 
-.mod-siguiendo .siguiendo-info{font-size:11px;list-style:none;margin:0;padding:0}
-.mod-siguiendo .siguiendo-avatar{border:1px solid #333;border-radius:3px;max-width:50px}
-.mod-imagenes .imagen{display:inline;margin:2px -4px 2px 0;max-width:25%}
-
 .seguidor{margin-bottom:5px}
 .seguidor .seguidor-info{font-size:11px;list-style:none;margin:0;padding:0}
 .seguidor .seguidor-avatar{max-width:50px}
-/*
-.comment{color:#999}
-.comment a{color:#333}
-.comment .comment-text{font-size:12px}
-*/
+
 .loading{color:#999;display:block;margin-bottom:.938em;text-align:center}
 
 .user{font-size:.813em;}

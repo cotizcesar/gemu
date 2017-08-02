@@ -3,22 +3,33 @@
 {% block head_title %}New Post{% endblock %}
 {% block content %}
 <div class="container">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        {% if user.is_authenticated %}
-        <h3>New Post <small>What are you thinking?</small></h3>
-        <form action="" enctype="multipart/form-data" method="post">
-            <div class="omnibox">
-                {% csrf_token %}
-                {% bootstrap_form form %}
+    <div class="row">
+        <div class="col-md-3 bg-inverse">
+            {% include "timeline/timeline_mod_perfil.html" %}
+            {% include "timeline/timeline_mod_menu.html" %}
+        </div>
+        <div class="col-md-6">
+            {% if user.is_authenticated %}
+            <h4>New Post <small>What are you thinking?</small></h4>
+            <div class="bg-inverse p-3">
+                <form action="" enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                        {% if field.help_text %}
+                        <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <a href="{% url 'timeline' %}" class="btn btn-danger"><i class="fa fa-chevron-left fa-fw" aria-hidden="true"></i> Cancel</a>
+                    <button type="submit" class="btn btn-success pull-right">Post It</button>
+                </form>
             </div>
-            <div class="omnibox">
-                <a href="{% url 'timeline' %}" class="btn btn-default">Cancel</a>
-                <button type="submit" class="btn btn-success pull-right">Update <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
-            </div>
-        </form>
-        {% endif %}
+            {% endif %}
+        </div>
+        <div class="col-md-3"></div>
     </div>
-    <div class="col-md-3"></div>
 </div>
 {% endblock %}

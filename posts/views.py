@@ -20,7 +20,12 @@ class TimelineGlobalListView(ListView):
     model = Post
     paginate_by = 5
     template_name = 'timeline/timeline_global.html'
-    context_object_name = 'posts'
+
+    def get_context_data(self, **kwargs):
+        context = super(TimelineGlobalListView, self).get_context_data(**kwargs)
+        context['posts'] = Post.objects.all()
+        context['users'] = User.objects.all().order_by('?')[:3]
+        return context
 
 class TimelineListView(LoginRequiredMixin, ListView):
     model = Post
