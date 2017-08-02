@@ -7,14 +7,10 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            {% if user.is_authenticated %}
-            <a class="navbar-brand" href="{% url 'timeline' %}">Gemu</a>
-            {% else %}
             <a class="navbar-brand" href="{% url 'index' %}">Gemu</a>
-            {% endif %}
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link {% url 'index' as home_url %}{% if request.get_full_path == home_url %}active{% endif %}" href="{% url 'index' %}">Home</a></li>
                 {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link {% url 'timeline_global' as home_url %}{% if request.get_full_path == home_url %}active{% endif %}" href="{% url 'timeline_global' %}">Discover</a></li>
                 <li class="nav-item"><a class="nav-link {% url 'timeline' as home_url %}{% if request.get_full_path == home_url %}active{% endif %}" href="{% url 'timeline' %}">Feed</a></li>
                 {% endif %}
             </ul>

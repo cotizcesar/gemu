@@ -4,5 +4,5 @@
     <a class="nav-link {% if request.resolver_match.url_name == 'userprofile_basic' %}active{% endif %}" href="{% url 'userprofile_basic' %}"><i class="fa fa-user-circle fa-fw" aria-hidden="true"></i> Basic Information</a>
     <a class="nav-link {% if request.resolver_match.url_name == 'userprofile_extra' %}active{% endif %}" href="{% url 'userprofile_extra' %}"><i class="fa fa-picture-o fa-fw" aria-hidden="true"></i> Avatar & Extra Information</a>
     <a class="nav-link {% if request.resolver_match.url_name == 'socialaccount_connections' %}active{% endif %}" href="{% url 'socialaccount_connections' %}"><i class="fa fa-plug fa-fw" aria-hidden="true"></i> Account Connections</a>
-    <a class="nav-link disabled" href="#">Coming soon</a>
+    <a class="nav-link disabled" href="#">Privacy Settings</a>
 </nav>
