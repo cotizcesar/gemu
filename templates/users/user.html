@@ -4,7 +4,7 @@
 <img class="img-fluid bg-inverse" src="{{ user.userprofile.header|thumbnail_url:'post' }}">
 {% endif %}
 <div class="media user p-3 mb-3 bg-inverse">
-    <img class="d-flex rounded pr-2" src="{{ user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="{{ user.userprofile.bio }}">
+    <img class="d-flex rounded pr-2" src="{{ user.userprofile.avatar|thumbnail_url:'avatar_thumb'|default:'\media/avatar/default.png' }}" alt="{{ post.user.get_full_name }} (@{{ post.user.username }})">
     <div class="media-body">
         <h5 class="mt-0 mb-1">
             <a href="{% url 'userprofile' user.username %}">
