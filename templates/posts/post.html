@@ -24,12 +24,12 @@
         </h6>
         <p class="mb-2 text-justify">{{ post.text }}</p>
         <ul class="m-0 float-right post-menu">
-            <li><a href="{% url 'post_comment' post.id %}"><i class="fa fa-comment fa-fw" aria-hidden="true"></i></a></li>
-            <li><a href="#"><i class="fa fa-retweet fa-fw" aria-hidden="true"></i></a></li>
+            <li><a href="{% url 'post_comment' post.id %}"><i class="fa fa-comment fa-fw" aria-hidden="true"></i> Comment</a></li>
+            <li><a href="#"><i class="fa fa-retweet fa-fw" aria-hidden="true"></i> Share</a></li>
             {% if user == post.user %}
-            <li><a href="#"><i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i> Edit</a></li>
             {% endif %}
-            <li><a href="{% url 'post_detail' post.id %}"><i class="fa fa-window-restore fa-fw" aria-hidden="true"></i></a></li>
+            <li><a href="{% url 'post_detail' post.id %}"><i class="fa fa-window-restore fa-fw" aria-hidden="true"></i> Detail</a></li>
         </ul>
     </div>
 </div>
