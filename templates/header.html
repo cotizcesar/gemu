@@ -10,8 +10,8 @@
             <a class="navbar-brand" href="{% url 'index' %}">Gemu</a>
             <ul class="navbar-nav mr-auto">
                 {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link {% url 'timeline_global' as home_url %}{% if request.get_full_path == home_url %}active{% endif %}" href="{% url 'timeline_global' %}">Discover</a></li>
-                <li class="nav-item"><a class="nav-link {% url 'timeline' as home_url %}{% if request.get_full_path == home_url %}active{% endif %}" href="{% url 'timeline' %}">Feed</a></li>
+                <li class="nav-item"><a class="nav-link {% url 'timeline_global' as home_url %}{% if request.get_full_path == home_url %}active{% endif %}" href="{% url 'timeline_global' %}"><i class="fa fa-compass fa-fw" aria-hidden="true"></i> Discover</a></li>
+                <li class="nav-item"><a class="nav-link {% url 'timeline' as home_url %}{% if request.get_full_path == home_url %}active{% endif %}" href="{% url 'timeline' %}"><i class="fa fa-newspaper-o fa-fw" aria-hidden="true"></i> Feed</a></li>
                 {% endif %}
             </ul>
             <ul class="navbar-nav ml-auto">

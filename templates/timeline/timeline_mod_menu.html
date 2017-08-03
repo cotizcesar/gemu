@@ -1,10 +1,10 @@
 {# Migrated to Bootstrap 4 #}
-<h6>Discover</h6>
+<h6><i class="fa fa-compass fa-fw" aria-hidden="true"></i> Discover</h6>
 <nav class="nav flex-column mb-3">
     <a class="nav-link {% if request.resolver_match.url_name == 'timeline_global' %}active{% endif %}" href="{% url 'timeline_global' %}"><i class="fa fa-user-circle fa-fw" aria-hidden="true"></i> Global Feed</a>
     <a class="nav-link disabled" href="#">User List</a>
 </nav>
-<h6>Feed</h6>
+<h6><i class="fa fa-newspaper-o fa-fw" aria-hidden="true"></i> Feed</h6>
 <nav class="nav flex-column">
     <a class="nav-link {% if request.resolver_match.url_name == 'timeline' %}active{% endif %}" href="{% url 'timeline' %}"><i class="fa fa-newspaper-o fa-fw" aria-hidden="true"></i> Feed</a>
     <a class="nav-link disabled" href="#"><i class="fa fa-gamepad fa-fw" aria-hidden="true"></i> Games</a>
