@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.contrib.auth.models import User
-from django.views.generic import ListView, CreateView, TemplateView, FormView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.utils import timezone
 from django.http import HttpResponseRedirect
@@ -16,7 +15,7 @@ from userprofile.models import Connection
 # Forms
 from .forms import PostForm, CommentForm
 
-class TimelineGlobalListView(ListView):
+class TimelineGlobalListView(LoginRequiredMixin, generic.ListView):
     model = Post
     paginate_by = 5
     template_name = 'timeline/timeline_global.html'
@@ -27,7 +26,7 @@ class TimelineGlobalListView(ListView):
         context['users'] = User.objects.all().order_by('?')[:3]
         return context
 
-class TimelineListView(LoginRequiredMixin, ListView):
+class TimelineListView(LoginRequiredMixin, generic.ListView):
     model = Post
     paginate_by = 5
     template_name = 'timeline/timeline.html'
@@ -60,7 +59,7 @@ class PostDetailView(generic.DetailView):
         context['comments'] = Comment.objects.filter(post=self.object.id).select_related()
         return context
 
-class PostDeleteView(LoginRequiredMixin, DeleteView):
+class PostDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Post
     template_name = 'posts/post_delete.html'
     success_url = reverse_lazy('timeline')
@@ -76,7 +75,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
             return redirect('timeline')
         return super(PostDeleteView, self).dispatch(request, *args, **kwargs)
 
-class CommentCreateView(LoginRequiredMixin, CreateView):
+class CommentCreateView(LoginRequiredMixin, generic.CreateView):
     model = Comment
     slug_field = 'post_id'
     form_class = CommentForm

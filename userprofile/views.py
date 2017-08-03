@@ -1,6 +1,5 @@
 from django.views import generic
 from django.contrib.auth.models import User
-from django.views.generic import UpdateView, DetailView, ListView
 from django.contrib.auth import login, authenticate
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.shortcuts import render, redirect

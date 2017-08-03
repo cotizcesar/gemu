@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <h3>{% trans "Sign In" %}</h3>
+            <h4>{% trans "Sign In" %}</h4>
             <div class="bg-inverse rounded mb-3 p-3">
                 {% get_providers as socialaccount_providers %}
                 {% if socialaccount_providers %}
@@ -18,21 +18,20 @@
                 {% else %}
                 <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>                
                 {% endif %}
-                <hr>
-                <form class="login form" method="POST" action="{% url 'account_login' %}">
+            </div>
+            <form method="POST" action="{% url 'account_login' %}">
+                <div class="bg-inverse rounded mb-3 pl-3 pt-3 pr-3 pb-1">
                     {% csrf_token %}
-                    {% for field in form %}
-                    {% include "forms/form.html" %}
-                    {% endfor %}
+                    {% include "account/login_form.html" %}
                     {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
-            </div>
-            <div class="bg-inverse rounded p-3">
-                <a class="btn btn-outline-warning button" href="{% url 'account_reset_password' %}"><i class="fa fa-question-circle" aria-hidden="true"></i> {% trans "Forgot Password?" %}</a>
-                <button class="btn btn-outline-success float-right" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> {% trans "Sign In" %}</button>
-            </div>
-                </form>
+                </div>
+                <div class="bg-inverse rounded p-3">
+                    <a class="btn btn-outline-warning button" href="{% url 'account_reset_password' %}"><i class="fa fa-question-circle" aria-hidden="true"></i> {% trans "Forgot Password?" %}</a>
+                    <button class="btn btn-outline-success float-right" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> {% trans "Sign In" %}</button>
+                </div>
+            </form>
         </div>
         <div class="col-md-3"></div>
     </div>
