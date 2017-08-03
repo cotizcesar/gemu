@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-6">
             {% if user.is_authenticated %}
-            <h4>New Comment <small>What are you thinking?</small></h4>
+            <h5>New Comment <small>What are you thinking?</small></h5>
             <div class="bg-inverse p-3">
                 <form action="" enctype="multipart/form-data" method="post">
                     {% csrf_token %}

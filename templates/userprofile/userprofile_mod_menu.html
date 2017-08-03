@@ -1,5 +1,5 @@
 {# Migrated to Bootstrap 4 #}
-<h5 class="mt-3">Options Menu</h5>
+<h6 class="mt-3">Options Menu</h6>
 <nav class="nav flex-column">
     <a class="nav-link {% if request.resolver_match.url_name == 'userprofile_basic' %}active{% endif %}" href="{% url 'userprofile_basic' %}"><i class="fa fa-user-circle fa-fw" aria-hidden="true"></i> Basic Information</a>
     <a class="nav-link {% if request.resolver_match.url_name == 'userprofile_extra' %}active{% endif %}" href="{% url 'userprofile_extra' %}"><i class="fa fa-picture-o fa-fw" aria-hidden="true"></i> Avatar & Extra Information</a>
