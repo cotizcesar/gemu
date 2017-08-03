@@ -40,7 +40,7 @@ main{padding-top:71px}
 .comment{font-size:.813em;}
 .comment h5{font-size:1.2em}
 
-.profile{background:#292b2c}
+.profile{background:#292b2c; width: 100%;}
 .profile .info{font-size:.813em;list-style:none;margin:0;padding:0}
 
 .fa-check-circle{
