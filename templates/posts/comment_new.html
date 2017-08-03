@@ -18,8 +18,8 @@
                     {% for field in form %}
                     {% include "forms/form.html" %}
                     {% endfor %}
-                    <a href="{% url 'timeline' %}" class="btn btn-danger"><i class="fa fa-chevron-left fa-fw" aria-hidden="true"></i> Cancel</a>
-                    <button type="submit" class="btn btn-success float-right"><i class="fa fa-comment fa-fw" aria-hidden="true"></i> Comment</button>
+                    <a href="{% url 'timeline' %}" class="btn btn-outline-danger"><i class="fa fa-chevron-left fa-fw" aria-hidden="true"></i> Cancel</a>
+                    <button type="submit" class="btn btn-outline-success float-right"><i class="fa fa-comment fa-fw" aria-hidden="true"></i> Comment</button>
                 </form>
             </div>
             {% endif %}
