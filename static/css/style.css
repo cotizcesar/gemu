@@ -41,3 +41,10 @@ main{padding-top:71px}
     padding: 0;
     margin: 0;
 }
+.nav .active{
+    background: #424648;
+    color: #fff;
+}
+.nav .active:hover{
+    color: #449c44;
+}

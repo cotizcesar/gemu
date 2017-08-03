@@ -141,7 +141,7 @@ THUMBNAIL_ALIASES = {
         'header': {'size': (1140, 350), 'crop': 'smart', 'upscale' : True},
         'avatar': {'size': (200, 200), 'crop': 'smart', 'upscale' : True},
         'avatar_thumb': {'size': (50, 50), 'crop': 'smart', 'upscale' : True},
-        'avatar_header': {'size': (21, 0), 'crop': 'smart', 'upscale' : True},
+        'avatar_header': {'size': (21, 21), 'crop': 'smart', 'upscale' : True},
     },
 }
 
