@@ -1,8 +1,11 @@
 body{background:#333;color:#d7dde8;font-family:'Open Sans',sans-serif;height:100vh}
+
 a{color:#5cb85c}
 a:hover{color:#449c44;text-decoration:none}
-.btn{border-radius:0}
+
 main{padding-top:71px}
+
+.btn{border-radius:0}
 .btn .fa{margin-right:5px}
 .btn-facebook{background:#3b5998;border-color:#4b6eb9;color:#fff}
 .btn-steam{background:#1a1a1a;border-color:#000;color:#fff}
@@ -13,20 +16,6 @@ main{padding-top:71px}
 
 .avatar{max-width:200px}
 .avatar-thumb{max-width:50px}
-
-#timeline{padding-top:15px;padding-bottom:15px}
-#tmln{padding-bottom:15px}
-
-.omnibox{background:#fff;margin-bottom:15px;padding:10px}
-.omnibox .titulo{font-size:20px}
-.omnibox .user-description{font-size:12px;list-style:none;margin:0;padding:0}
-
-.seguidor{margin-bottom:5px}
-.seguidor .seguidor-info{font-size:11px;list-style:none;margin:0;padding:0}
-.seguidor .seguidor-avatar{max-width:50px}
-
-.loading{color:#999;display:block;margin-bottom:.938em;text-align:center}
-
 
 .user{font-size:.813em;}
 .user h5{font-size:1.2em}
