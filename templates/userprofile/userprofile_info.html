@@ -3,7 +3,7 @@
 {% if usr.userprofile.header %}
 <img class="img-fluid" src="{{ usr.userprofile.header|thumbnail_url:'header'|default:'\media/header/default.png' }}">
 {% endif %}
-<div class="media profile p-3 mb-3">
+<div class="media profile bg-dark p-3 mb-3">
     <img class="d-flex rounded mr-3" src="{{ usr.userprofile.avatar|thumbnail_url:'avatar'|default:'\media/avatar/default.png' }}" alt="Generic placeholder image">
     <div class="media-body">
     <h5 class="mt-0">
