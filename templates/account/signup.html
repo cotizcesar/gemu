@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <h5>{% trans "Signup" %}</h5>
             <form id="signup_form" method="post" action="{% url 'account_signup' %}">
-                <div class="bg-inverse p-3 mb-3">
+                <div class="bg-dark p-3 mb-3">
                     <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
                     <hr>
                     {% csrf_token %}
@@ -21,7 +21,7 @@
                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
                 </div>
-                <div class="bg-inverse p-2">
+                <div class="bg-dark p-2">
                     <a class="btn btn-warning" href="{% url 'index' %}">{% trans "Cancel" %}</a>
                     <button class="btn btn-success float-right" type="submit">{% trans "Sign Up" %}</button>
                     <div class="clearfix"></div>

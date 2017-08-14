@@ -4,12 +4,12 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-3 bg-inverse">
+        <div class="col-md-3 bg-dark">
             {% include 'userprofile/userprofile_mod_menu.html' %}
         </div>
         <div class="col-md-6">
             <h5>{% trans "Account Connections" %}</h5>
-            <div class="bg-inverse p-3 mb-3">
+            <div class="bg-dark p-3 mb-3">
                 {% if form.accounts %}
                 <p>{% blocktrans %}You can sign in to your account using any of the following third party accounts:{% endblocktrans %}</p>
                 <form method="post" action="{% url 'socialaccount_connections' %}">
@@ -37,7 +37,7 @@
                 {% endif %}
             </div>
             <h4>{% trans 'Add a 3rd Party Account' %}</h4>
-            <div class="bg-inverse p-3">
+            <div class="bg-dark p-3">
                 {% include "socialaccount/snippets/provider_list.html" with process="connect" %}
                 {% include "socialaccount/snippets/login_extra.html" %}
             </div>

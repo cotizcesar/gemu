@@ -5,14 +5,14 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-3 bg-inverse">
+        <div class="col-md-3 bg-dark">
             {% include "timeline/timeline_mod_perfil.html" %}
             {% include "timeline/timeline_mod_menu.html" %}
         </div>
         <div class="col-md-6">
             {% if user.is_authenticated %}
             <h5>New Comment <small>What are you thinking?</small></h5>
-            <div class="bg-inverse p-3">
+            <div class="bg-dark p-3">
                 <form action="" enctype="multipart/form-data" method="post">
                     {% csrf_token %}
                     {% for field in form %}

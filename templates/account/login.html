@@ -9,7 +9,7 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <h5>{% trans "Sign In" %}</h5>
-            <div class="bg-inverse rounded mb-3 p-3">
+            <div class="bg-dark rounded mb-3 p-3">
                 {% get_providers as socialaccount_providers %}
                 {% if socialaccount_providers %}
                 <p>{% blocktrans with site.name as site_name %}Please sign in with one of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a> for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
@@ -27,7 +27,7 @@
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
                 </div>
-                <div class="bg-inverse rounded p-3">
+                <div class="bg-dark rounded p-3">
                     <a class="btn btn-outline-warning button" href="{% url 'account_reset_password' %}"><i class="fa fa-question-circle" aria-hidden="true"></i> {% trans "Forgot Password?" %}</a>
                     <button class="btn btn-outline-success float-right" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> {% trans "Sign In" %}</button>
                 </div>

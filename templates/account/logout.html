@@ -7,7 +7,7 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <h5>{% trans "Sign Out" %}</h5>
-            <div class="bg-inverse p-3 mt-3 mb-3">
+            <div class="bg-dark p-3 mt-3 mb-3">
             <p class="mb-0">{% trans 'Are you sure you want to sign out?' %}</p>
             </div>
             <form method="post" action="{% url 'account_logout' %}">
@@ -15,7 +15,7 @@
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                 {% endif %}
-                <div class="bg-inverse p-3">
+                <div class="bg-dark p-3">
                     <a class="btn btn-outline-warning" href="{% url 'timeline' %}">Cancel</a>
                     <button type="submit" class="btn btn-outline-danger float-right">{% trans 'Sign Out' %}</button>
                     <div class="clearfix"></div>
