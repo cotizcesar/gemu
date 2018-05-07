@@ -1,0 +1,8 @@
+{% load thumbnail %}
+<div class="media p-3 border-bottom border-black-t">
+    <img class="mr-3 img-fluid rounded-circle" src="{{u.uprofile.avatar|thumbnail_url:'avatar_post'|default:'/media/user/avatar/avatar_post.png'}}" alt="{{u.get_full_name}} @{{u.username}} avatar.">
+    <div class="media-body">
+        <p class="mb-0 small"><a class="text-white" href="{% url 'uprofile' u %}">{{u.get_full_name}}{% if user.is_staff is True %}<i class="far fa-check-circle fa-fw text-primary small mx-1"></i>{% endif %}</a></p>
+        <p class="mb-0 small"><a class="text-info" href="{% url 'uprofile' u %}">@{{u.username}}</a></p>
+    </div>
+</div>

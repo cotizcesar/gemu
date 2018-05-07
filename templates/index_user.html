@@ -1,0 +1,9 @@
+{% load thumbnail %}
+<div class="col-md-3 mt-3">
+    <div class="rounded pb-1 bg-black-t text-center font-weight-light">
+        <img class="rounded-top img-fluid" src="{{user.uprofile.header|thumbnail_url:'header_index'|default:'/media/user/header/header_index.png'}}">
+        <img class="avatar border rounded-circle img-fluid w-50 d-block mx-auto" src="{{user.uprofile.avatar|thumbnail_url:'avatar'|default:'/media/user/avatar/avatar.png'}}">
+        <h6 class="mt-3 mb-0">{{user.get_full_name}}</h6>
+        <p>@{{user.username}}</p>
+    </div>
+</div>

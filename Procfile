@@ -1,2 +1,1 @@
-web: gunicorn plaxed.wsgi --log-file -
-worker: python worker.py
+web: gunicorn gemu.wsgi

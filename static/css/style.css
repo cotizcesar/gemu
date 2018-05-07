@@ -1,50 +1,79 @@
-body{background:#333;color:#d7dde8;font-family:'Open Sans',sans-serif;height:100vh}
+a:hover{text-decoration: none;}
 
-a{color:#5cb85c}
-a:hover{color:#449c44;text-decoration:none}
-
-main{padding-top:71px}
-
-.btn{border-radius:0}
-.btn .fa{margin-right:5px}
-.btn-facebook{background:#3b5998;border-color:#4b6eb9;color:#fff}
-.btn-steam{background:#1a1a1a;border-color:#000;color:#fff}
-.btn-twitch{background:#6441a5;border-color:#4e3380;color:#fff}
-.btn-battlenet{background:#00B4FF;border-color:#008fcc;color:#fff}
-.btn-discord{background:#7289da;border-color:#4a67cf;color:#fff}
-.btn-twitch:hover,.btn-steam:hover,.btn-twitch:hover,.btn-battlenet:hover,.btn-facebook:hover,.btn-discord:hover{color:#fff}
-
-.avatar{max-width:200px}
-.avatar-thumb{max-width:50px}
-
-.user{font-size:.813em;}
-.user h5{font-size:1.2em}
-
-.post{font-size:.813em;}
-.post h5{font-size:1.2em}
-.post .post-middle .post-title{margin:0}
-.post .post-menu{list-style:none}
-.post .post-menu li{margin-left:.375em;display:inline-block}
-
-.comment{font-size:.813em;}
-.comment h5{font-size:1.2em}
-
-.profile{background:#292b2c; width: 100%;}
-.profile .info{font-size:.813em;list-style:none;margin:0;padding:0}
-
-.fa-check-circle{
-    color: #4080ff;
-    font-size: 0.8em;
+/* Colors */
+.bg-black-t{
+    background-color: rgba(0, 0, 0, 0.1);
 }
-.errorlist{
+.bg-black-y{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.border-black-t{
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Index */
+#index .avatar{
+    margin-top: -25%;
+}
+
+#public .stats .icon{
+    font-size: 6rem;
+}
+#public .about .icon{
+    font-size: 8rem;
+}
+.btn-github:hover, .btn-facebook:hover, .btn-twitter:hover{
+    opacity: 0.8;
+}
+#public .btn-github{
+    background-color: #24292e;
+}
+#public .btn-facebook{
+    background-color: #3b5998;
+}
+#public .btn-twitter{
+    background-color: #1da1f2;
+}
+/* Sign Up */
+#signup .icon{
+    font-size: 5rem;
+}
+#signup .title{
+    font-size: 4rem;
+}
+
+/* Log In */
+#login .title{
+    font-size: 4rem;
+}
+
+/* Log Out */
+#logout .icon{
+    font-size: 5rem;
+}
+#logout .title{
+    font-size: 4rem;
+}
+
+/* Posts: Standard */
+.post .nav li{
+    display: inline;
+}
+
+/* Footer */
+#footer nav ul li{
+    display: inline;
+}
+
+/* UProfile */
+#uprofile .header{
+    position: relative;
+}
+#uprofile .stats{
+    position: absolute;
+    bottom: 0;
+}
+/* Snippets */
+.list-none{
     list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.nav .active{
-    background: #424648;
-    color: #fff;
-}
-.nav .active:hover{
-    color: #449c44;
 }

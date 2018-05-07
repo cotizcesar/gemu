@@ -1,0 +1,9 @@
+{% load humanize %}
+{% load thumbnail %}
+<div class="media mb-3 rounded bg-black-t p-3">
+    <img class="mr-3 rounded-circle" src="{{ comment.user.uprofile.avatar|thumbnail_url:'avatar_post' }}" alt="{{comment.user.get_full_name}} - @{{comment.user.username}} avatar.">
+    <div class="media-body">
+        <h6 class="my-1">{{comment.user.get_full_name}}{% if user.is_staff is True %}<i class="far fa-check-circle fa-fw text-primary small mx-1"></i>{% endif %}<a class="text-info font-weight-light small" href="#">@{{comment.user.username}}</a> <span class="mt-1 float-right small text-muted">{{comment.date_created|naturaltime}}</span></h6>
+        <p class="small mb-0">{{comment.text}}</p>
+    </div>
+</div>

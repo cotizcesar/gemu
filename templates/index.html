@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% load bootstrap4 %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<div id="index" class="row">
+    <div class="col-md-3">
+        <div class="media p-3 rounded bg-black-t mb-3">
+            <img class="mr-3 img-fluid rounded-circle" src="{{user.uprofile.avatar|thumbnail_url:'avatar_post'|default:'/media/user/avatar/avatar_post.png'}}" alt="{{user.get_full_name}} @{{user.username}} avatar.">
+            <div class="media-body">
+                <p class="mb-0 small"><a class="text-white" href="{% url 'uprofile' user %}">{{user.get_full_name}}</a>{% if user.is_staff is True %}<i class="far fa-check-circle fa-fw text-primary small mx-1"></i>{% endif %}</p>
+                <p class="mb-0 small"><a class="text-info" href="{% url 'uprofile' user %}">@{{user.username}}</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        {% bootstrap_messages %}
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link btn-sm bg-info active" href="{% url 'index' %}"><i class="fas fa-globe fa-fw"></i> Public</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn-sm disabled" href="#"><i class="fas fa-angle-double-right fa-fw"></i> Following</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn-sm disabled" href="#"><i class="fas fa-heart fa-fw"></i> Liked</a>
+            </li>
+            <li class="nav-item ml-auto">
+                <a class="nav-link btn-sm bg-success active" href="{% url 'post_create' %}"><i class="fas fa-paper-plane fa-fw"></i> New Post</a>
+            </li>
+        </ul>
+        <hr>    
+        {% for post in public_posts %}
+        {% include 'post/post.html' %}
+        {% empty %}
+        <div class="alert alert-info small" role="alert">
+            There's no posts to show. If you want to see more, please follow more players <a href="{% url 'explore' %}">here</a>.
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-3">
+        {% include 'modules/the_more_you_know.html' %}
+        {% include 'modules/who_to_follow.html' %}
+    </div>
+</div>
+{% else %}
+<div id="public" class="row">
+    <div class="col-md-3">
+        <div class="about rounded bg-black-t p-3 mb-3">
+            <h2><i class="fas fa-rocket fa-fw icon text-info mx-auto d-block"></i></h2>
+            <ul class="list-none m-0 p-0 text-center">
+                <li class="h2">Gemu</li>
+                <li class="h6">OpenSource Gaming Social Network</li>
+            </ul>
+        </div>
+        <div class="bg-black-t rounded mb-3">
+            <h6 class="px-3 pt-3"><i class="fas fa-rocket fa-fw text-info mr-1"></i> Stats</h6>
+            <hr class="mb-0">
+            <ul class="list-none p-0 m-0 small">
+                <li class="border-bottom border-black-t text-white p-3 d-block"><i class="fas fa-gamepad fa-fw text-info ml-3 mr-1"></i> Total Players ({{users_count}})</li>
+                <li class="border-black-t text-white p-3 d-block"><i class="far fa-paper-plane fa-fw text-info ml-3 mr-1"></i> Total Posts ({{posts_count}})</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="bg-black-t rounded p-3 mb-3">
+            <div class="media small">
+                <h2><i class="fas fa-rocket fa-fw text-info mt-2 mr-3"></i></h2>
+                <div class="media-body">
+                    <h5 class="mt-0">Gemu <br><small>OpenSource Gaming Social Network.</small></h5>
+                    <hr>
+                    <p>Gemu is an OpenSource social network for gaming. Share with your followers, explore new posts and players, create game groups and talk to them privately.</p>
+                </div>
+            </div>
+            <ul class="nav justify-content-center small">
+                <li class="nav-item">
+                    <a class="nav-link text-white btn btn-sm btn-github mx-2" href="http://bit.ly/gemu-github" target="_blank"><i class="fab fa-github fa-fw mr-1"></i> Github</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white btn btn-sm btn-facebook mx-2" href="http://bit.ly/gemu-facebook" target="_blank"><i class="fab fa-facebook fa-fw mr-1"></i>Facebook</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white btn btn-sm btn-twitter mx-2" href="http://bit.ly/gemu-twitter" target="_blank"><i class="fab fa-twitter fa-fw mr-1"></i>Twitter</a>
+                </li>
+            </ul>
+        </div>
+        <div class="bg-black-t rounded my-3">
+            <h6 class="p-3"><i class="fas fa-list fa-fw text-info mr-1"></i> Last Public Posts</h6>
+        </div>
+        {% for post in index_posts %}
+        {% include 'post/post.html' %}
+        {% endfor %}
+    </div>
+    <div class="col-md-3"></div>
+</div>
+{% endif %}
+{% endblock %}
