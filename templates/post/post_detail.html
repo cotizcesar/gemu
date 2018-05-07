@@ -13,7 +13,7 @@
         {% if user.is_authenticated %}
         <div class="bg-black-t rounded p-3 my-3">
             <a class="btn btn-danger btn-sm px-3" href="{% url 'index' %}" role="button"><i class="fas fa-times fa-fw"></i> Cancel</a>
-            <a class="btn btn-success btn-sm float-right px-3" href="{% url 'post_comment_create' post.id %}" role="button"><i class="fas fa-paper-plane fa-fw"></i> Comment</a>
+            <a class="btn btn-success btn-sm float-right px-3" href="{% url 'post_comment_create' post.id %}" role="button"><i class="fas fa-paper-plane fa-fw"></i> New Comment</a>
         </div>
         {% endif %}
     </div>

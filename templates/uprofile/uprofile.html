@@ -8,7 +8,7 @@
         <div class="bg-black-t rounded mb-3">
             <img class="img-fluid rounded-circle p-3 mx-auto d-block" src="{{profile.uprofile.avatar|thumbnail_url:'avatar'|default:'/media/user/avatar/avatar.png'}}" alt="{{profile.get_full_name}} @{{profile.get_full_name}} avatar.">
             <ul class="list-none p-3 m-0 text-center"> 
-                <li><h6 class="mb-0">{{profile.get_full_name}}{% if user.is_staff is True %}<i class="far fa-check-circle fa-fw text-primary small mx-1"></i>{% endif %}</h6></li>
+                <li><h6 class="mb-0">{{profile.get_full_name}}{% if profile.is_staff is True %}<i class="far fa-check-circle fa-fw text-primary small mx-1"></i>{% endif %}</h6></li>
                 <li class="mb-2 small">@{{profile.username}}</li>
                 <li class="mb-2 small">{{profile.uprofile.bio}}</li>
                 <li class="mb-2 small"><i class="fas fa-link fa-fw"></i> <a class="text-info" href="{{profile.uprofile.website}}" target="_blank">My Website</a></li>
