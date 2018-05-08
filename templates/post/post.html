@@ -10,7 +10,11 @@
     <div class="media post p-3">
         <img class="rounded-circle mr-3" src="{{post.user.uprofile.avatar|thumbnail_url:'avatar_post'|default:'/media/user/avatar/avatar_post.png'}}" alt="Generic placeholder image">
         <div class="media-body">
-            <h6 class="my-1"><a class="text-white" href="#">{{post.user.get_full_name}}</a>{% if post.user.is_staff is True %}<i class="far fa-check-circle fa-fw text-primary small mx-1"></i>{% endif %}<a class="text-info small" href="{% url 'uprofile' post.user %}">@{{post.user.username}}</a> <span class="small text-muted float-right mt-1">{{post.date_created|naturaltime}}</span></h6>
+            <h6 class="my-1">
+                <a class="text-white" href="#">{{post.user.get_full_name}}</a>
+                {% if post.user.is_staff is True %} <i class="far fa-check-circle fa-fw text-primary small"></i> {% endif %}
+                <a class="text-info small" href="{% url 'uprofile' post.user %}">@{{post.user.username}}</a> <span class="small text-muted float-right mt-1">{{post.date_created|naturaltime}}</span>
+            </h6>
             <p class="mb-0 small">{{post.text}}</p>
         </div>
     </div>

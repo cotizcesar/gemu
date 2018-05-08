@@ -1,0 +1,9 @@
+{% load thumbnail %}
+<img class="img-fluid rounded-top" src="{{user.uprofile.header|thumbnail_url:'header_255x143'|default:'/media/user/header/header_255x143.png'}}" alt="{{user.get_full_name}} @{{user.username}} header.">
+<div class="media rounded-bottom bg-black-t p-3 mb-3">
+    <img class="rounded-circle mr-3" src="{{user.uprofile.avatar|thumbnail_url:'avatar_50x50'|default:'/media/user/avatar/avatar_50x50.png'}}" alt="{{user.get_full_name}} @{{user.username}} avatar.">
+    <div class="media-body">
+        <h6 class="mt-1 mb-0">{{user.get_full_name}}</h6>
+        <a class="mb-0 text-info small" href="{% url 'uprofile' user %}" >@{{user.username}}</a>
+    </div>
+</div>

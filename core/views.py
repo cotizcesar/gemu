@@ -26,6 +26,14 @@ class Index(TemplateView):
         context['posts_count'] = Post.objects.all().count
         return context
 
+class PublicTimeline(TemplateView):
+    template_name = 'timeline/timeline_public.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PublicTimeline, self).get_context_data(**kwargs)
+        context['public_timeline'] = Post.objects.all()
+        return context
+
 class Explore(TemplateView):
     template_name = 'explore/explore.html'
 

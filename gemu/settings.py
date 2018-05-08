@@ -158,7 +158,9 @@ THUMBNAIL_TRANSPARENCY_EXTENSION = 'png'
 THUMBNAIL_ALIASES = {
     '': {
         'header': {'size': (825, 312), 'crop': 'smart', 'upscale' : True},
+        'header_255x143': {'size': (255, 143), 'crop': 'smart', 'upscale' : True},
         'avatar': {'size': (255, 255), 'crop': 'smart', 'upscale' : True},
+        'avatar_50x50': {'size': (50, 50), 'crop': 'smart', 'upscale' : True},
         'avatar_post': {'size': (50, 50), 'crop': 'smart', 'upscale' : True},
         'avatar_explore': {'size': (65, 65), 'crop': 'smart', 'upscale' : True},
         'avatar_header': {'size': (24, 24), 'crop': 'smart', 'upscale' : True},

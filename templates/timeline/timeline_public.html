@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Public Timeline{% endblock %}
+{% block content %}
+<div id="timeline" class="row">
+    <div class="col-md-3">
+        {% include 'timeline/timeline_user.html' %}
+        {% include 'timeline/timeline_menu.html' %}
+    </div>
+    <div class="col-md-6">
+        {% for post in public_timeline %}
+        {% include 'post/post.html' %}
+        {% empty %}
+        {% endfor %}
+    </div>
+    <div class="col-md-3"></div>
+</div>
+{% endblock %}
