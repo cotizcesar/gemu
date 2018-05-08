@@ -20,14 +20,14 @@ from django.conf.urls.static import static
 
 from django.conf.urls import include, url
 
-from core.views import Index, PublicTimeline, Explore, UserUpdateView, UserProfileUpdateView, UserProfileDetailView, PostCreateView, PostDetailView, CommentCreateView
+from core.views import Index, PublicTimeline, ExploreUsers, UserUpdateView, UserProfileUpdateView, UserProfileDetailView, PostCreateView, PostDetailView, CommentCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', Index.as_view(), name='index'),
     # Timelines: Public, Following, Etc.
     url(r'^timeline/public$', PublicTimeline.as_view(), name='timeline_public'),
-    url(r'^explore/$', Explore.as_view(), name='explore'),
+    url(r'^explore/$', ExploreUsers.as_view(), name='explore_users'),
     # django-allauth: All url patterns
     # http://django-allauth.readthedocs.io/en/latest/installation.html#django
     url(r'^accounts/', include('allauth.urls')),

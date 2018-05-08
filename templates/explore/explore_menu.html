@@ -1,8 +1,6 @@
-<div class="bg-black-t rounded mb-3">
-    <h6 class="px-3 pt-3"><i class="far fa-compass fa-fw text-info mr-1"></i> Explore</h6>
-    <hr class="mb-0">
-    <ul class="list-none p-0 m-0 small">
-        <li class="border-bottom border-black-t {% if request.resolver_match.url_name == 'explore' %}bg-black-t{% endif %}"><a class="text-white ml-3 p-3 d-block" href="{% url 'explore' %}"><i class="fas fa-globe fa-fw text-info mr-1"></i> Public Posts ({{posts.count}})</a></li>
-        <li class="border-black-t {% if request.resolver_match.url_name == 'userprofile_advanced' %}bg-black-t{% endif %}"><a class="text-white ml-3 p-3 d-block" href="{% url 'userprofile_advanced' %}"><i class="fas fa-gamepad fa-fw text-info mr-1"></i> Players ({{users}})</a></li>
+<ul class="rounded bg-black-t list-none p-0 m-0 mb-3">
+        <li><h6 class="m-0 p-3"><i class="far fa-compass fa-fw text-info mr-1"></i> Explore</h6></li>
+        <hr class="my-0">
+        <li><a class="border-bottom border-black-t d-block text-white small py-3 pl-4 pr-3 {% if request.resolver_match.url_name == 'explore_users' %}bg-black-t{% endif %}" href="{% url 'explore_users' %}"><i class="fas fa-gamepad fa-fw text-info mr-1"></i> Players</a></li>
+        <li><a class="d-block text-white small py-3 pl-4 pr-3 {% if request.resolver_match.url_name == 'timeline_public' %}bg-black-t{% endif %}" href="{% url 'timeline_public' %}"><i class="fas fa-globe fa-fw text-info mr-1"></i> Public Posts</a></li>
     </ul>
-</div>

@@ -31,13 +31,12 @@ class PublicTimeline(TemplateView):
         context['users'] = User.objects.all().order_by('?')[:3]
         return context
 
-class Explore(TemplateView):
+class ExploreUsers(TemplateView):
     template_name = 'explore/explore.html'
 
     def get_context_data(self, **kwargs):
-        context = super(Explore, self).get_context_data(**kwargs)
-        context['posts'] = Post.objects.all()
-        context['users'] = User.objects.count
+        context = super(ExploreUsers, self).get_context_data(**kwargs)
+        context['users'] = User.objects.all().order_by('?')
         return context
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
