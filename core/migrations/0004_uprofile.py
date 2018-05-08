@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='UProfile',
+            name='UserProfile',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('avatar', models.ImageField(blank=True, default='avatar/default.png', upload_to='user/avatar')),

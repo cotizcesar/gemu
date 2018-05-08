@@ -3,16 +3,17 @@ from django.db import models
 # Django: Importing User Model
 from django.contrib.auth.models import User
 
-# Core: UProfile reciever and post_save signal: Needed to create a UProfile objects when the User account its created.
+# Core: UserProfile reciever and post_save signal: Needed to create a UserProfile objects when the User account its created.
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
-class UProfile(models.Model):
+class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='user/avatar', default='avatar/default.png', blank=True)
     header = models.ImageField(upload_to='user/header', default='avatar/default.png', blank=True)
     bio = models.CharField(max_length=140, blank=True)
     website = models.URLField(max_length=200, blank=True)
+    follows = models.ManyToManyField('UserProfile', related_name='followed_by')
 
     def __str__(self):
         return self.user.username
@@ -20,12 +21,12 @@ class UProfile(models.Model):
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
     if created:
-        UProfile.objects.create(user=instance)
-    instance.uprofile.save()
+        UserProfile.objects.create(user=instance)
+    instance.userprofile.save()
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.uprofile.save()
+    instance.userprofile.save()
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

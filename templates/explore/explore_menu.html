@@ -3,6 +3,6 @@
     <hr class="mb-0">
     <ul class="list-none p-0 m-0 small">
         <li class="border-bottom border-black-t {% if request.resolver_match.url_name == 'explore' %}bg-black-t{% endif %}"><a class="text-white ml-3 p-3 d-block" href="{% url 'explore' %}"><i class="fas fa-globe fa-fw text-info mr-1"></i> Public Posts ({{posts.count}})</a></li>
-        <li class="border-black-t {% if request.resolver_match.url_name == 'uprofile_advanced' %}bg-black-t{% endif %}"><a class="text-white ml-3 p-3 d-block" href="{% url 'uprofile_advanced' %}"><i class="fas fa-gamepad fa-fw text-info mr-1"></i> Players ({{users}})</a></li>
+        <li class="border-black-t {% if request.resolver_match.url_name == 'userprofile_advanced' %}bg-black-t{% endif %}"><a class="text-white ml-3 p-3 d-block" href="{% url 'userprofile_advanced' %}"><i class="fas fa-gamepad fa-fw text-info mr-1"></i> Players ({{users}})</a></li>
     </ul>
 </div>

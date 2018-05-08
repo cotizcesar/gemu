@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 from django.conf.urls import include, url
 
-from core.views import Index, PublicTimeline, Explore, UserUpdateView, UProfileUpdateView, UProfileDetailView, PostCreateView, PostDetailView, CommentCreateView
+from core.views import Index, PublicTimeline, Explore, UserUpdateView, UserProfileUpdateView, UserProfileDetailView, PostCreateView, PostDetailView, CommentCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,9 +31,9 @@ urlpatterns = [
     # django-allauth: All url patterns
     # http://django-allauth.readthedocs.io/en/latest/installation.html#django
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^accounts/basic/$', UserUpdateView.as_view(), name='uprofile_basic'),
-    url(r'^accounts/advanced/$', UProfileUpdateView.as_view(), name='uprofile_advanced'),
-    url(r'^u/(?P<slug>[a-zA-Z0-9]+)/', UProfileDetailView.as_view(), name='uprofile'),
+    url(r'^accounts/basic/$', UserUpdateView.as_view(), name='userprofile_basic'),
+    url(r'^accounts/advanced/$', UserProfileUpdateView.as_view(), name='userprofile_advanced'),
+    url(r'^u/(?P<slug>[a-zA-Z0-9]+)/', UserProfileDetailView.as_view(), name='userprofile'),
     # Post: CRUD url's.
     url(r'^post/create/$', PostCreateView.as_view(), name='post_create'),
     url(r'^post/(?P<pk>\d+)/$', PostDetailView.as_view(), name='post_detail'),

@@ -9,10 +9,10 @@ from django.contrib.auth.models import User
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView, DeleteView
 
 # Core: Importing Post Model
-from .models import Post, Comment, UProfile
+from .models import Post, Comment, UserProfile
 
 # Core: Importing PostForm form
-from .forms import UserForm, UProfileForm, PostForm, CommentForm
+from .forms import UserForm, UserProfileForm, PostForm, CommentForm
 
 class Index(TemplateView):
     template_name = 'index.html'
@@ -46,34 +46,34 @@ class Explore(TemplateView):
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserForm
-    template_name = 'uprofile/uprofile_update_basic.html'
+    template_name = 'userprofile/userprofile_update_basic.html'
     success_url = reverse_lazy('index')
 
     def get_object(self):
         return self.request.user
 
-class UProfileUpdateView(LoginRequiredMixin, UpdateView):
-    model = UProfile
-    form_class = UProfileForm
-    template_name = 'uprofile/uprofile_update_advanced.html'
+class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = UserProfile
+    form_class = UserProfileForm
+    template_name = 'userprofile/userprofile_update_advanced.html'
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
         form.save(self.request.user)
-        return super(UProfileUpdateView, self).form_valid(form)
+        return super(UserProfileUpdateView, self).form_valid(form)
 
     def get_object(self):
-        return self.request.user.uprofile
+        return self.request.user.userprofile
 
-# UProfile: Detail view of the extension user profile.
-class UProfileDetailView(DetailView):
+# UserProfile: Detail view of the extension user profile.
+class UserProfileDetailView(DetailView):
     model = User
-    template_name = 'uprofile/uprofile.html'
+    template_name = 'userprofile/userprofile.html'
     slug_field = 'username'
     context_object_name = 'profile'
 
     def get_context_data(self, **kwargs):
-        context = super(UProfileDetailView, self).get_context_data(**kwargs)
+        context = super(UserProfileDetailView, self).get_context_data(**kwargs)
         context['posts'] = Post.objects.filter(user=self.get_object())
         context['users'] = User.objects.all().order_by('?')[:3]
         return context

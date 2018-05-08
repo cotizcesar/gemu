@@ -7,10 +7,10 @@
 <div id="index" class="row">
     <div class="col-md-3">
         <div class="media p-3 rounded bg-black-t mb-3">
-            <img class="mr-3 img-fluid rounded-circle" src="{{user.uprofile.avatar|thumbnail_url:'avatar_post'|default:'/media/user/avatar/avatar_post.png'}}" alt="{{user.get_full_name}} @{{user.username}} avatar.">
+            <img class="mr-3 img-fluid rounded-circle" src="{{user.userprofile.avatar|thumbnail_url:'avatar_post'|default:'/media/user/avatar/avatar_post.png'}}" alt="{{user.get_full_name}} @{{user.username}} avatar.">
             <div class="media-body">
-                <p class="mb-0 small"><a class="text-white" href="{% url 'uprofile' user %}">{{user.get_full_name}}</a>{% if user.is_staff is True %}<i class="far fa-check-circle fa-fw text-primary small mx-1"></i>{% endif %}</p>
-                <p class="mb-0 small"><a class="text-info" href="{% url 'uprofile' user %}">@{{user.username}}</a></p>
+                <p class="mb-0 small"><a class="text-white" href="{% url 'userprofile' user %}">{{user.get_full_name}}</a>{% if user.is_staff is True %}<i class="far fa-check-circle fa-fw text-primary small mx-1"></i>{% endif %}</p>
+                <p class="mb-0 small"><a class="text-info" href="{% url 'userprofile' user %}">@{{user.username}}</a></p>
             </div>
         </div>
     </div>

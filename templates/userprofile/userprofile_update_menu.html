@@ -1,0 +1,9 @@
+<div class="bg-black-t rounded my-3">
+    <h6 class="px-3 pt-3"><i class="fas fa-sliders-h fa-fw text-info mr-1"></i> Settings</h6>
+    <hr class="mb-0">
+    <ul class="list-none p-0 m-0 small">
+        <li class="border-bottom border-black-t {% if request.resolver_match.url_name == 'userprofile_basic' %}bg-black-t{% endif %}"><a class="text-white ml-3 p-3 d-block" href="{% url 'userprofile_basic' %}"><i class="fas fa-user fa-fw text-info mr-1"></i> Basic Information</a></li>
+        <li class="border-bottom border-black-t {% if request.resolver_match.url_name == 'userprofile_advanced' %}bg-black-t{% endif %}"><a class="text-white ml-3 p-3 d-block" href="{% url 'userprofile_advanced' %}"><i class="fas fa-address-card fa-fw text-info mr-1"></i> Advanced Information</a></li>
+        <li><a class="text-white ml-3 p-3 d-block" href="#"><i class="fas fa-share-alt fa-fw text-info mr-1"></i> Social Conections</a></li>
+    </ul>
+</div>

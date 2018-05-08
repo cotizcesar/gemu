@@ -65,11 +65,11 @@ a:hover{text-decoration: none;}
     display: inline;
 }
 
-/* UProfile */
-#uprofile .header{
+/* UserProfile */
+#userprofile .header{
     position: relative;
 }
-#uprofile .stats{
+#userprofile .stats{
     position: absolute;
     bottom: 0;
 }
