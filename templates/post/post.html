@@ -3,19 +3,17 @@
 {% load humanize %}
 <div class="post mb-3 bg-black-t rounded">
     {% if post.image %}
-    <img class="img-fluid rounded-top" src="{{post.image|thumbnail_url:'post'|default:'/media/post/image/post.png'}}">
+    <img class="img-fluid" src="{{post.image|thumbnail_url:'post'|default:'/media/post/image/post.png'}}">
     {% elif post.video %}
     {{ post.video|youtube_embed_url|safe }}
     {% endif %}
-    <div class="media post p-3">
-        <img class="rounded-circle mr-3" src="{{post.user.userprofile.avatar|thumbnail_url:'avatar_post'|default:'/media/user/avatar/avatar_post.png'}}" alt="Generic placeholder image">
+    <div class="media p-3">
+        <a class="mr-3 rounded-circle" href="{% url 'userprofile' post.user %}"><img class="rounded-circle" src="{{post.user.userprofile.avatar|thumbnail_url:'avatar_50x50'|default:'/media/user/avatar/avatar_50x50.png'}}" alt="{% if post.user.get_full_name %}{{post.user.get_full_name}} - {% endif %}@{{post.user.username}} avatar."></a>
         <div class="media-body">
-            <h6 class="my-1">
-                <a class="text-white" href="#">{{post.user.get_full_name}}</a>
-                {% if post.user.is_staff is True %} <i class="far fa-check-circle fa-fw text-primary small"></i> {% endif %}
-                <a class="text-info small" href="{% url 'userprofile' post.user %}">@{{post.user.username}}</a> <span class="small text-muted float-right mt-1">{{post.date_created|naturaltime}}</span>
-            </h6>
-            <p class="mb-0 small">{{post.text}}</p>
+            {% if post.user.get_full_name %}
+            <p class="my-1 small"><a class="text-white" href="{% url 'userprofile' post.user %}">{{post.user.get_full_name}}</a> <a class="text-info" href="{% url 'userprofile' post.user %}">@{{post.user.username}}{% if post.user.is_staff %} <i class="fas fa-check-circle fa-fw text-primary small"></i>{% endif %}</a></p>
+            {% endif %}
+            <p class="mb-0 text-muted small">{{post.text}}</p>
         </div>
     </div>
     <ul class="nav nav-pills nav-fill border-top border-black-t">
@@ -28,5 +26,5 @@
         <li class="nav-item">
             <a class="nav-link btn-sm text-muted" href="#"><i class="fas fa-share fa-fw"></i> Share</a>
         </li>
-    </ul>
+    </ul>    
 </div>

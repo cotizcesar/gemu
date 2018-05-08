@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/basic/$', UserUpdateView.as_view(), name='userprofile_basic'),
     url(r'^accounts/advanced/$', UserProfileUpdateView.as_view(), name='userprofile_advanced'),
-    url(r'^u/(?P<slug>[a-zA-Z0-9]+)/', UserProfileDetailView.as_view(), name='userprofile'),
+    url(r'^user/(?P<slug>[a-zA-Z0-9]+)/$', UserProfileDetailView.as_view(), name='userprofile'),
     # Post: CRUD url's.
     url(r'^post/create/$', PostCreateView.as_view(), name='post_create'),
     url(r'^post/(?P<pk>\d+)/$', PostDetailView.as_view(), name='post_detail'),

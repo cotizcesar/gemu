@@ -2,16 +2,11 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark border-bottom border-info">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'index' %}"><i class="fas fa-rocket fa-fw text-info"></i> Gemu</a>
+            <a class="navbar-brand" href="{% url 'timeline_public' %}"><i class="fas fa-rocket fa-fw text-info"></i> Gemu</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>    
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.url_name == 'explore' %}active{% endif %}" href="{% url 'explore' %}"><i class="far fa-compass fa-fw text-info"></i> Explore</a>
-                    </li>
-                </ul>
                 <ul class="navbar-nav ml-auto">
                     {% if not user.is_authenticated %}
                     <li class="nav-item">

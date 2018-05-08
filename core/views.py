@@ -19,11 +19,7 @@ class Index(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(Index, self).get_context_data(**kwargs)
-        context['users'] = User.objects.all().order_by('?')[:3]
-        context['public_posts'] = Post.objects.all()
-        context['index_posts'] = Post.objects.all()[:3]
-        context['users_count'] = User.objects.all().count
-        context['posts_count'] = Post.objects.all().count
+        context['users'] = User.objects.all().order_by('date_joined')[:9]
         return context
 
 class PublicTimeline(TemplateView):
@@ -31,7 +27,8 @@ class PublicTimeline(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(PublicTimeline, self).get_context_data(**kwargs)
-        context['public_timeline'] = Post.objects.all()
+        context['posts'] = Post.objects.all()
+        context['users'] = User.objects.all().order_by('?')[:3]
         return context
 
 class Explore(TemplateView):
@@ -47,7 +44,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserForm
     template_name = 'userprofile/userprofile_update_basic.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('timeline_public')
 
     def get_object(self):
         return self.request.user
@@ -56,7 +53,7 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = UserProfile
     form_class = UserProfileForm
     template_name = 'userprofile/userprofile_update_advanced.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('timeline_public')
 
     def form_valid(self, form):
         form.save(self.request.user)
@@ -81,7 +78,7 @@ class UserProfileDetailView(DetailView):
 # Post: Just a post creation.
 class PostCreateView(LoginRequiredMixin, CreateView):
     form_class = PostForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('timeline_public')
     template_name = 'post/post_create.html'
 
     def form_valid(self, form):
@@ -89,13 +86,13 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         obj.user = self.request.user
         obj.date_created = timezone.now()
         obj.save()
-        return redirect('index')
+        return redirect('timeline_public')
 
 # Post: a Detail view of every post.
 class PostDetailView(DetailView):
     model = Post
     slug_field = 'post_id'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('timeline_public')
     template_name = 'post/post_detail.html'
 
     def get_context_data(self, **kwargs):

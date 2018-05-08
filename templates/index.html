@@ -1,98 +1,57 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
-{% load bootstrap4 %}
 {% block title %}Home{% endblock %}
 {% block content %}
-{% if user.is_authenticated %}
-<div id="index" class="row">
+<div class="row">
     <div class="col-md-3">
-        <div class="media p-3 rounded bg-black-t mb-3">
-            <img class="mr-3 img-fluid rounded-circle" src="{{user.userprofile.avatar|thumbnail_url:'avatar_post'|default:'/media/user/avatar/avatar_post.png'}}" alt="{{user.get_full_name}} @{{user.username}} avatar.">
-            <div class="media-body">
-                <p class="mb-0 small"><a class="text-white" href="{% url 'userprofile' user %}">{{user.get_full_name}}</a>{% if user.is_staff is True %}<i class="far fa-check-circle fa-fw text-primary small mx-1"></i>{% endif %}</p>
-                <p class="mb-0 small"><a class="text-info" href="{% url 'userprofile' user %}">@{{user.username}}</a></p>
+        <div class="rounded bg-black-t mb-3">
+            <h1 class="text-center h2 pt-5 mb-2"><i class="fas fa-rocket fa-fw text-info"></i> Gemu</h1>
+            <small class="mb-4 text-center d-block w-75 mx-auto">Open Source Gaming Social Network</small>
+            <div class="px-3">
+                <a class="btn btn-success btn-block font-weight-bold" href="{% url 'account_signup' %}" role="button"><i class="fas fa-sign-in-alt fa-fw"></i> Sign up</a>
             </div>
-        </div>
-    </div>
-    <div class="col-md-6 mb-3">
-        {% bootstrap_messages %}
-        <ul class="nav nav-pills">
-            <li class="nav-item">
-                <a class="nav-link btn-sm bg-info active" href="{% url 'index' %}"><i class="fas fa-globe fa-fw"></i> Public</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn-sm disabled" href="#"><i class="fas fa-angle-double-right fa-fw"></i> Following</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn-sm disabled" href="#"><i class="fas fa-heart fa-fw"></i> Liked</a>
-            </li>
-            <li class="nav-item ml-auto">
-                <a class="nav-link btn-sm bg-success active" href="{% url 'post_create' %}"><i class="fas fa-paper-plane fa-fw"></i> New Post</a>
-            </li> 
-        </ul>
-        <hr>    
-        {% for post in public_posts %}
-        {% include 'post/post.html' %}
-        {% empty %}
-        <div class="alert alert-info small" role="alert">
-            There's no posts to show. If you want to see more, please follow more players <a href="{% url 'explore' %}">here</a>.
-        </div>
-        {% endfor %}
-    </div>
-    <div class="col-md-3">
-        {% include 'modules/the_more_you_know.html' %}
-        {% include 'modules/who_to_follow.html' %}
-    </div>
-</div>
-{% else %}
-<div id="public" class="row">
-    <div class="col-md-3">
-        <div class="about rounded bg-black-t p-3 mb-3">
-            <h2><i class="fas fa-rocket fa-fw icon text-info mx-auto d-block"></i></h2>
-            <ul class="list-none m-0 p-0 text-center">
-                <li class="h2">Gemu</li>
-                <li class="h6">OpenSource Gaming Social Network</li>
-            </ul>
-        </div>
-        <div class="bg-black-t rounded mb-3">
-            <h6 class="px-3 pt-3"><i class="fas fa-rocket fa-fw text-info mr-1"></i> Stats</h6>
-            <hr class="mb-0">
-            <ul class="list-none p-0 m-0 small">
-                <li class="border-bottom border-black-t text-white p-3 d-block"><i class="fas fa-gamepad fa-fw text-info ml-3 mr-1"></i> Total Players ({{users_count}})</li>
-                <li class="border-black-t text-white p-3 d-block"><i class="far fa-paper-plane fa-fw text-info ml-3 mr-1"></i> Total Posts ({{posts_count}})</li>
-            </ul>
+            <hr>
+            <div class="px-3 pb-3">
+                <p class="text-center small"><b>Hello adventurer!</b> By clicking on this button you can log in or sign up with any of your social networks like <b>Twitch, Battle.net or Youtube.</b></p>
+                <p class="mb-0 text-center small">Before doing so, please read our <b>code of conduct</b> because if you break the rules you could be banned permanently.</p>
+            </div>
         </div>
     </div>
     <div class="col-md-6">
-        <div class="bg-black-t rounded p-3 mb-3">
-            <div class="media small">
-                <h2><i class="fas fa-rocket fa-fw text-info mt-2 mr-3"></i></h2>
+        <img class="img-fluid rounded mb-3" src="http://via.placeholder.com/1920x1080">
+        <div class="rounded bg-black-t mb-3">
+            <div class="media px-3 pt-3">
+                <i class="fas fa-rocket fa-fw text-info h1 mr-3 mb-0"></i>
                 <div class="media-body">
-                    <h5 class="mt-0">Gemu <br><small>OpenSource Gaming Social Network.</small></h5>
-                    <hr>
-                    <p>Gemu is an OpenSource social network for gaming. Share with your followers, explore new posts and players, create game groups and talk to them privately.</p>
+                    <h5 class="mb-0">Gemu</h5>
+                    <p class="mb-0 text-muted font-weight-bold">Open Source Gaming Social Network</p>
                 </div>
             </div>
-            <ul class="nav justify-content-center small">
-                <li class="nav-item">
-                    <a class="nav-link text-white btn btn-sm btn-github mx-2" href="http://bit.ly/gemu-github" target="_blank"><i class="fab fa-github fa-fw mr-1"></i> Github</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white btn btn-sm btn-facebook mx-2" href="http://bit.ly/gemu-facebook" target="_blank"><i class="fab fa-facebook fa-fw mr-1"></i>Facebook</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white btn btn-sm btn-twitter mx-2" href="http://bit.ly/gemu-twitter" target="_blank"><i class="fab fa-twitter fa-fw mr-1"></i>Twitter</a>
-                </li>
+            <hr>
+            <ul class="list-none m-0 px-3 pb-3">
+                <li class="mb-2">My name is Cesar Cotiz Frontend / Backend Developer of Gemu, lover of video games as much as you.</li>
+                <li class="mb-2">We are a social network of players from all over the world made with love in Venezuela and Colombia.</li>
+                <li class="mb-2">Our goal is that everyone can use it to get the best friendships, experiences and above all have fun on the road.</li>
+                <li class="mb-0">We have organized it so that everyone can synchronize their social networks to enjoy it in a faster and safer way.</li>
             </ul>
         </div>
-        <div class="bg-black-t rounded my-3">
-            <h6 class="p-3"><i class="fas fa-list fa-fw text-info mr-1"></i> Last Public Posts</h6>
-        </div>
-        {% for post in index_posts %}
-        {% include 'post/post.html' %}
-        {% endfor %}
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <div class="rounded bg-black-t mb-3">
+            <h2 class="mb-0 px-3 pt-3 h6"><i class="fas fa-globe fa-fw text-info mr-1"></i> Last Registered Gamers</h2>
+            <hr class="mb-0">
+            {% for user in users %}
+            <div class="media border-bottom border-black-t p-3">
+                <a class="mr-3 rounded-circle" href="{% url 'userprofile' user %}"><img class="rounded-circle" src="{{users.userprofile.avatar|thumbnail_url:'avatar_50x50'|default:'/media/user/avatar/avatar_50x50.png'}}" alt="{% if user.get_full_name %}{{user.get_full_name}} - {% endif %}@{{user.username}} avatar."></a>
+                <div class="media-body">
+                    {% if user.get_full_name %}
+                    <p class="mb-0 mt-1 small"><a class="text-white" href="{% url 'userprofile' user %}">{{user.get_full_name}}</a></p>
+                    {% endif %}
+                    <a class="mb-0 text-muted small" href="{% url 'userprofile' user %}" >@{{user.username}} {% if user.is_staff %}<i class="fas fa-check-circle fa-fw text-primary small"></i>{% endif %}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
-{% endif %}
 {% endblock %}
