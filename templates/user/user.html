@@ -5,6 +5,6 @@
         {% if user.get_full_name %}
         <p class="mb-0 mt-1 small"><a class="text-white" href="{% url 'userprofile' user %}">{{user.get_full_name}}</a></p>
         {% endif %}
-        <a class="mb-0 text-muted small" href="{% url 'userprofile' user %}" >@{{user.username}} {% if user.is_staff %}<i class="fas fa-check-circle fa-fw text-primary small"></i>{% endif %}</a>
+        <a class="mb-0 d-block text-muted small" href="{% url 'userprofile' user %}" >@{{user.username}} {% if user.is_staff %}<i class="fas fa-check-circle fa-fw text-primary small"></i>{% endif %}</a>
     </div>
 </div>
