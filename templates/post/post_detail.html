@@ -2,7 +2,10 @@
 {% block title %}@{{post.user.username}} - {{post.text}}{% endblock %}
 {% block content %}
 <div class="row">
-    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        {% include "timeline/timeline_user.html" %}
+        {% include "timeline/timeline_menu.html" %}
+    </div>
     <div class="col-md-6">
         {% include "post/post.html" %}
         <h6 class="mb-3"><i class="far fa-comments fa-fw text-info mr-1"></i> Comments ({{ comments.count }})</h6>
