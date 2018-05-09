@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 {% load thumbnail %}
 {% load humanize %}
 {% block title %}{% if profile.get_full_name %}{{profile.get_full_name}} - {% endif %}@{{profile.username}}{% endblock %}
@@ -14,6 +15,17 @@
                 <li class="mb-1 small"><i class="fas fa-link fa-fw"></i> <a class="text-info" href="{{profile.userprofile.website}}" target="_blank">My Website</a></li>
                 <li class="mb-0 small"><span class="text-muted small">Last Login: {{profile.last_login|naturaltime}}</span></li>
             </ul>
+            {% if user.is_authenticated %}
+            <div class="px-3 pb-3">
+                {% if user.username == profile.username %}
+                <a class="btn btn-info btn-block" href="{% url 'userprofile_basic' %}" role="button">Edit Profile</a>
+                {% elif connected %}
+                <a class="btn btn-danger btn-block" href="{% url 'unfollow' profile.username %}" role="button">UnFollow</a>
+                {% else  %}
+                <a class="btn btn-success btn-block" href="{% url 'follow' profile.username %}" role="button">Follow</a>
+                {% endif %}
+            </div>
+            {% endif %}
         </div>
         {% include 'modules/the_more_you_know.html' %}
     </div>
@@ -34,6 +46,7 @@
         </div>
         <div class="row">
             <div class="col-md-8">
+                {% bootstrap_messages %}
                 {% if posts %}
                 {% for post in posts %}
                 {% include 'post/post.html' %}

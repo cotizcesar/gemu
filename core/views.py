@@ -3,13 +3,18 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect, Http404
+
+# Helpers: get_current_user by session.
+from .helpers import get_current_user
 
 # Django: Importing User Model
 from django.contrib.auth.models import User
-from django.views.generic import TemplateView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
 
 # Core: Importing Post Model
-from .models import Post, Comment, UserProfile
+from .models import Post, Comment, UserProfile, Connection
 
 # Core: Importing PostForm form
 from .forms import UserForm, UserProfileForm, PostForm, CommentForm
@@ -19,16 +24,8 @@ class Index(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(Index, self).get_context_data(**kwargs)
-        context['users'] = User.objects.all().order_by('date_joined')[:9]
-        return context
-
-class PublicTimeline(TemplateView):
-    template_name = 'timeline/timeline_public.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(PublicTimeline, self).get_context_data(**kwargs)
         context['posts'] = Post.objects.all()
-        context['users'] = User.objects.all().order_by('?')[:3]
+        context['users'] = User.objects.all().order_by('date_joined')[:3]
         return context
 
 class ExploreUsers(TemplateView):
@@ -43,7 +40,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserForm
     template_name = 'userprofile/userprofile_update_basic.html'
-    success_url = reverse_lazy('timeline_public')
+    success_url = reverse_lazy('index')
 
     def get_object(self):
         return self.request.user
@@ -52,7 +49,7 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = UserProfile
     form_class = UserProfileForm
     template_name = 'userprofile/userprofile_update_advanced.html'
-    success_url = reverse_lazy('timeline_public')
+    success_url = reverse_lazy('index')
 
     def form_valid(self, form):
         form.save(self.request.user)
@@ -66,18 +63,110 @@ class UserProfileDetailView(DetailView):
     model = User
     template_name = 'userprofile/userprofile.html'
     slug_field = 'username'
+    slug_url_kwarg = 'username'
     context_object_name = 'profile'
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileDetailView, self).get_context_data(**kwargs)
         context['posts'] = Post.objects.filter(user=self.get_object())
         context['users'] = User.objects.all().order_by('?')[:3]
+
+        username = self.kwargs['username']
+        context['username'] = username
+        context['user'] = get_current_user(self.request)
+
+        if username is not context['user'].username:
+            result = Connection.objects.filter(follower__username=context['user'].username).filter(following__username=username)
+            context['connected'] = True if result else False            
+        return context       
+
+# Connection: Followers List
+class FollowersListView(LoginRequiredMixin, ListView):
+    model = Connection
+    template_name = 'accounts/connections_list.html'
+    context_object_name = 'users'
+
+    def get_queryset(self):
+        username = self.kwargs['username']
+        return Connection.objects.filter(following__username=username)
+
+    def get_context_data(self):
+        context = super(FollowersListView, self).get_context_data()
+        context['mode'] = 'followers'
         return context
+
+# Connection: Following List
+class FollowingListView(LoginRequiredMixin, ListView):
+    model = Connection
+    template_name = 'accounts/connections_list.html'
+    context_object_name = 'users'
+
+    def get_queryset(self):
+        username = self.kwargs['username']
+        return Connection.objects.filter(follower__username=username)
+
+    def get_context_data(self):
+        context = super(FollowingListView, self).get_context_data()
+        context['mode'] = 'following'
+        return context
+
+@login_required
+def follow_view(request, *args, **kwargs):
+    try:
+        follower = User.objects.get(username=request.user)
+        following = User.objects.get(username=kwargs['username'])
+
+    except User.DoesNotExist:
+        messages.warning(request, '{} is not a registered user.'.format(kwargs['username']))
+        return HttpResponseRedirect(reverse_lazy('index'))
+
+    if follower == following:
+        messages.warning(request, 'You cannot follow yourself.')
+
+    else:
+        _, created = Connection.objects.get_or_create(follower=follower, following=following)
+        
+        if (created):
+            messages.success(request, 'You\'ve successfully followed {}.'.format(following.username))
+        
+        else:
+            messages.warning(request, 'You\'ve already followed {}.'.format(following.username))
+    return HttpResponseRedirect(reverse_lazy('index'))
+    # Its the original code, but its not working at the moment.
+    # https://github.com/benigls/instagram
+    #return HttpResponseRedirect(reverse_lazy('userprofile', kwargs={'username': following.username}))
+
+@login_required
+def unfollow_view(request, *args, **kwargs):
+    try:
+        follower = User.objects.get(username=request.user)
+        following = User.objects.get(username=kwargs['username'])
+
+        if follower == following:
+            messages.warning(request, 'You cannot unfollow yourself.')
+
+        else:
+            unfollow = Connection.objects.get(follower=follower, following=following)
+
+            unfollow.delete()
+
+            messages.success(request, 'You\'ve just unfollowed {}.'.format(following.username)
+            )
+    except User.DoesNotExist:
+        messages.warning(request, '{} is not a registered user.'.format(kwargs['username']))
+        return HttpResponseRedirect(reverse_lazy('index'))
+
+    except Connection.DoesNotExist:
+        messages.warning(request, 'You didn\'t follow {0}.'.format(following.username))
+    return HttpResponseRedirect(reverse_lazy('index'))
+    # Its the original code, but its not working at the moment.
+    # https://github.com/benigls/instagram
+    # return HttpResponseRedirect(reverse_lazy('accounts:profile', kwargs={'username': following.username}))
 
 # Post: Just a post creation.
 class PostCreateView(LoginRequiredMixin, CreateView):
     form_class = PostForm
-    success_url = reverse_lazy('timeline_public')
+    success_url = reverse_lazy('index')
     template_name = 'post/post_create.html'
 
     def form_valid(self, form):
@@ -85,13 +174,13 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         obj.user = self.request.user
         obj.date_created = timezone.now()
         obj.save()
-        return redirect('timeline_public')
+        return redirect('index')
 
 # Post: a Detail view of every post.
 class PostDetailView(DetailView):
     model = Post
     slug_field = 'post_id'
-    success_url = reverse_lazy('timeline_public')
+    success_url = reverse_lazy('index')
     template_name = 'post/post_detail.html'
 
     def get_context_data(self, **kwargs):

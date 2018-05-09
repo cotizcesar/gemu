@@ -20,20 +20,19 @@ from django.conf.urls.static import static
 
 from django.conf.urls import include, url
 
-from core.views import Index, PublicTimeline, ExploreUsers, UserUpdateView, UserProfileUpdateView, UserProfileDetailView, PostCreateView, PostDetailView, CommentCreateView
+from core.views import Index, ExploreUsers, UserUpdateView, UserProfileUpdateView, UserProfileDetailView, FollowersListView, FollowingListView, PostCreateView, PostDetailView, CommentCreateView
+from core.views import follow_view, unfollow_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', Index.as_view(), name='index'),
-    # Timelines: Public, Following, Etc.
-    url(r'^timeline/public$', PublicTimeline.as_view(), name='timeline_public'),
     url(r'^explore/$', ExploreUsers.as_view(), name='explore_users'),
     # django-allauth: All url patterns
     # http://django-allauth.readthedocs.io/en/latest/installation.html#django
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/basic/$', UserUpdateView.as_view(), name='userprofile_basic'),
     url(r'^accounts/advanced/$', UserProfileUpdateView.as_view(), name='userprofile_advanced'),
-    url(r'^user/(?P<slug>[a-zA-Z0-9]+)/$', UserProfileDetailView.as_view(), name='userprofile'),
+    url(r'^user/(?P<username>[-\w]{5,30})/$', UserProfileDetailView.as_view(), name='userprofile'),
     # Post: CRUD url's.
     url(r'^post/create/$', PostCreateView.as_view(), name='post_create'),
     url(r'^post/(?P<pk>\d+)/$', PostDetailView.as_view(), name='post_detail'),
@@ -41,4 +40,8 @@ urlpatterns = [
     url(r'^post/(?P<pk>\d+)/comment/$', CommentCreateView.as_view(), name='post_comment_create'),
     # django-activity-stream: Testing URL
     url('^activity/', include('actstream.urls')),
+    url(r'^u/(?P<username>[-\w]{5,30})/followers$', FollowersListView.as_view(), name='followers'),
+    url(r'^u/(?P<username>[-\w]{5,30})/following/$', FollowingListView.as_view(), name='following'),
+    url(r'^u/(?P<username>[-\w]{5,30})/follow/$', follow_view, name='follow'),
+    url(r'^u/(?P<username>[-\w]{5,30})/unfollow/$', unfollow_view, name='unfollow'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

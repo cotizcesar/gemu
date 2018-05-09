@@ -13,7 +13,6 @@ class UserProfile(models.Model):
     header = models.ImageField(upload_to='user/header', default='avatar/default.png', blank=True)
     bio = models.CharField(max_length=140, blank=True)
     website = models.URLField(max_length=200, blank=True)
-    follows = models.ManyToManyField('UserProfile', related_name='followed_by')
 
     def __str__(self):
         return self.user.username
@@ -27,6 +26,14 @@ def update_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
+
+class Connection(models.Model):
+    follower = models.ForeignKey(User, related_name='follower', on_delete=models.PROTECT)
+    following = models.ForeignKey(User, related_name='following', on_delete=models.PROTECT)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "{} : {}".format(self.follower.username, self.following.username)
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

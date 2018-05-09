@@ -139,7 +139,7 @@ MEDIA_URL = '/media/'
 
 # django-allauth: Log In/Log Out redirection
 # http://django-allauth.readthedocs.io/en/latest/configuration.html
-LOGIN_REDIRECT_URL = 'timeline_public'
+LOGIN_REDIRECT_URL = 'index'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 # django-allauth: Email Registration Delivery
