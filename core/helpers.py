@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 from django.contrib.sessions.models import Session
 
 # Django: Importing User Model

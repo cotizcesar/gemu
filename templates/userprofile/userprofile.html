@@ -20,9 +20,12 @@
                 {% if user.username == profile.username %}
                 <a class="btn btn-info btn-block" href="{% url 'userprofile_basic' %}" role="button">Edit Profile</a>
                 {% elif connected %}
-                <a class="btn btn-danger btn-block" href="{% url 'unfollow' profile.username %}" role="button">UnFollow</a>
-                {% else  %}
+                <a class="btn btn-danger btn-block" href="{% url 'unfollow' profile.username %}" role="button">Unfollow</a>
+                {% else %}
                 <a class="btn btn-success btn-block" href="{% url 'follow' profile.username %}" role="button">Follow</a>
+                {% endif %}
+                {% if request.user.username is not profile.username %}
+                
                 {% endif %}
             </div>
             {% endif %}
