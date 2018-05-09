@@ -40,7 +40,7 @@ urlpatterns = [
     url(r'^post/(?P<pk>\d+)/comment/$', CommentCreateView.as_view(), name='post_comment_create'),
     # django-activity-stream: Testing URL
     url('^activity/', include('actstream.urls')),
-    url(r'^u/(?P<username>[-\w]{5,30})/followers$', FollowersListView.as_view(), name='followers'),
+    url(r'^u/(?P<username>[-\w]{5,30})/followers/$', FollowersListView.as_view(), name='followers'),
     url(r'^u/(?P<username>[-\w]{5,30})/following/$', FollowingListView.as_view(), name='following'),
     url(r'^u/(?P<username>[-\w]{5,30})/follow/$', follow_view, name='follow'),
     url(r'^u/(?P<username>[-\w]{5,30})/unfollow/$', unfollow_view, name='unfollow'),

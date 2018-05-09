@@ -95,31 +95,31 @@ class UserProfileDetailView(DetailView):
 # Connection: Followers List
 class FollowersListView(LoginRequiredMixin, ListView):
     model = Connection
-    template_name = 'accounts/connections_list.html'
+    template_name = 'userprofile/userprofile_connection_list.html'
     context_object_name = 'users'
 
     def get_queryset(self):
         username = self.kwargs['username']
-        return Connection.objects.filter(following__username=username)
+        return Connection.objects.all().filter(following__username=username)
 
     def get_context_data(self):
         context = super(FollowersListView, self).get_context_data()
-        context['mode'] = 'followers'
+        context['mode'] = 'Followers'
         return context
 
 # Connection: Following List
 class FollowingListView(LoginRequiredMixin, ListView):
     model = Connection
-    template_name = 'accounts/connections_list.html'
+    template_name = 'userprofile/userprofile_connection_list.html'
     context_object_name = 'users'
 
     def get_queryset(self):
         username = self.kwargs['username']
-        return Connection.objects.filter(follower__username=username)
+        return Connection.objects.all().filter(follower__username=username)
 
     def get_context_data(self):
         context = super(FollowingListView, self).get_context_data()
-        context['mode'] = 'following'
+        context['mode'] = 'Following'
         return context
 
 # Follow: hand-made system, its a better and modified copy
