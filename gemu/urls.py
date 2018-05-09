@@ -20,12 +20,12 @@ from django.conf.urls.static import static
 
 from django.conf.urls import include, url
 
-from core.views import Index, ExploreUsers, UserUpdateView, UserProfileUpdateView, UserProfileDetailView, FollowersListView, FollowingListView, PostCreateView, PostDetailView, CommentCreateView
-from core.views import follow_view, unfollow_view
+from core.views import Index, ExploreUsers, UserUpdateView, UserProfileUpdateView, UserProfileDetailView,FollowingTimeline, follow_view, unfollow_view, FollowersListView, FollowingListView, PostCreateView, PostDetailView, CommentCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', Index.as_view(), name='index'),
+    url(r'^timeline/following/$', FollowingTimeline.as_view(), name='timeline_following'),
     url(r'^explore/$', ExploreUsers.as_view(), name='explore_users'),
     # django-allauth: All url patterns
     # http://django-allauth.readthedocs.io/en/latest/installation.html#django

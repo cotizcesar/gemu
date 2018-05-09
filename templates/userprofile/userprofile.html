@@ -39,10 +39,10 @@
                     <a class="nav-link btn-sm text-white" href="#"> Posts: {{posts.count}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-sm text-white" href="#"> Following: 91238</a>
+                    <a class="nav-link btn-sm text-white" href="#"> Following: {{following}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-sm text-white" href="#"> Followers: 3490583</a>
+                    <a class="nav-link btn-sm text-white" href="#"> Followers: {{followers}}</a>
                 </li>
             </ul>
             <img class="img-fluid rounded" src="{{profile.userprofile.header|thumbnail_url:'header'|default:'/media/user/header/header.png'}}" alt="{{profile.get_full_name}} @{{profile.username}} header.">

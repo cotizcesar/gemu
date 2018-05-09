@@ -5,9 +5,7 @@ from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
-
-# Helpers: get_current_user by session.
-from .helpers import get_current_user
+from django.db.models import Prefetch
 
 # Django: Importing User Model
 from django.contrib.auth.models import User
@@ -26,6 +24,16 @@ class Index(TemplateView):
         context = super(Index, self).get_context_data(**kwargs)
         context['posts'] = Post.objects.all()
         context['users'] = User.objects.all().order_by('date_joined')[:3]
+        return context
+
+class FollowingTimeline(TemplateView):
+    template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(FollowingTimeline, self).get_context_data(**kwargs)
+        context['posts'] = Post.objects.all()
+        context['users'] = User.objects.all().order_by('date_joined')[:3]
+        context['test'] = Connection.objects.all().select_related('follower')
         return context
 
 class ExploreUsers(TemplateView):
@@ -75,7 +83,10 @@ class UserProfileDetailView(DetailView):
         username = self.kwargs['username']
         context['username'] = username
         context['user'] = self.request.user
-
+        # Following / Followers counters
+        context['following'] = Connection.objects.filter(follower__username=username).count()
+        context['followers'] = Connection.objects.filter(following__username=username).count()
+        
         if username is not context['user'].username:
             result = Connection.objects.filter(follower__username=context['user'].username).filter(following__username=username)
             context['connected'] = True if result else False            
