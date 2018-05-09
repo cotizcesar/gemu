@@ -71,9 +71,10 @@ class UserProfileDetailView(DetailView):
         context['posts'] = Post.objects.filter(user=self.get_object())
         context['users'] = User.objects.all().order_by('?')[:3]
 
+        # Validation to show the Follow / Unfollow button.
         username = self.kwargs['username']
         context['username'] = username
-        context['user'] = get_current_user(self.request)
+        context['user'] = self.request.user
 
         if username is not context['user'].username:
             result = Connection.objects.filter(follower__username=context['user'].username).filter(following__username=username)
