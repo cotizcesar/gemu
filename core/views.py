@@ -86,7 +86,7 @@ class UserProfileDetailView(DetailView):
         # Following / Followers counters
         context['following'] = Connection.objects.filter(follower__username=username).count()
         context['followers'] = Connection.objects.filter(following__username=username).count()
-        
+
         if username is not context['user'].username:
             result = Connection.objects.filter(follower__username=context['user'].username).filter(following__username=username)
             context['connected'] = True if result else False            
@@ -122,6 +122,8 @@ class FollowingListView(LoginRequiredMixin, ListView):
         context['mode'] = 'following'
         return context
 
+# Follow: hand-made system, its a better and modified copy
+# https://github.com/benigls/instagram
 @login_required
 def follow_view(request, *args, **kwargs):
     try:
@@ -143,11 +145,10 @@ def follow_view(request, *args, **kwargs):
         
         else:
             messages.warning(request, 'You\'ve already followed {}.'.format(following.username))
-    return HttpResponseRedirect(reverse_lazy('index'))
-    # Its the original code, but its not working at the moment.
-    # https://github.com/benigls/instagram
-    #return HttpResponseRedirect(reverse_lazy('userprofile', kwargs={'username': following.username}))
+    return HttpResponseRedirect(reverse_lazy('userprofile', kwargs={'username': following.username}))
 
+# Unfollow: hand-made system, its a better and modified copy
+# https://github.com/benigls/instagram
 @login_required
 def unfollow_view(request, *args, **kwargs):
     try:
@@ -167,10 +168,7 @@ def unfollow_view(request, *args, **kwargs):
 
     except Connection.DoesNotExist:
         messages.warning(request, 'You didn\'t follow {0}.'.format(following.username))
-    return HttpResponseRedirect(reverse_lazy('index'))
-    # Its the original code, but its not working at the moment.
-    # https://github.com/benigls/instagram
-    # return HttpResponseRedirect(reverse_lazy('accounts:profile', kwargs={'username': following.username}))
+    return HttpResponseRedirect(reverse_lazy('userprofile', kwargs={'username': following.username}))
 
 # Post: Just a post creation.
 class PostCreateView(LoginRequiredMixin, CreateView):
