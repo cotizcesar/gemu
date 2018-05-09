@@ -147,11 +147,8 @@ def unfollow_view(request, *args, **kwargs):
 
         else:
             unfollow = Connection.objects.get(follower=follower, following=following)
-
             unfollow.delete()
-
-            messages.success(request, 'You\'ve just unfollowed {}.'.format(following.username)
-            )
+            messages.success(request, 'You\'ve just unfollowed {}.'.format(following.username))
     except User.DoesNotExist:
         messages.warning(request, '{} is not a registered user.'.format(kwargs['username']))
         return HttpResponseRedirect(reverse_lazy('index'))

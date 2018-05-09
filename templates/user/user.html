@@ -1,10 +1,10 @@
 {% load thumbnail %}
 <div class="media p-3">
-    <a class="mr-3 rounded-circle" href="{% url 'userprofile' user %}"><img class="rounded-circle" src="{{user.userprofile.avatar|thumbnail_url:'avatar_50x50'|default:'/media/user/avatar/avatar_50x50.png'}}" alt="{% if user.get_full_name %}{{user.get_full_name}} - {% endif %}@{{user.username}} avatar."></a>
+    <a class="mr-3 rounded-circle" href="{% url 'userprofile' user.username %}"><img class="rounded-circle" src="{{user.userprofile.avatar|thumbnail_url:'avatar_50x50'|default:'/media/user/avatar/avatar_50x50.png'}}" alt="{% if user.get_full_name %}{{user.get_full_name}} - {% endif %}@{{user.username}} avatar."></a>
     <div class="media-body">
         {% if user.get_full_name %}
-        <p class="my-1 small"><a class="text-white" href="{% url 'userprofile' user %}">{{user.get_full_name}}</a></p>
+        <p class="my-1 small"><a class="text-white" href="{% url 'userprofile' user.username %}">{{user.get_full_name}}</a></p>
         {% endif %}
-        <a class="my-1 d-block text-muted small" href="{% url 'userprofile' user %}" >@{{user.username}} {% if user.is_staff %}<i class="fas fa-check-circle fa-fw text-primary small"></i>{% endif %}</a>
+        <a class="my-1 d-block text-muted small" href="{% url 'userprofile' user.username %}" >@{{user.username}} {% if user.is_staff %}<i class="fas fa-check-circle fa-fw text-primary small"></i>{% endif %}</a>
     </div>
 </div>
