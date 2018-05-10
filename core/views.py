@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
 from django.db.models import Prefetch
+from django.db.models import Q
 
 # Django: Importing User Model
 from django.contrib.auth.models import User
@@ -22,19 +23,26 @@ class Index(TemplateView):
     
     def get_context_data(self, *args, **kwargs):
         context = super(Index, self).get_context_data(**kwargs)
-        context['posts'] = Post.objects.all()
         context['users'] = User.objects.all().order_by('date_joined')[:3]
         return context
 
-class FollowingTimeline(LoginRequiredMixin, TemplateView):
-    template_name = 'index.html'
+class TimelineFollowing(LoginRequiredMixin, TemplateView):
+    template_name = 'timeline/timeline.html'
     
     def get_context_data(self, **kwargs):
-        context = super(FollowingTimeline, self).get_context_data(**kwargs)
-        #context['posts'] = Post.objects.all()
-        context['posts'] = Post.objects.filter(user__in=self.request.user.follower.values('following'))
+        context = super(TimelineFollowing, self).get_context_data(**kwargs)
+        context['posts'] = Post.objects.filter(Q(user__in=self.request.user.follower.values('following')) | Q(user=self.request.user))
         context['users'] = User.objects.all().order_by('date_joined')[:3]
-        print(Post.objects.filter(user__in=self.request.user.following.values('following')).query)
+        print(Post.objects.filter(user__in=self.request.user.follower.values('following')).query)
+        return context
+
+class TimelinePublic(LoginRequiredMixin, TemplateView):
+    template_name = 'timeline/timeline.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(TimelinePublic, self).get_context_data(**kwargs)
+        context['posts'] = Post.objects.all()
+        context['users'] = User.objects.all().order_by('date_joined')[:3]
         return context
 
 class ExploreUsers(TemplateView):
@@ -49,7 +57,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserForm
     template_name = 'userprofile/userprofile_update_basic.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('timeline_following')
 
     def get_object(self):
         return self.request.user
@@ -58,7 +66,7 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = UserProfile
     form_class = UserProfileForm
     template_name = 'userprofile/userprofile_update_advanced.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('timeline_following')
 
     def form_valid(self, form):
         form.save(self.request.user)
@@ -182,7 +190,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         obj.user = self.request.user
         obj.date_created = timezone.now()
         obj.save()
-        return redirect('index')
+        return redirect('timeline_public')
 
 # Post: a Detail view of every post.
 class PostDetailView(DetailView):
