@@ -35,7 +35,7 @@ class TimelineFollowing(LoginRequiredMixin, TemplateView):
         context['users'] = User.objects.all().order_by('?')[:3]
         return context
 
-class TimelinePublic(LoginRequiredMixin, TemplateView):
+class TimelinePublic(TemplateView):
     template_name = 'timeline/timeline.html'
     
     def get_context_data(self, **kwargs):
