@@ -33,7 +33,6 @@ class TimelineFollowing(LoginRequiredMixin, TemplateView):
         context = super(TimelineFollowing, self).get_context_data(**kwargs)
         context['posts'] = Post.objects.filter(Q(user__in=self.request.user.follower.values('following')) | Q(user=self.request.user))
         context['users'] = User.objects.all().order_by('date_joined')[:3]
-        print(Post.objects.filter(user__in=self.request.user.follower.values('following')).query)
         return context
 
 class TimelinePublic(LoginRequiredMixin, TemplateView):
