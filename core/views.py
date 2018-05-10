@@ -19,21 +19,22 @@ from .forms import UserForm, UserProfileForm, PostForm, CommentForm
 
 class Index(TemplateView):
     template_name = 'index.html'
-
-    def get_context_data(self, **kwargs):
+    
+    def get_context_data(self, *args, **kwargs):
         context = super(Index, self).get_context_data(**kwargs)
         context['posts'] = Post.objects.all()
         context['users'] = User.objects.all().order_by('date_joined')[:3]
         return context
 
-class FollowingTimeline(TemplateView):
+class FollowingTimeline(LoginRequiredMixin, TemplateView):
     template_name = 'index.html'
-
+    
     def get_context_data(self, **kwargs):
         context = super(FollowingTimeline, self).get_context_data(**kwargs)
-        context['posts'] = Post.objects.all()
+        #context['posts'] = Post.objects.all()
+        context['posts'] = Post.objects.filter(user__in=self.request.user.follower.values('following'))
         context['users'] = User.objects.all().order_by('date_joined')[:3]
-        context['test'] = Connection.objects.all().select_related('follower')
+        print(Post.objects.filter(user__in=self.request.user.following.values('following')).query)
         return context
 
 class ExploreUsers(TemplateView):
