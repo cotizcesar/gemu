@@ -23,7 +23,7 @@ class Index(TemplateView):
     
     def get_context_data(self, *args, **kwargs):
         context = super(Index, self).get_context_data(**kwargs)
-        context['users'] = User.objects.all().order_by('date_joined')[:3]
+        context['users'] = User.objects.all().order_by('-date_joined')[:3]
         return context
 
 class TimelineFollowing(LoginRequiredMixin, TemplateView):
@@ -32,7 +32,7 @@ class TimelineFollowing(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(TimelineFollowing, self).get_context_data(**kwargs)
         context['posts'] = Post.objects.filter(Q(user__in=self.request.user.follower.values('following')) | Q(user=self.request.user))
-        context['users'] = User.objects.all().order_by('date_joined')[:3]
+        context['users'] = User.objects.all().order_by('?')[:3]
         return context
 
 class TimelinePublic(LoginRequiredMixin, TemplateView):
@@ -41,7 +41,7 @@ class TimelinePublic(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(TimelinePublic, self).get_context_data(**kwargs)
         context['posts'] = Post.objects.all()
-        context['users'] = User.objects.all().order_by('date_joined')[:3]
+        context['users'] = User.objects.all().order_by('?')[:3]
         return context
 
 class ExploreUsers(TemplateView):
