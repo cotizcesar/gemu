@@ -47,11 +47,11 @@
         <p class="text-muted small">Explore random posts and comment on what you want, most of the players are friendly. And if you want to know more about them, follow them.</p>
         <hr>
         <div class="row">
-            <div class="col-md-4">
             {% for user in users %}
+            <div class="col-md-4">
             {% include 'explore/explore_user.html'%}
-            {% endfor%}
             </div>
+            {% endfor%}
         </div>
     </div>
     {% endif %}
