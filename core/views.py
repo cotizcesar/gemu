@@ -44,12 +44,38 @@ class TimelinePublic(TemplateView):
         context['users'] = User.objects.all().order_by('?')[:3]
         return context
 
+# Explore
+# Main section: 3 users and all posts random.
+class Explore(TemplateView):
+    template_name = 'explore/explore.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Explore, self).get_context_data(**kwargs)
+        context['users'] = User.objects.all().order_by('?')[:2]
+        context['posts'] = Post.objects.all().order_by('?')
+        context['mode'] = 'explore'
+        return context
+
+# Explore
+# Users: All users random.
 class ExploreUsers(TemplateView):
     template_name = 'explore/explore.html'
 
     def get_context_data(self, **kwargs):
         context = super(ExploreUsers, self).get_context_data(**kwargs)
         context['users'] = User.objects.all().order_by('?')
+        context['mode'] = 'explore_users'
+        return context
+
+# Explore
+# Posts: All posts random.
+class ExplorePosts(TemplateView):
+    template_name = 'explore/explore.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ExplorePosts, self).get_context_data(**kwargs)
+        context['posts'] = Post.objects.all().order_by('?')
+        context['mode'] = 'explore_posts'
         return context
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):

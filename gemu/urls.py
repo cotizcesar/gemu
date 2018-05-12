@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 from django.conf.urls import include, url
 
-from core.views import Index, ExploreUsers, UserUpdateView, UserProfileUpdateView, UserProfileDetailView, TimelineFollowing, TimelinePublic, follow_view, unfollow_view, FollowersListView, FollowingListView, PostCreateView, PostDetailView, CommentCreateView
+from core.views import Index, Explore, ExploreUsers, ExplorePosts, UserUpdateView, UserProfileUpdateView, UserProfileDetailView, TimelineFollowing, TimelinePublic, follow_view, unfollow_view, FollowersListView, FollowingListView, PostCreateView, PostDetailView, CommentCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +28,9 @@ urlpatterns = [
     # Timeline: Following, Public
     url(r'^timeline/following/$', TimelineFollowing.as_view(), name='timeline_following'),
     url(r'^timeline/public/$', TimelinePublic.as_view(), name='timeline_public'),
-    url(r'^explore/$', ExploreUsers.as_view(), name='explore_users'),
+    url(r'^explore/$', Explore.as_view(), name='explore'),
+    url(r'^explore/users$', ExploreUsers.as_view(), name='explore_users'),
+    url(r'^explore/posts$', ExplorePosts.as_view(), name='explore_posts'),
     # django-allauth: All url patterns
     # http://django-allauth.readthedocs.io/en/latest/installation.html#django
     url(r'^accounts/', include('allauth.urls')),

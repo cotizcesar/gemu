@@ -9,15 +9,11 @@
             {% endif %}
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>    
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'explore_users' %}active{% endif %} " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-compass fa-fw text-info mr-1"></i> Explore </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'explore_users' %}">Players</a>
-                            <a class="dropdown-item" href="{% url 'timeline_public' %}">Public Posts</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'explore' or 'explore_users' or explore_posts %}active{% endif %}" href="{% url 'explore' %}"><i class="far fa-compass fa-fw text-info mr-1"></i> Explore</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
