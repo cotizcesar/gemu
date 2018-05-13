@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 from django.conf.urls import include, url
 
-from core.views import Index, Explore, ExploreUsers, ExplorePosts, UserUpdateView, UserProfileUpdateView, UserProfileDetailView, TimelineFollowing, TimelinePublic, follow_view, unfollow_view, FollowersListView, FollowingListView, PostCreateView, PostDetailView, CommentCreateView
+from core.views import Index, Explore, ExploreUsers, ExplorePosts, UserUpdateView, UserProfileUpdateView, UserProfileDetailView, TimelineFollowing, TimelinePublic, follow_view, unfollow_view, FollowersListView, FollowingListView, PostCreateView, PostDeleteView, PostDetailView, CommentCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,6 +40,7 @@ urlpatterns = [
     # Post: CRUD url's.
     url(r'^post/create/$', PostCreateView.as_view(), name='post_create'),
     url(r'^post/(?P<pk>\d+)/$', PostDetailView.as_view(), name='post_detail'),
+    url(r'^post/(?P<pk>\d+)/delete/$', PostDeleteView.as_view(), name='post_delete'),
     # Post Comments: CRUD url's.
     url(r'^post/(?P<pk>\d+)/comment/$', CommentCreateView.as_view(), name='post_comment_create'),
     # django-activity-stream: Testing URL

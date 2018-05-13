@@ -204,7 +204,8 @@ def unfollow_view(request, *args, **kwargs):
         messages.warning(request, 'You didn\'t follow {0}.'.format(following.username))
     return HttpResponseRedirect(reverse_lazy('userprofile', kwargs={'username': following.username}))
 
-# Post: Just a post creation.
+# Post
+# Post creation.
 class PostCreateView(LoginRequiredMixin, CreateView):
     form_class = PostForm
     success_url = reverse_lazy('index')
@@ -217,7 +218,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         obj.save()
         return redirect('timeline_public')
 
-# Post: a Detail view of every post.
+# Post
+# Post detail.
 class PostDetailView(DetailView):
     model = Post
     slug_field = 'post_id'
@@ -228,6 +230,24 @@ class PostDetailView(DetailView):
         context = super(PostDetailView, self).get_context_data(**kwargs)
         context['comments'] = Comment.objects.filter(post=self.object.id).select_related()
         return context
+
+# Post
+# Post delete.
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    model = Post
+    template_name = 'post/post_delete.html'
+    success_url = reverse_lazy('timeline_following')
+
+    def user_passes_test(self, request):
+        if request.user.is_authenticated:
+            self.object = self.get_object()
+            return self.object.user == request.user
+        return False
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.user_passes_test(request):
+            return redirect('timeline_following')
+        return super(PostDeleteView, self).dispatch(request, *args, **kwargs)
 
 # Comment: A Comment creation linked to a Post.
 class CommentCreateView(LoginRequiredMixin, CreateView):
