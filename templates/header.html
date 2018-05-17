@@ -22,6 +22,9 @@
                         <a class="nav-link {% if request.resolver_match.url_name == 'account_login' %}active{% endif %}" href="{% url 'account_login' %}"><i class="fas fa-sign-in-alt fa-fw"></i> Login</a>
                     </li>
                     {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'pinax_messages' %}active{% endif %}" href="{% url 'pinax_messages:inbox' %}"><i class="far fa-envelope fa-fw text-info mr-1"></i> Messages</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'userprofile' %}active{% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @{{user.username}} <img class="img-fluid rounded-circle ml-2" src="{{user.userprofile.avatar|thumbnail_url:'avatar_header'|default:'/media/user/avatar/avatar_header.png'}}">

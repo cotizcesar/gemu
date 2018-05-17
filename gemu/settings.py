@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     # django-activity-stream: Importing Aplication
     'actstream',
+    # pinax-messages: Importing Aplication
+    # https://github.com/pinax/pinax-messages
+    'pinax.messages',
     # Gemu: Applications
     'core',
 ]

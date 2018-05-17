@@ -36,6 +36,8 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/basic/$', UserUpdateView.as_view(), name='userprofile_basic'),
     url(r'^accounts/advanced/$', UserProfileUpdateView.as_view(), name='userprofile_advanced'),
+    # pinax-messages: Added URL for Messages.
+    url(r"^messages/", include("pinax.messages.urls", namespace="pinax_messages")),
     url(r'^user/(?P<username>[-\w]{5,30})/$', UserProfileDetailView.as_view(), name='userprofile'),
     # Post: CRUD url's.
     url(r'^post/create/$', PostCreateView.as_view(), name='post_create'),

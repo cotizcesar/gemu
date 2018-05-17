@@ -4,9 +4,7 @@
 {% block content %}
 <div id="timeline" class="row">
     <div class="col-md-3">
-        {% if user.is_authenticated %}
         {% include 'timeline/timeline_user.html' %}
-        {% endif %}
         {% include 'timeline/timeline_menu.html' %}
     </div>
     <div class="col-md-6">
