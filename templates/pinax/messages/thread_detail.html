@@ -22,12 +22,16 @@
         </div>
         {% endfor %}
         <form class="comment-form" action="{% url "pinax_messages:thread_detail" thread.pk %}" method="post">
-            {% csrf_token %}
-            {% bootstrap_form form %}
+            <div class="rounder bg-black-t p-3 mb-3">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+            </div>
             {% buttons %}
-            <a class="btn btn-warning btn-sm" href="{% url "pinax_messages:inbox" %}"><i class="fas fa-ban fa-fw mr-1"></i> Cancel</a>
-            <a class="btn btn-danger btn-sm" href="{% url "pinax_messages:thread_delete" thread.pk %}"><i class="fas fa-trash-alt fa-fw"></i></a>
-            <button type="submit" class="btn btn-success btn-sm px-3 float-right"><i class="far fa-envelope fa-fw mr-1"></i> Send</button>
+            <div class="rounded bg-black-t p-3">
+                <a class="btn btn-warning btn-sm" href="{% url "pinax_messages:inbox" %}"><i class="fas fa-ban fa-fw mr-1"></i> Cancel</a>
+                <a class="btn btn-danger btn-sm" href="{% url "pinax_messages:thread_delete" thread.pk %}"><i class="fas fa-trash-alt fa-fw"></i></a>
+                <button type="submit" class="btn btn-success btn-sm px-3 float-right"><i class="far fa-envelope fa-fw mr-1"></i> Send</button>
+            </div>
             {% endbuttons %}
         </form>
     </div>
