@@ -1,6 +1,6 @@
 {% if user.get_full_name|length < 1 or user.userprofile.avatar|length < 1 or user.userprofile.header|length < 1 or user.userprofile.bio|length < 1 or user.userprofile.website|length < 1 %}
 {% if user.is_authenticated %}
-<div class="alert alert-info p-0 mb-3 small" role="alert">
+<div class="alert alert-info p-0 mb-3" role="alert">
     <h6 class="px-3 pt-3"><i class="fas fa-user-secret text-info mr-1"></i> Complete your Profile!</h6>
     <hr class="mb-0">
     <ul class="list-none p-3 m-0">

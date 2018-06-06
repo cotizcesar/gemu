@@ -9,7 +9,7 @@
     </div>
     <div class="col-md-6">
         <h5><i class="far fa-envelope fa-fw text-info mr-1"></i> Delete "{{ thread.subject }}" message?</h5>
-        <p class="text-muted small">Press the delete button only if you are sure to erase the entire message thread. It will not be possible to recover the messages after deleting them.</p>
+        <p class="text-muted">Press the delete button only if you are sure to erase the entire message thread. It will not be possible to recover the messages after deleting them.</p>
         <hr>
         {% url "pinax_messages:thread_delete" thread.pk as post_url %}
         <form action="{{ post_url }}" method="POST">

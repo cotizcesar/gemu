@@ -8,12 +8,12 @@
     </div>
     <div class="col-md-6">
         <h5><i class="far fa-envelope fa-fw text-info mr-1"></i> {{ thread.subject }}</h5>
-        <p class="text-muted small">Avoid sending data from your credit cards, bank accounts, address, email or phone numbers. It's for your own privacy.</p>
+        <p class="text-muted">Avoid sending data from your credit cards, bank accounts, address, email or phone numbers. It's for your own privacy.</p>
         <hr>
         {% for message in thread.messages.all %}
-        <div class="media rounded bg-black-t small my-3">
+        <div class="media rounded bg-black-t my-3">
             <div class="media-body">
-                <h6 class="px-3 pt-3">{{ message.sender.get_full_name }} <a class="text-info small" href="{% url 'userprofile' message.sender.username %}">@{{ message.sender.username }}</a> <span class="float-right small text-muted mt-1">{{ message.sent_at }}</span></h6>
+                <h6 class="px-3 pt-3">{{ message.sender.get_full_name }} <a class="text-info" href="{% url 'userprofile' message.sender.username %}">@{{ message.sender.username }}</a> <span class="float-right text-muted mt-1">{{ message.sent_at }}</span></h6>
                 <hr>
                 <div class="px-3">
                 {{ message.content|urlize|linebreaks }}

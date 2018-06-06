@@ -9,9 +9,9 @@
     </div>
     <div class="col-md-6">
         <h5><i class="fas fa-address-card fa-fw text-info mr-1"></i> Advanced Information</h5>
-        <p class="text-muted small">We need you to fill out all your information in order to show it in your user profile and that your followers can know more about you.</p>
+        <p class="text-muted">We need you to fill out all your information in order to show it in your user profile and that your followers can know more about you.</p>
         <hr>
-        <form class="my-3 small" method="POST" enctype="multipart/form-data" action="">
+        <form class="my-3" method="POST" enctype="multipart/form-data" action="">
             <div class="rounded bg-black-t p-3 my-3">
                 {% csrf_token %}
                 {% bootstrap_form form %}
