@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "gemu"
+version = "0.1.0"
+description = "Gaming social network based on Django"
+authors = ["Cesar Cotiz <cotizcesar@gmail.com>"]
+license = "AGPLv3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Django = "^4.1.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
